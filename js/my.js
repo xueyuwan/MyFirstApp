@@ -5,9 +5,7 @@ angular.module('ionicApp', ['ionic'])
     .config(function($stateProvider, $urlRouterProvider) {
         //调试对象
         // ionicPopup = $ionicPopup;
-
-
-
+      
   $stateProvider
     .state('sign-in', {
       url: '/sign-in',
@@ -18,6 +16,16 @@ angular.module('ionicApp', ['ionic'])
         url:'/sign-up',
         templateUrl:'templates/sign-up.html',
           controller:'SignUpCtrl'
+      })
+      .state('forgot-password',{
+        url:'/forgot-password',
+        templateUrl:'templates/forgot-password.html',
+        controller:'SignUpCtrl'
+      })
+      .state('forgot-password-next',{
+        url:'/forgot-password-next',
+        templateUrl:'templates/forgot-password-next.html',
+        controller:'SignUpCtrl'
       });
 
 
