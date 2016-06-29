@@ -1,0 +1,25 @@
+<ion-view view-title="WELCOME!" >
+    <ion-content>
+        <div class="list text-center" >
+            <img src="images/logo.png" style="width: 100px; height: auto">
+        </div>
+        <div class="list text-center">
+            <label class="item item-input">
+                <span class="input-label"><i class="icon ion-heart"></i>账号</span>
+                <input type="text" ng-model="user.username">
+            </label>
+            <label class="item item-input">
+                <span class="input-label"><i class="icon ion-locked"></i>密码</span>
+                <input type="password" ng-model="user.password">
+            </label>
+        </div>
+        <div class="padding">
+            <button class="button button-block " ng-click="signIn(user)">
+                Sign-In
+            </button>
+            <p class="text-center">
+                <a href="#/forgot-password">Forgot password</a>
+            </p>
+        </div>
+    </ion-content>
+</ion-view>
