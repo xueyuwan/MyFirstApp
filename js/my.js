@@ -9,14 +9,19 @@ angular.module('ionicApp', ['ionic'])
       .state('sign-up',{
         url:'/sign-up',
         templateUrl:'templates/sign-up.html'
-      });
+      })
+    .state('forgotpassword', {
+      url: '/forgot-password',
+      templateUrl: 'templates/forgot-password.html'
+    })
 
+      .state('forgotpasswordnext', {
+          url: '/forgot-password-next',
+          abstract: true,
+          templateUrl: 'templates/forgot-password-next.html'
+        })
 
   $urlRouterProvider.otherwise('/sign-in');
-    // .state('forgotpassword', {
-    //   url: '/forgot-password',
-    //   templateUrl: 'templates/forgot-password.html'
-    // })
     // .state('tabs', {
     //   url: '/tab',
     //   abstract: true,
@@ -71,7 +76,7 @@ angular.module('ionicApp', ['ionic'])
     //     }
     //   }
     // });
-   $urlRouterProvider.otherwise('/sign-in');
+
 })
 
 .controller('SignInCtrl', function($scope, $state) {

@@ -1,6 +1,21 @@
 .text-center{ text-align: center;}
 .text-left{ text-align: left;}
 .text-right{ text-align: right;}
-.sign-btbg{background-color: #ffc900;}
+
+/*登录界面*/
+.sign-btbg{background-color:#ffc900;}
 .color-white{ color: #ffffff; }
 .register a{ color: #333333; text-decoration: none;}
+.register .sign-up{ float: left; margin: 6px 0 20px 60px;}
+.register .forget{ float: right; margin: 6px 60px 20px 0;}
+.login-bg{ background:url("../images/login-bg.png") }
+.logo-padding{margin: 6%  auto ;}
+.other{ margin:3% 6%; }
+.other-login{ display: block}
+.other-login li{ display: inline-block;  margin: 10px 10px; }
+
+/*忘记密码*/
+.passcheck{float: left;}
+.passcheck input{display: inline-block; width: 100px; height: 30px; line-height: 30px; border: 1px solid #000;}
+.yzm{ width: 150px ; height: 30px; border:1px solid #ccc;  float: right;}
+.yz{ margin: 30px auto;}
