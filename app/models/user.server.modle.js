@@ -6,8 +6,12 @@ var UserSechema = new Schema({
     lastName : String,
     email : String,
     username : String,
-    password : String
+    password : String,
+    phone:String,
+createDt:{type:Date,default :Date.now}
 });
+
 UserSechema= mongoose.model('User',UserSechema);
+
 
 module.exports = {UserSechema};

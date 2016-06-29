@@ -7,10 +7,10 @@ var express =  require('../config/express');
 var app = express();
 
 //文件路由
-var port=3000;
+var port= 3000;
 
 
-app.listen(port,function(err){
+app.listen(port || port,function(err){
   console.log('app server runing on port:'+port);
 });
 

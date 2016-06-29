@@ -1,6 +1,6 @@
 //自动引入app/models下的所有文件的 exports.automodel={User:UserSchema};并合并到一个db对象中,并返回该对象
-import path from 'path';
-import fs from 'fs';
+var path = require('path');
+var fs = require('fs');
 
 //扫描项目app/routes/下面的所有路由文件
 var routesDir = path.dirname(__dirname)+'/app/models';
