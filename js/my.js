@@ -1,5 +1,13 @@
+
+var ionicPopup;
+var scope;
 angular.module('ionicApp', ['ionic'])
-.config(function($stateProvider, $urlRouterProvider) {
+    .config(function($stateProvider, $urlRouterProvider) {
+        //调试对象
+        // ionicPopup = $ionicPopup;
+
+
+
   $stateProvider
     .state('sign-in', {
       url: '/sign-in',
@@ -8,20 +16,16 @@ angular.module('ionicApp', ['ionic'])
     })
       .state('sign-up',{
         url:'/sign-up',
-        templateUrl:'templates/sign-up.html'
-      })
-    .state('forgotpassword', {
-      url: '/forgot-password',
-      templateUrl: 'templates/forgot-password.html'
-    })
+        templateUrl:'templates/sign-up.html',
+          controller:'SignUpCtrl'
+      });
 
-      .state('forgotpasswordnext', {
-          url: '/forgot-password-next',
-          abstract: true,
-          templateUrl: 'templates/forgot-password-next.html'
-        })
 
   $urlRouterProvider.otherwise('/sign-in');
+    // .state('forgotpassword', {
+    //   url: '/forgot-password',
+    //   templateUrl: 'templates/forgot-password.html'
+    // })
     // .state('tabs', {
     //   url: '/tab',
     //   abstract: true,
@@ -76,21 +80,30 @@ angular.module('ionicApp', ['ionic'])
     //     }
     //   }
     // });
-
+   $urlRouterProvider.otherwise('/sign-in');
 })
+.controller('SignInCtrl', function($scope, $state,$ionicPopup,$timeout,popup) {
+  ionicPopup = $ionicPopup;
 
-.controller('SignInCtrl', function($scope, $state) {
-  
-  $scope.signIn = function(user) {
-    console.log('Sign-In', user);
-    if($scope.username==""&&$scope.password==""){
+    $scope.user = {};
 
-    }
-    $state.go('tabs.home');
-  };
-  
+    $scope.signIn = function() {
+      if($scope.user.username==""&& $scope.user.password==""){
+         popup.show('提示','用户名或密码不能为空');
+
+      }else if(!/^(13[0-9]|14[0-9]|15[0-9]|18[0-9])\d{8}$/.test($scope.user.username)){
+        popup.show('提示','请输入正确的手机号');
+      }else{
+        $state.go('sign-up');
+      }
+  }
 })
+    .controller('SignUpCtrl',function($scope,$ionicNavBarDelegate){
+            $scope.goBack = function(){
+                $ionicNavBarDelegate.back();
+            }
 
+    })
 .controller('HomeTabCtrl', function($scope) {
   console.log('HomeTabCtrl');
 });

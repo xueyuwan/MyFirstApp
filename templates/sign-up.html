@@ -1,16 +1,20 @@
-<ion-view>
-    <ion-nav-bar title="注册" align="center">
 
+<ion-view view-title="注册" hid>
+    <ion-nav-bar align-title="center" class="bar-positive">
+        <ion-nav-back-button side="" class="button-clear">
+            <i class="ion-arrow-left-c" ng-click="goBack()"></i>后退
+        </ion-nav-back-button>
     </ion-nav-bar>
+
     <ion-content>
-        <div class="list text-center">
+        <div class="list ">
             <label class="item item-input">
-                <span class="input-label"><i class="ion-cloud"></i>账号</span>
-                <input type="text" ng-model="user.username">
+                <span class="input-label"><i class="icon ion-android-phone-portrait">手机号</i></span>
+                <input type="text" ng-model="username">
             </label>
             <label class="item item-input">
                 <span class="input-label">密码</span>
-                <input type="password" ng-model="user.password">
+                <input type="password" ng-model="password">
             </label>
         </div>
         <div class="padding">

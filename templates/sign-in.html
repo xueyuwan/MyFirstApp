@@ -1,40 +1,28 @@
-<ion-view view-title="WELCOME!" class="login-bg">
-    <ion-content   >
-        <div class="list text-center padding logo-padding" >
-            <img src="images/logo.png" >
+
+<ion-nav-view view-title="WELCOME!" >
+    <ion-nav-bar style="display: none"></ion-nav-bar>
+    <ion-content>
+        <div class="list text-center" >
+            <img src="images/logo.png" style="width: 100px; height: auto">
         </div>
-        <div class="list padding" style="border: 1px dashed #ccc; padding: 6% 5%; width: 90%; margin: 0 auto ">
-                <div class="list text-center login-bg">
-                    <label class="item item-input ">
-                        <span class="input-label"><i class="icon ion-android-person"></i>账号</span>
-                        <input type="text" ng-model="user.username">
-                    </label>
-                    <label class="item item-input">
-                        <span class="input-label"><i class="icon ion-locked"></i>密码</span>
-                        <input type="password" ng-model="user.password">
-                    </label>
-                </div>
-                <div class="padding">
-                    <button class="button button-block sign-btbg color-white" ng-click="signIn(user)">
-                       登录
-                    </button>
-                </div>
+        <div class="list text-center">
+            <label class="item item-input">
+                <span class="input-label"><i class="icon ion-heart"></i>账号</span>
+                <input type="text" ng-model="user.username">
+            </label>
+            <label class="item item-input">
+                <span class="input-label"><i class="icon ion-locked"></i>密码</span>
+                <input type="password" ng-model="user.password">
+            </label>
         </div>
         <div class="padding">
+            <button class="button button-block sign-btbg color-white" ng-click="signIn()">
+                Sign-In
+            </button>
             <p class="padding register" >
                 <a href="#/sign-up" class="sign-up">注册账号</a>
                 <a href="#/forgot-password" class="forget">忘记密码</a>
             </p>
         </div>
-        <div class="padding other">
-            <p>
-                <h5>第三方账号登录：</h5>
-                 <ul class="other-login" >
-                     <li class="icon ion-social-twitter"></li>
-                     <li class="icon ion-social-facebook"></li>
-                     <li class="icon ion-social-googleplus"></li>
-                 </ul>
-            </p>
-        </div>
     </ion-content>
-</ion-view>
+</ion-nav-view>
