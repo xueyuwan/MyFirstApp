@@ -1,4 +1,6 @@
+
 var ionicPopup;
+var scope;
 angular.module('ionicApp', ['ionic'])
     .config(function($stateProvider, $urlRouterProvider) {
         //调试对象
@@ -14,7 +16,8 @@ angular.module('ionicApp', ['ionic'])
     })
       .state('sign-up',{
         url:'/sign-up',
-        templateUrl:'templates/sign-up.html'
+        templateUrl:'templates/sign-up.html',
+          controller:'SignUpCtrl'
       });
 
 
@@ -93,11 +96,14 @@ angular.module('ionicApp', ['ionic'])
       }else{
         $state.go('sign-up');
       }
-
-
   }
 })
+    .controller('SignUpCtrl',function($scope,$ionicNavBarDelegate){
+            $scope.goBack = function(){
+                $ionicNavBarDelegate.back();
+            }
 
+    })
 .controller('HomeTabCtrl', function($scope) {
   console.log('HomeTabCtrl');
 });
