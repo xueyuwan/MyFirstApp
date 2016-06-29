@@ -83,8 +83,7 @@ angular.module('ionicApp', ['ionic'])
    $urlRouterProvider.otherwise('/sign-in');
 })
 .controller('SignInCtrl', function($scope, $state,$ionicPopup,$timeout,popup,$ionicNavBarDelegate) {
-  $ionicNavBarDelegate.showBar(false);
-    $ionicNavBarDelegate.showBackButton(false);
+
 
 
     $scope.user = {};
@@ -104,10 +103,9 @@ angular.module('ionicApp', ['ionic'])
             $ionicNavBarDelegate.showBackButton(true);
 
             $scope.goBack = function(){
-                $ionicNavBarDelegate.showBar(false);
-                $ionicNavBarDelegate.showBackButton(false);
-                $ionicNavBarDelegate.title('注册');
+
                 $ionicNavBarDelegate.goBack();
+
             }
 
     })
