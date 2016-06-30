@@ -13,9 +13,7 @@
     "superagent": "^2.0.0"
   },
   "scripts": {
-    "node-start": "node app/app.js",
-    "es6-start": "babel-node app/app.js",
-    "proxy-test": "babel-node app/testa/exports.js"
+    "es6-start": "babel-node app/app.js"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.9.0",

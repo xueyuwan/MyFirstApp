@@ -1,8 +1,8 @@
 var webLogic = require('../proxy/logic/WebLogic');
 var mongoose = require('mongoose');
+
 var userLogic = new webLogic('user');
-var Promise = require('bluebird');
-Promise.promisifyAll(mongoose);
+
 
 
 var db = userLogic.db;
@@ -52,6 +52,7 @@ userLogic.doAction =function(action){
     function login(req,res){
         var result = {state:1,issuccess:false};
         var {phone,password} = req.query;
+        console.log(phone+":"+password)
         if(phone&&password) {
             db.UserSechema.find({phone: phone, password: password}).exec(function(err, data){
                 //可以登录

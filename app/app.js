@@ -6,6 +6,7 @@ var db = mongoose();
 var express =  require('../config/express');
 var app = express();
 
+
 //文件路由
 var port= 3000;
 
