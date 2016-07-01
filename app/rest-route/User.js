@@ -1,6 +1,5 @@
 var webLogic = require('../proxy/logic/WebLogic');
 var mongoose = require('mongoose');
-
 var userLogic = new webLogic('user');
 
 
@@ -15,10 +14,25 @@ userLogic.doAction =function(action){
             return forgotpassword;
         case "register":
             return register;
+        case "delete":
+            return deleteUser;
+        defautl:
+            return function(req,res){
+                res.json({
+                    state:0,
+                    issuccess:false,
+                    msg:'错误的请求'
+                })
+            };
     }
+    function deleteUser(req,res){
+        res.json({
+            msg:"删除用户成功"
+        });
+    }
+
       function register(req,res) {
           var result = {state: 1, issuccess: false};
-
           var {username, phone, password} = req.query;
           //参数合法
           if (username && password && phone) {
@@ -77,31 +91,49 @@ userLogic.doAction =function(action){
 
     }
 
-    function forgotpassword(req,res){
+
+    function sendMessage(req,res){
         var result = {state:1,issuccess:false};
         var {phone,password} = req.query;
-        if(phone){
+        if(phone) {
+            db.UserSechema.find({phone: phone}).exec(function(err, data){
+                //可以登录
+                if(data.length <1){
+                    result.issuccess = true;
+                    result.msg = "该用户不存在，请注册";
+                    res.json(result);
+                }
+                else
+                {  db.UserSechema.find({password: password}).
+                    result.issuccess = false;
+                    result.msg = "用户名或密码不正确";
+                    res.json(result);
+                }
+            });
+
+    }}
+
+
+
+
+    function forgotpassword(req,res){
+            var result = {state:1,issuccess:false};
+            var {phone,password} = req.query;
+            if(phone){
                 db.UserSechema.findOneAndUpdate({phone:phone},{password:password}).exec(function(err,data){
                     result.issuccess=true;
                     result.msg="成功修改密码";
                     res.json(result);
                 })
-        }else{
-            result.issuccess=false;
-            result.msg="错误";
-            res.json(result);
-        }
+            }else{
+
+                result.issuccess=false;
+                result.msg="错误";
+                res.json(result);
+            }
 
     }
 
 };
 
 module.exports = userLogic;
-
-
-
-
-
-
-
-

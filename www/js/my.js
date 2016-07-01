@@ -18,15 +18,12 @@ angular.module('ionicApp', ['ionic'])
           controller:'SignUpCtrl'
       })
       .state('forgot-password',{
-        url:'/forgot-password',
-        templateUrl:'templates/forgot-password.html',
-        controller:'SignUpCtrl'
+          url:'/forgot-password',
+          templateUrl:'templates/forgot-password.html',
+          controller:'sendMassageCtrl'
       })
-      .state('forgot-password-next',{
-        url:'/forgot-password-next',
-        templateUrl:'templates/forgot-password-next.html',
-        controller:'SignUpCtrl'
-      });
+
+
 
 
   $urlRouterProvider.otherwise('/sign-in');
@@ -90,17 +87,19 @@ angular.module('ionicApp', ['ionic'])
     // });
    $urlRouterProvider.otherwise('/sign-in');
 })
-.controller('SignInCtrl', function($http,$scope, $state,$ionicPopup,$timeout,popup,$ionicNavBarDelegate,serverUrl) {
+.controller('SignInCtrl', function($http,$scope, $state,$ionicPopup,$timeout,popup,$ionicNavBarDelegate) {
     $scope.user = {};
+
     $scope.signIn = function() {
-      if($scope.user.phone==""&& $scope.user.password==""){
+      if($scope.user.phone==""|| $scope.user.password==""){
          popup.show('提示','用户名或密码不能为空');
 
       }else if(!/^(13[0-9]|14[0-9]|15[0-9]|18[0-9])\d{8}$/.test($scope.user.phone)){
         popup.show('提示','请输入正确的手机号');
+
       }else{
           $http({
-              method:   'GET',
+              method:'GET',
               url:"http://localhost:3000/web/user/login",
               params:{phone:$scope.user.phone, password:$scope.user.password}
           }).success(function(rtn){
@@ -119,12 +118,46 @@ angular.module('ionicApp', ['ionic'])
             $ionicNavBarDelegate.showBackButton(true);
 
             $scope.goBack = function(){
-
                 $ionicNavBarDelegate.goBack();
 
             }
-
     })
+
+    .controller('sendMassageCtrl',function($http,$scope, $state,$ionicPopup,$timeout,popup,$ionicNavBarDelegate,serverUrl){
+        $scope.user = {};
+        $scope.sendMessage = function() {
+            debugger;
+            if($scope.user.phone==" "|| $scope.user.password==" "){
+                popup.show('提示','用户名或密码不能为空');
+
+            }else if(!/^(13[0-9]|14[0-9]|15[0-9]|18[0-9])\d{8}$/.test($scope.user.phone)){
+                popup.show('提示','请输入正确的手机号');
+
+            }else if($scope.user.password!==$scope.user.password2) {
+                popup.show('提示', '请确认两次输入的密码一致');
+
+            }else{
+                popup.show('提示','发送短信中');
+                $http({
+                    method:'GET',
+                    url:"http://localhost:3000/web/user/forgotpassword",
+                    params:{phone:$scope.user.phone, password:$scope.user.password}
+                }).success(function(rtn){
+                    if(rtn.issuccess) {
+                        $state.go('sign-up');
+                    }else{
+                        popup.show('错误',rtn.msg);
+                    }
+                });
+            }
+        }
+    })
+
+
+   
+
+
+
 .controller('HomeTabCtrl', function($scope) {
   console.log('HomeTabCtrl');
 });
