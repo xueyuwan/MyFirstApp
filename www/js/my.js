@@ -124,6 +124,8 @@ angular.module('ionicApp', ['ionic'])
     })
 
     .controller('sendMassageCtrl',function($http,$scope, $state,$ionicPopup,$timeout,popup,$ionicNavBarDelegate,serverUrl){
+        scope = $scope;
+        scope.popup=popup;
         $scope.user = {};
         $scope.sendMessage = function() {
             debugger;
@@ -146,6 +148,7 @@ angular.module('ionicApp', ['ionic'])
                     if(rtn.issuccess) {
                         $state.go('sign-up');
                     }else{
+                        debugger;
                         popup.show('错误',rtn.msg);
                     }
                 });
