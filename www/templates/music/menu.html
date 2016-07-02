@@ -1,0 +1,65 @@
+<ion-side-menus enable-menu-with-back-views="false">
+  <ion-side-menu-content>
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left" class="side-menu">
+    <ion-content scroll="false" vertical layout>
+      <div class="energized-bg info-user">
+        <div class="padding overflow-hidden">
+          <i class="mdi mdi-pencil-box-outline font-icon-md pull-right"></i>
+        </div>
+        <div class="padding text-center">
+          <div class="avatar">
+            <img ng-click="changeHeader()" style="border-radius: 0;width:200px;height:200px;" src=" {{ userHeader ||'templates/music/img/200_taylor_swift_spl811605_.jpg'}}"  alt="" class="img-responsive"/>
+          </div>
+          <h4 class="no-margin">Taylor Swift</h4>
+
+          <p class="no-margin">PMB 412 Hendersonville, TN 37075 USA</p>
+        </div>
+      </div>
+      <div flex class="list no-margin" style="overflow-y: scroll">
+
+        <a class="item item-icon-left" ui-sref="music-app.profile" ui-sref-active="active" menu-close>
+          <i class="icon mdi mdi-account-box-outline font-icon-md"></i>
+          Profile page 1
+        </a>
+
+        <a class="item item-icon-left" ui-sref="music-app.profile1" ui-sref-active="active" menu-close>
+          <i class="icon mdi mdi-account-circle font-icon-md"></i>
+          Profile page 2
+        </a>
+
+        <a class="item item-icon-left" ui-sref="music-app.notification" ui-sref-active="active" menu-close>
+          <i class="icon mdi mdi-bell-ring font-icon-md"></i>
+          Notifications
+          <span class="badge badge-royal">3</span>
+        </a>
+
+        <a class="item item-icon-left" ui-sref="music-app.feeds" ui-sref-active="active" menu-close>
+          <i class="icon mdi mdi-message-processing font-icon-md"></i>
+          Feeds
+          <span class="badge badge-assertive">67</span>
+        </a>
+
+        <a class="item item-icon-left" ui-sref="music-app.photo" ui-sref-active="active" menu-close>
+          <i class="icon mdi mdi-instagram font-icon-md"></i>
+          Photo
+          <span class="badge badge-positive">18</span>
+        </a>
+
+        <a class="item item-icon-left" ui-sref="music-app.music" ui-sref-active="active" menu-close>
+          <i class="icon mdi mdi-library-music font-icon-md"></i>
+          Music
+          <span class="badge badge-balanced">36</span>
+        </a>
+      </div>
+      <div class="list border-top">
+        <a class="item item-icon-left" ui-sref="music-app.setting" ui-sref-active="active" menu-close>
+          <i class="icon mdi mdi-settings font-icon-md"></i>
+          Settings
+        </a>
+      </div>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

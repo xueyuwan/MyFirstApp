@@ -1,0 +1,10 @@
+.only-border-bottom{
+ border-left:none;
+  border-right: none;
+  border-top:none;
+  border-bottom: white 1px dashed;
+
+}
+.background-inherit{
+  background: inherit;
+}

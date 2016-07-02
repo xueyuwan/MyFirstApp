@@ -1,0 +1,63 @@
+<ion-view hide-nav-bar="true" hide-back-button="true">
+  <ion-header-bar class="bar-positive" align-title="left">
+    <div class="buttons">
+      <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+    </div>
+    <h1 class="title">Settings</h1>
+    <div class="buttons">
+      <button class="button button-icon button-clear ion-ios-search"></button>
+    </div>
+  </ion-header-bar>
+  <ion-content class="setting">
+    <ul class="list">
+      <li class="item item-toggle">
+        HTML5
+        <label class="toggle toggle-positive">
+          <input type="checkbox" checked="">
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
+      </li>
+      <li class="item item-toggle">
+        CSS3
+        <label class="toggle toggle-calm">
+          <input type="checkbox" checked="">
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
+      </li>
+      <li class="item item-checkbox">
+        <label class="checkbox">
+          <input type="checkbox">
+        </label>
+        Flux Capacitor
+      </li>
+
+      <li class="item range">
+        <i class="icon ion-volume-low"></i>
+        <input type="range" name="volume">
+        <i class="icon ion-volume-high"></i>
+      </li>
+
+      <li class="item range range-positive">
+        <i class="icon ion-ios-sunny-outline"></i>
+        <input type="range" name="volume" min="0" max="100" value="33">
+        <i class="icon ion-ios-sunny"></i>
+      </li>
+    </ul>
+    <div class="list">
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Lightsaber
+        </div>
+        <select>
+          <option>Blue</option>
+          <option selected>Green</option>
+          <option>Red</option>
+        </select>
+      </label>
+    </div>
+  </ion-content>
+</ion-view>
