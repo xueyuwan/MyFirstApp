@@ -114,7 +114,7 @@ angular.module('ionicApp', ['ionic'])
       }
   }
 })
-    .controller('SignUpCtrl',function($scope,$http,$scope, $state,$ionicPopup,$timeout,popup,$ionicNavBarDelegate){
+    .controller('SignUpCtrl',function($scope,$http, $state,$ionicPopup,$timeout,popup,$ionicNavBarDelegate){
         $scope.user = {};
         $scope.signUp = function() {
             if($scope.user.phone==" "|| $scope.user.password==" "||$scope.user.name==""){
@@ -148,10 +148,27 @@ angular.module('ionicApp', ['ionic'])
 
     })
 
-    .controller('forgotPasswordCtrl',function($http,$scope, $state,$ionicPopup,$timeout,popup,$ionicNavBarDelegate,serverUrl){
+    .controller('forgotPasswordCtrl',function($http,$scope, $state,$ionicPopup,$interval,$timeout,popup,$ionicNavBarDelegate,serverUrl){
         scope = $scope;
         scope.popup=popup;
         $scope.user = {};
+        // $scope.isDisabled=true;
+        $scope.n=5;
+        $scope.times=$scope.n+'s';
+        $scope.sendMessage=function () {
+
+            var time=$interval(function(){
+                $scope.isDisabled=true;
+                $scope.n--;
+                $scope.times=$scope.n+'s';
+                if($scope.n==0){
+                    $interval.cancel(time);
+                    $scope.isDisabled=false;
+                    $scope.n=5;
+                }
+            },1000)
+        }
+
         $scope.forgotPassword = function() {
             debugger;
             if($scope.user.phone==" "|| $scope.user.password==" "){
