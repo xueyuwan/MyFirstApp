@@ -9,7 +9,7 @@ angular.module('app.service',[])
       }
     })
 
-    .factory('userService',function($http,popup,config,$state){
+    .factory('userService',function($http,popup,config,$state,camera){
       var user={};
       return {
         signIn: function (phone, password) {
@@ -86,7 +86,17 @@ angular.module('app.service',[])
           getLocalUser:function(){
               user = localStorage.getItem('user');
               return user;
+          },
+          viewHeader :function(scope){
 
+          },
+          cameraHeader:function($scope){
+              camera(function(imageUrl){
+                  $scope.userHeader="data:image/jpeg;base64," +imageUrl;
+              });
+          },
+          pickImageHeader:function($scope){
+              
           }
 
     }

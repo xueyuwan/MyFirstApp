@@ -26,38 +26,31 @@ angular.module('app.controller',[])
     })
     .controller('HomeTabCtrl', function($scope) {
         console.log('HomeTabCtrl');
-    }) .controller('menuCtrl',function($scope,camera,$ionicActionSheet,$timeout){
+    }) .controller('menuCtrl',function($scope,camera,$ionicActionSheet,userService){
     $scope.changeHeader = function(){
 
-        // Show the action sheet
         var hideSheet = $ionicActionSheet.show({
             buttons: [
                 { text: '<b>预览</b> ' },
                 { text: '拍照' },
-                {text:'图库选取'}
+                {text:'从相册选取'},
+                {text:'从相册选取背景图片'}
             ],
             titleText: '<h3>头像</h3>',
             cancelText: '取消',
-            cancel: function() {
-                // add cancel code..
-            },
             buttonClicked: function(index) {
-                   alert(index);
+                 switch (index){
+                     case 1:
+                         userService.viewHeader($scope);
+                     case 2:
+                         userService.cameraHeader($scope);
+                     case 3:
+                         userService.pickImageHeader($scope);
+                 }
 
                 return true;
             }
         });
 
-        // For example's sake, hide the sheet after two seconds
-        $timeout(function() {
-            hideSheet();
-        }, 2000);
-        /*
-        camera(function(imageUrl){
-
-            $scope.userHeader="data:image/jpeg;base64," +imageUrl;
-
-        });
-        */
     }
 });
