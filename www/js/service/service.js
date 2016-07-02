@@ -6,7 +6,6 @@ angular.module('app.service',[])
           phoneRegex:/^(13[0-9]|14[0-9]|15[0-9]|18[0-9])\d{8}$/,
           passwordRegex:/^[a-zA-Z]\w{5,17}$/,
           userNameRegex:/^[a-zA-Z]\w{5,17}$/
-
       }
     })
 
@@ -26,7 +25,7 @@ angular.module('app.service',[])
             }).success(function (rtn) {
               if (rtn.issuccess) {
                 user = rtn.data;
-                $state.go('music-app.profile1')
+                $state.go('app.message')
               } else {
                 popup.show('提示', rtn.msg);
               }
@@ -83,6 +82,11 @@ angular.module('app.service',[])
                       }
                   });
               }
+          },
+          getLocalUser:function(){
+              user = localStorage.getItem('user');
+              return user;
+
           }
 
     }

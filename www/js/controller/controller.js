@@ -1,9 +1,10 @@
 angular.module('app.controller',[])
 .controller('SignInCtrl', function($http,$scope, $state,$ionicPopup,$timeout,popup,$ionicNavBarDelegate,userService) {
     $scope.user = {};
-    $scope.autoSign = function(){
-
-    };
+    //如果用户已经登陆,则自动跳转到用户主页,利用localStorage来做
+    $scope.$on("$ionicView.beforeEnter", function(){
+        userService.getLocalUser()?$state.go('app.message'):"";
+    });
     $scope.signIn = function() {
         userService.signIn($scope.user.phone, $scope.user.password);
     }
@@ -39,10 +40,6 @@ angular.module('app.controller',[])
             cancelText: '取消',
             cancel: function() {
                 // add cancel code..
-            },
-            destructiveButtonClicked:function(){
-             alert('destructive');
-                return true
             },
             buttonClicked: function(index) {
                    alert(index);

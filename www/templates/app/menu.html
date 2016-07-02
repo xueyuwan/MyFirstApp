@@ -11,7 +11,7 @@
         </div>
         <div class="padding text-center">
           <div class="avatar">
-            <img ng-click="changeHeader()" style="border-radius: 0;width:200px;height:200px;" src=" {{ userHeader ||'templates/music/img/200_taylor_swift_spl811605_.jpg'}}"  alt="" class="img-responsive"/>
+            <img ng-click="changeHeader()" style="border-radius: 200px;width:200px;height:200px;" src=" {{ userHeader ||'templates/app/img/200_taylor_swift_spl811605_.jpg'}}"  alt="" class="img-responsive"/>
           </div>
           <h4 class="no-margin">Taylor Swift</h4>
 
@@ -20,44 +20,42 @@
       </div>
       <div flex class="list no-margin" style="overflow-y: scroll">
 
-        <a class="item item-icon-left" ui-sref="music-app.profile" ui-sref-active="active" menu-close>
-          <i class="icon mdi mdi-account-box-outline font-icon-md"></i>
-          Profile page 1
-        </a>
 
-        <a class="item item-icon-left" ui-sref="music-app.profile1" ui-sref-active="active" menu-close>
+
+        <a class="item item-icon-left" ui-sref="app.menu2" ui-sref-active="active" menu-close>
           <i class="icon mdi mdi-account-circle font-icon-md"></i>
-          Profile page 2
+            消息
+            <span class="badge badge-royal">7</span>
         </a>
 
-        <a class="item item-icon-left" ui-sref="music-app.notification" ui-sref-active="active" menu-close>
+        <a class="item item-icon-left" ui-sref="app.menu3" ui-sref-active="active" menu-close>
           <i class="icon mdi mdi-bell-ring font-icon-md"></i>
-          Notifications
-          <span class="badge badge-royal">3</span>
+          云模板
+            <span class="badge badge-assertive">67</span>
         </a>
 
-        <a class="item item-icon-left" ui-sref="music-app.feeds" ui-sref-active="active" menu-close>
+        <a class="item item-icon-left" ui-sref="app.menu4" ui-sref-active="active" menu-close>
           <i class="icon mdi mdi-message-processing font-icon-md"></i>
           Feeds
           <span class="badge badge-assertive">67</span>
         </a>
 
-        <a class="item item-icon-left" ui-sref="music-app.photo" ui-sref-active="active" menu-close>
+        <a class="item item-icon-left" ui-sref="app.menu6" ui-sref-active="active" menu-close>
           <i class="icon mdi mdi-instagram font-icon-md"></i>
           Photo
           <span class="badge badge-positive">18</span>
         </a>
 
-        <a class="item item-icon-left" ui-sref="music-app.music" ui-sref-active="active" menu-close>
+        <a class="item item-icon-left" ui-sref="app.music" ui-sref-active="active" menu-close>
           <i class="icon mdi mdi-library-music font-icon-md"></i>
           Music
           <span class="badge badge-balanced">36</span>
         </a>
       </div>
       <div class="list border-top">
-        <a class="item item-icon-left" ui-sref="music-app.setting" ui-sref-active="active" menu-close>
+        <a class="item item-icon-left" ui-sref="app.setting" ui-sref-active="active" menu-close>
           <i class="icon mdi mdi-settings font-icon-md"></i>
-          Settings
+          设置
         </a>
       </div>
     </ion-content>
