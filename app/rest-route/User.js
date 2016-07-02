@@ -33,7 +33,7 @@ userLogic.doAction =function(action){
 
       function register(req,res) {
           var result = {state: 1, issuccess: false};
-          var {username, phone, password} = req.query;
+          var {username, password, phone} = req.query;
           //参数合法
           if (username && password && phone) {
               db.UserSechema.find({phone: phone}).exec(function (err, data) {
@@ -100,13 +100,15 @@ userLogic.doAction =function(action){
                 //可以登录
                 if(data.length <1){
                     result.issuccess = true;
-                    result.msg = "该用户不存在，请注册";
+                    result.msg = "该用户不存在，请重新注册";
                     res.json(result);
                 }
                 else
-                {  db.UserSechema.find({password: password}).
-                    result.issuccess = false;
-                    result.msg = "用户名或密码不正确";
+                {   new db.UserSechema({ phone: phone, password: password}).save(function (err) {
+                    if (err) console.error('error');
+                    });
+                    result.issuccess =true;
+                    result.msg = "找回密码";
                     res.json(result);
                 }
             });

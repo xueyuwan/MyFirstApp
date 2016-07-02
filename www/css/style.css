@@ -10,12 +10,13 @@
 .register .forget{ float: right; margin: 6px 60px 20px 0;}
 .login-bg{ background:url("../images/login-bg.png") }
 .logo-padding{margin: 6%  auto ;}
-.other{ margin:3% 6%; }
-.other-login{ display: block}
-.other-login li{ display: inline-block;  margin: 10px 10px; }
 
 /*忘记密码*/
 .passcheck{float: left;}
 .passcheck input{display: inline-block; width: 100px; height: 30px; line-height: 30px; border: 1px solid #000;}
 .yzm{ width: 150px ; height: 30px; border:1px solid #ccc;  float: right;}
 .yz{ margin: 30px auto;}
+
+/*注册账号*/
+.sign-up-check{ display: inline-block; width: 160px;  border: 1px solid #ccc;}
+
