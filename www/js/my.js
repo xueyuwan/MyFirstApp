@@ -46,7 +46,6 @@ angular.module('ionicApp', ['ionic'])
                     }else{
                         popup.show('错误',rtn.msg);
                     }
-
                 });
 
             }
