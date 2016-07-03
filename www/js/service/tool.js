@@ -36,3 +36,20 @@ angular.module('app.service')
         }
     }
 })
+    .factory('imagePicker',function($cordovaImagePicker){
+        var options = {
+            width: 800,
+            height: 800,
+            quality: 80
+        };
+
+       return {
+           pickOne:function(cellback){
+                options.maximumImagesCount= 1;
+                   $cordovaImagePicker.getPictures(options)
+                  .then(cellback,function(error){
+                       alert(error);
+                   });
+            }
+       }
+    });

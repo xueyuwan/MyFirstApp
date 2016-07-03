@@ -34,18 +34,20 @@ angular.module('app.controller',[])
                 { text: '<b>预览</b> ' },
                 { text: '拍照' },
                 {text:'从相册选取'},
-                {text:'从相册选取背景图片'}
             ],
             titleText: '<h3>头像</h3>',
             cancelText: '取消',
             buttonClicked: function(index) {
                  switch (index){
-                     case 1:
+                     case 0:
                          userService.viewHeader($scope);
-                     case 2:
+                         return true;
+                     case 1:
                          userService.cameraHeader($scope);
-                     case 3:
+                        return true;
+                     case 2:
                          userService.pickImageHeader($scope);
+                    return true;
                  }
 
                 return true;

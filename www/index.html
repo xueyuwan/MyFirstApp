@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title>Sign-in, Then Tabs Example</title>
-      <link href="css/ionic.min.css" rel="stylesheet">
+      <link href="lib/ionic/css/ionic.css" rel="stylesheet">
       <link href="css/style.css" rel="stylesheet">
       <link href="css/ionic.app.min.css"/>
       <link href="css/flex.sass" rel="stylesheet">
@@ -20,6 +20,7 @@
   </head>
 
   <body>
+  <input type="file" onchange="alert(this.files[0])">
 
   <ion-nav-bar class="bar-positive">
     <ion-nav-back-button class="icon ion-arrow-left-c">

@@ -9,7 +9,7 @@ angular.module('app.service',[])
       }
     })
 
-    .factory('userService',function($http,popup,config,$state,camera){
+    .factory('userService',function($http,popup,config,$state,camera,imagePicker,$cordovaFile){
       var user={};
       return {
         signIn: function (phone, password) {
@@ -18,18 +18,18 @@ angular.module('app.service',[])
           } else if (!config.phoneRegex.test(phone)) {
             popup.show('提示', '请输入正确的手机号');
           } else {
-            $http({
-              method: 'GET',
-              url: config.serverUrl + "/web/user/login",
-              params: {phone: phone, password: password}
-            }).success(function (rtn) {
-              if (rtn.issuccess) {
-                user = rtn.data;
+            // $http({
+            //   method: 'GET',
+            //   url: config.serverUrl + "/web/user/login",
+            //   params: {phone: phone, password: password}
+            // }).success(function (rtn) {
+            //   if (rtn.issuccess) {
+            //     user = rtn.data;
                 $state.go('app.message')
-              } else {
-                popup.show('提示', rtn.msg);
-              }
-            });
+              // } else {
+              //   popup.show('提示', rtn.msg);
+              // }
+            // });
           }
         },
         signUp:function(phone,password,password2){
@@ -96,7 +96,17 @@ angular.module('app.service',[])
               });
           },
           pickImageHeader:function($scope){
-              
+              imagePicker.pickOne(function(urls){
+                  var url = urls[0];
+                  //因为返回是数组
+                  var path =url.substring(0,url.lastIndexOf('/')-1);
+                  var file = url.substring(url.lastIndexOf('/')+1);
+                  alert('目录是:'+path);
+                  alert('文件是:'+file);
+                  var image =$cordovaFile.readAsDataURL(path, file);
+                 alert('生成的url是:'+url);
+                  $scope.userHeader =image;
+              })
           }
 
     }

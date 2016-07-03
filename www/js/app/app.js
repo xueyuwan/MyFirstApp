@@ -3,10 +3,14 @@ angular.module('app',['ionic','ngCordova',
 ])
     //config 的参数是个数组
     .config(['$ionicConfigProvider',function($ionicConfigProvider){
-    $ionicConfigProvider.tabs.position('bottom');
-}])
+        $ionicConfigProvider.tabs.position('bottom');
+        //本地文件文件访问白名单
+        // $compileProvider.imgSrcSanitizationWhitelist(/^\s(https|file|blob|cdvfile):|data:image\//);
+
+    }])
 .run(function($ionicPlatform,$http){
     var url = "";
+
     if (ionic.Platform.isAndroid()) {
         url = "/android_asset/www/";
     }
