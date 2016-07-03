@@ -85,6 +85,10 @@ angular.module('app.route',[])
                 templateUrl: 'templates/app/states/setting.html'
               }
             }
+          })
+          .state('intro',{
+              url:'/intro',
+              templateUrl:'templates/intro.html'
           });
     });
  

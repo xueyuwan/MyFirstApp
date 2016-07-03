@@ -88,7 +88,7 @@ angular.module('app.service',[])
               return user;
           },
           viewHeader :function(scope){
-
+$state.go('intro');
           },
           cameraHeader:function($scope){
               camera(function(imageUrl){
@@ -97,17 +97,9 @@ angular.module('app.service',[])
           },
           pickImageHeader:function($scope){
               imagePicker.pickOne(function(urls){
-                  var url = urls[0];
-                  //因为返回是数组
-                  var path =url.substring(0,url.lastIndexOf('/')-1);
-                  var file = url.substring(url.lastIndexOf('/')+1);
-                  alert('目录是:'+path);
-                  alert('文件是:'+file);
-                  var image =$cordovaFile.readAsDataURL(path, file);
-                 alert('生成的url是:'+url);
-                  $scope.userHeader =image;
+                  $scope.userHeader =urls[0];
               })
-          }
 
     }
+      }
     });
