@@ -1,32 +1,33 @@
 
-<ion-view view-title="Sign In" hide-nav-bar=true  style="background: url(img/sign-in-bg.png)">
+<ion-view view-title="sign in" hide-nav-bar=true  style="background: url(img/sign-in-bg.png)">
   <ion-content padding="true" class="background-inherit">
       <div class="list background-inherit" >
           <div  class="item item-image background-inherit" style="    border: none;margin-top: 40px;margin-bottom: 40px;">
-              <div class="col-50 col-offset-25"><img class=""
-                                                     src="images/logo.jpg"
-                                                     style="border-radius:200px"
-              >
+              <div class="col-50 col-offset-25">
+                  <img class="" src="images/logo.jpg" style="border-radius:200px">
               </div>
           </div>
+          <div class="list padding" style="">
+              <label class="item item-input only-border-bottom">
+                  <span class="icon ion-android-phone-portrait icon-left"></span>
+                  <input type="text" placeholder="请输入手机号" ng-model="user.phone">
+              </label>
 
-          <div class="list padding" style=""><label class="item item-input only-border-bottom">
-              <span class="icon ion-android-phone-portrait icon-left"></span><input type="text" placeholder="请输入手机号" ng-model="user.phone"></label>
               <label class="item item-input only-border-bottom ">
                   <span class="icon ion-locked"></span>
-                  <input type="password" placeholder="密码" ng-model="user.password"></label>
+                  <input type="password" placeholder="密码" ng-model="user.password">
+              </label>
 
-              <div class="loginButton"> <button class="button ion-unlocked button-block  button-balanced" ng-click="signIn()" style="margin-bottom: 0;color:white;">登陆</button></div>
+              <div class="loginButton">
+                  <button class="button ion-unlocked button-block  button-balanced" ng-click="signIn()" style="margin-bottom: 0;color:white;">登陆</button>
+              </div>
+
               <div class="button-bar button-outline button-clear  ">
                   <div ui-sref="sign-up"  class="button button-outline button-clear" style="color:white;border:none" >注册</div>
                   <div ui-sref="forgot-password" class="button button-outline button-clear" style="color:white;border:none">忘记密码</div>
               </div>
           </div>
-          </div>
-
-
-
-
+      </div>
   </ion-content>
 
 </ion-view>
