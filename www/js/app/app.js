@@ -5,7 +5,6 @@ angular.module('app',['ionic','ngCordova',
     .config(['$ionicConfigProvider',function($ionicConfigProvider){
     $ionicConfigProvider.tabs.position('bottom');
 }])
-
 .run(function($ionicPlatform,$http){
     var url = "";
     if (ionic.Platform.isAndroid()) {

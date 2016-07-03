@@ -1,105 +1,56 @@
 angular.module('app.controller',[])
-.controller('SignInCtrl', function($http,$scope, $state,$ionicPopup,$timeout,popup,$ionicNavBarDelegate) {
+.controller('SignInCtrl', function($http,$scope, $state,$ionicPopup,$timeout,popup,$ionicNavBarDelegate,userService) {
     $scope.user = {};
+    //如果用户已经登陆,则自动跳转到用户主页,利用localStorage来做
+    $scope.$on("$ionicView.beforeEnter", function(){
+        userService.getLocalUser()?$state.go('app.message'):"";
+    });
     $scope.signIn = function() {
-        if($scope.user.phone==""&&$scope.user.password==""){
-            popup.show('提示','用户名或密码不能为空');
-
-        }else if(!/^(13[0-9]|14[0-9]|15[0-9]|18[0-9])\d{8}$/.test($scope.user.phone)){
-            popup.show('提示','请输入正确的手机号');
-
-        }else{
-            $http({
-                method:'GET',
-                url:"http://localhost:3000/web/user/login",
-                params:{phone:$scope.user.phone, password:$scope.user.password}
-            }).success(function(rtn){
-                if(rtn.issuccess) {
-                    $state.go('music-app.profile1');
-                }else{
-                    popup.show('错误',rtn.msg);
-                }
-
-            });
-
-        }
+        userService.signIn($scope.user.phone, $scope.user.password);
     }
-})
-    .controller('SignUpCtrl',function($scope,$http,$scope, $state,$ionicPopup,$timeout,popup,$ionicNavBarDelegate){
+    })
+    .controller('SignUpCtrl',function($scope,$state,userService){
         $scope.user = {};
         $scope.signUp = function() {
-            if($scope.user.phone==" "|| $scope.user.password==" "||$scope.user.name==""){
-                popup.show('提示','用户名、密码或手机号不能为空');
-
-            }else if(!/^(13[0-9]|14[0-9]|15[0-9]|18[0-9])\d{8}$/.test($scope.user.phone)) {
-                popup.show('提示', '请输入正确的手机号');
-            }else if(!/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,12}$/.test($scope.user.password)){
-                popup.show('提示','密码必须是6到12位的数字加字母组成');
-            }else if(!/^[a-zA-Z]\w{5,17}$/.test($scope.user.name)){
-                popup.show('提示',' 用户名必须以字母开头，长度在6~18之间');
-            }else if($scope.user.password!==$scope.user.password2) {
-                popup.show('提示', '请确认两次输入的密码一致');
-            }else{
-                popup.show('提示','发送短信中');
-                $http({
-                    method:'GET',
-                    url:"http://localhost:3000/web/user/register",
-                    params:{name:$scope.user.name, password:$scope.user.password,phone:$scope.user.phone}
-                }).success(function(rtn){
-                    if(rtn.issuccess) {
-                        $state.go('sign-in');
-                    }else{
-                        debugger;
-                        popup.show('错误',rtn.msg);
-                    }
-                });
-            }
+            userService.signUp($scope.user.phone,$scope.user.password,$scope.user.password2);
         }
 
 
     })
 
-    .controller('forgotPasswordCtrl',function($http,$scope, $state,$ionicPopup,$timeout,popup,$ionicNavBarDelegate){
-        scope = $scope;
-        scope.popup=popup;
+    .controller('forgotPasswordCtrl',function($scope,userService){
         $scope.user = {};
         $scope.forgotPassword = function() {
-            debugger;
-            if($scope.user.phone==" "|| $scope.user.password==" "){
-                popup.show('提示','用户名或密码不能为空');
-
-            }else if(!/^(13[0-9]|14[0-9]|15[0-9]|18[0-9])\d{8}$/.test($scope.user.phone)){
-                popup.show('提示','请输入正确的手机号');
-            }else if(!/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,12}$/.test($scope.user.password)){
-                popup.show('提示','密码必须是6到12位的数字加字母组成');
-
-            }else if($scope.user.password!==$scope.user.password2) {
-                popup.show('提示', '请确认两次输入的密码一致');
-
-            }else{
-                popup.show('提示','发送短信中');
-                $http({
-                    method:'GET',
-                    url:"http://localhost:3000/web/user/forgotpassword",
-                    params:{phone:$scope.user.phone, password:$scope.user.password}
-                }).success(function(rtn){
-                    if(rtn.issuccess) {
-                        $state.go('sign-up');
-                    }else{
-                        debugger;
-                        popup.show('错误',rtn.msg);
-                    }
-                });
-            }
+           userService.forgotPassword();
         }
     })
     .controller('HomeTabCtrl', function($scope) {
         console.log('HomeTabCtrl');
-    }) .controller('menuCtrl',function($scope,camera){
+    }) .controller('menuCtrl',function($scope,camera,$ionicActionSheet,userService){
     $scope.changeHeader = function(){
-        camera(function(imageUrl){
 
-            $scope.userHeader="data:image/jpeg;base64," +imageUrl;
+        var hideSheet = $ionicActionSheet.show({
+            buttons: [
+                { text: '<b>预览</b> ' },
+                { text: '拍照' },
+                {text:'从相册选取'},
+                {text:'从相册选取背景图片'}
+            ],
+            titleText: '<h3>头像</h3>',
+            cancelText: '取消',
+            buttonClicked: function(index) {
+                 switch (index){
+                     case 1:
+                         userService.viewHeader($scope);
+                     case 2:
+                         userService.cameraHeader($scope);
+                     case 3:
+                         userService.pickImageHeader($scope);
+                 }
+
+                return true;
+            }
         });
+
     }
 });

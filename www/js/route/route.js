@@ -22,67 +22,67 @@ angular.module('app.route',[])
 
     .config(function($stateProvider,$urlRouterProvider){
       $stateProvider
-          .state('music-app', {
-            url: '/music/app',
+          .state('app', {
+            url: '/app',
             abstract: true,
-            templateUrl: 'templates/music/menu.html',
+            templateUrl: 'templates/app/menu.html',
             controller: 'menuCtrl'
           })
-          .state('music-app.profile', {
-            url: '/music/profile',
+          .state('app.message', {
+            url: '/message',
             views: {
               'menuContent': {
-                templateUrl: 'templates/music/states/profile.html'
+                templateUrl: 'templates/app/states/message.html'
               }
             }
           })
-          .state('music-app.profile1', {
-            url: '/profile1',
+          .state('app.menu2', {
+            url: '/menu2',
             views: {
               'menuContent': {
-                templateUrl: 'templates/music/states/profile_1.html'
+                templateUrl: 'templates/app/states/menu2.html'
               }
             }
           })
-          .state('music-app.music', {
-            url: '/music',
+          .state('app.menu3', {
+            url: '/menu3',
             views: {
               'menuContent': {
-                templateUrl: 'templates/music/states/music.html'
+                templateUrl: 'templates/app/states/menu3.html'
               }
             }
           })
-          .state('music-app.feeds', {
-            url: '/feeds',
+          .state('app.menu4', {
+            url: '/menu4',
             views: {
               'menuContent': {
-                templateUrl: 'templates/music/states/feeds.html',
+                templateUrl: 'templates/app/states/menu4.html',
                 // controller: 'FeedCtrl'
               }
             }
           })
-          .state('music-app.notification', {
+          .state('app.menu6', {
             url: '/notification',
             views: {
               'menuContent': {
-                templateUrl: 'templates/music/states/notification.html',
+                templateUrl: 'templates/app/states/menu6.html',
                 // controller: 'NotificationCtrl'
               }
             }
           })
-          .state('music-app.photo', {
-            url: '/photo',
+          .state('app.music', {
+            url: '/music',
             views: {
               'menuContent': {
-                templateUrl: 'templates/music/states/photo.html'
+                templateUrl: 'templates/app/states/music.html'
               }
             }
           })
-          .state('music-app.setting', {
+          .state('app.setting', {
             url: '/setting',
             views: {
               'menuContent': {
-                templateUrl: 'templates/music/states/setting.html'
+                templateUrl: 'templates/app/states/setting.html'
               }
             }
           });
