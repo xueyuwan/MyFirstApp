@@ -148,7 +148,7 @@
 }
 .send-identifying input{
   display: inline-block;
-  width: 45%;
+  width: 48%;
   height: 45px;
   line-height: 45px;
   border: 1px solid #ccc;
@@ -157,7 +157,7 @@
 }
 .send-identifying button{
   display: inline-block;
-  width: 45%;
+  width: 48%;
   line-height: 40px;
 
 }
