@@ -1,9 +1,6 @@
 var webLogic = require('../proxy/logic/WebLogic');
 var mongoose = require('mongoose');
 var userLogic = new webLogic('user');
-
-
-
 var db = userLogic.db;
 
 userLogic.doAction =function(action){

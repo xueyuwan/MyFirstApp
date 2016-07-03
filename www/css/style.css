@@ -143,3 +143,21 @@
 .photo .item span {
   color: #888;
 }
+.send-identifying{
+ vertical-align: middle;
+}
+.send-identifying input{
+  display: inline-block;
+  width: 45%;
+  height: 45px;
+  line-height: 45px;
+  border: 1px solid #ccc;
+  text-align: center;
+  margin-right: 6px;
+}
+.send-identifying button{
+  display: inline-block;
+  width: 45%;
+  line-height: 40px;
+
+}
