@@ -44,6 +44,25 @@ angular.module('app.route',[])
               }
             }
           })
+          .state('app.menu2.tab-message', {
+              url: '/tab-message',
+              views: {
+                  'menuContent': {
+                      templateUrl: 'templates/app/states/tab-message.html'
+                  }
+              }
+          })
+          
+          .state('app.menu2.tab-friends', {
+              url: '/tab-friends',
+              views: {
+                  'menuContent': {
+                      templateUrl: 'templates/app/states/tab-friends.html'
+                  }
+              }
+          })
+
+
           .state('app.menu3', {
             url: '/menu3',
             views: {

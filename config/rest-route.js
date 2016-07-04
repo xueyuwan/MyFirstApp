@@ -36,15 +36,10 @@ module.exports = function (app) {
         files.forEach(function(path) {
             //routes目录下的文件路径
             var filePath = routesDir + "/" + path;
-
             fs.stat(filePath, function(err, stats) {
                 if (err) {
                     return ;
                 }
-                
-                
-                
-
                 if (stats.isDirectory()) {
                     //递归执行函数
                 } else  {
