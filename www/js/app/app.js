@@ -1,8 +1,8 @@
+var rootScope;
 angular.module('app',['ionic','ngCordova',
   'app.controller','app.route','app.service',
     'wechat.controllers', 'wechat.routes',
     'wechat.services', 'wechat.directives', 'monospaced.elastic'
-
 ])
     //资源白名单
     .config(function($sceDelegateProvider) {
@@ -11,10 +11,6 @@ angular.module('app',['ionic','ngCordova',
         'self',
         // Allow loading from our assets domain.  Notice the difference between * and **.
         'http://localhost:3000/**']);
-
-
-
-
     })
 
     //config 的参数是个数组
@@ -24,9 +20,9 @@ angular.module('app',['ionic','ngCordova',
         // $compileProvider.imgSrcSanitizationWhitelist(/^\s(https|file|blob|cdvfile):|data:image\//);
 
     }])
-.run(function($ionicPlatform,$http){
+.run(function($ionicPlatform,$http,messageService,$rootScope){
     var url = "";
-
+    rootScope = $rootScope;
     if (ionic.Platform.isAndroid()) {
         url = "/android_asset/www/";
     }

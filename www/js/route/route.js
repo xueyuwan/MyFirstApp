@@ -27,33 +27,7 @@ angular.module('app.route',[])
             templateUrl: 'templates/app/menu.html',
             controller: 'menuCtrl'
           })
-          //聊天消息
-          .state('app.chat', {
-              url: '/chat',
-              views:{
-                  "menuContent": {
-                      templateUrl: 'templates/chat/tabs.html'
-                  }
-              }
-
-          })
-          .state('app.chat.message',{
-              url:'/message',
-
-               templateUrl: 'templates/chat/tab-message.html'
-
-            
-          }
-              )
-
-          .state('chat.friends',{
-              url:'/friends',
-              templateUrl:'templates/chat/tab-friends.html'
-          })
-          .state('chat.workspace',{
-              url:'/workspace',
-              templateUrl:'templates/chat/tab-workspace.html'
-          })
+          
 
 
           //app界面的模板云
@@ -107,9 +81,6 @@ angular.module('app.route',[])
               }
             }
           })
-          .state('intro',{
-              url:'/intro',
-              templateUrl:'templates/intro.html'
-          });
+
     });
  

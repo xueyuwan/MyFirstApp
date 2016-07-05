@@ -51,7 +51,7 @@ angular.module('app.service',[])
               params:{name:name, password:password,phone:phone}
             }).success(function(rtn){
               if(rtn.issuccess) {
-                $state.go('sign-in');
+                $state.go('tab.message');
               }else{
                 popup.show('错误',rtn.msg);
               }

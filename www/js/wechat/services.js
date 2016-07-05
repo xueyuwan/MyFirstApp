@@ -1,20 +1,4 @@
 angular.module('wechat.services', [])
-
-.factory("userService", function($http) {
-    var users = [];
-    return {
-        getUsers: function() {
-            return $http.get("https://randomuser.me/api/?results=10").then(function(response) {
-                users = response.data.results;
-                return response.data.results;
-            });
-        },
-        getUser: function(index) {
-            return users[index];
-        }
-    };
-})
-
 .factory('localStorageService', [function() {
         return {
             get: function localStorageServiceGet(key, defaultValue) {
@@ -168,6 +152,7 @@ angular.module('wechat.services', [])
                     var message = null;
                     if (messageID) {
                         length = messageID.length;
+                        
 
                         for (; i < length; i++) {
                             message = localStorageService.get("message_" + messageID[i].id);

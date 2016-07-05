@@ -3,39 +3,40 @@ angular.module('wechat.routes', [])
 .config(function($stateProvider, $urlRouterProvider) {
 
     $stateProvider
-        .state("tab", {
+        .state("app.tab", {
             url: "/tab",
-            abstract: true,
-            templateUrl: "templates/tabs.html",
-        })
-        .state('tab.message', {
-            url: '/message',
-            views: {
-                'tab-message': {
-                    templateUrl: 'templates/tab-message.html',
-                    controller: "messageCtrl"
+            views:{
+                "menuContent":{
+                    templateUrl: "templates/chat/tabs.html",
                 }
             }
+        })
+        .state('app.tab.message', {
+            url: '/message',
+
+                    templateUrl: 'templates/chat/tab-message.html',
+                    controller: "messageCtrl"
+
+
         })
         .state('messageDetail', {
             url: '/messageDetail/:messageId',
-            templateUrl: "templates/message-detail.html",
+            templateUrl: "templates/chat/message-detail.html",
             controller: "messageDetailCtrl"
         })
-        .state('tab.friends', {
+        .state('app.tab.friends', {
             url: '/friends',
-            views: {
-                'tab-friends': {
-                    templateUrl: 'templates/tab-friends.html',
+
+                    templateUrl: 'templates/chat/tab-friends.html',
                     controller: "friendsCtrl"
-                }
-            }
+
+
         })
         .state('tab.find', {
             url: '/find',
             views: {
                 'tab-find': {
-                    templateUrl: 'templates/tab-find.html',
+                    templateUrl: 'templates/chat/tab-find.html',
                     controller: "findCtrl"
                 }
             },
@@ -44,11 +45,11 @@ angular.module('wechat.routes', [])
             url: '/setting',
             views: {
                 'tab-setting': {
-                    templateUrl: 'templates/tab-setting.html',
+                    templateUrl: 'templates/chat/tab-setting.html',
                     controller: "settingCtrl"
                 }
             }
         });
 
-    $urlRouterProvider.otherwise("/tab/message");
+    
 });
