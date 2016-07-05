@@ -30,8 +30,8 @@ angular.module('app.route',[])
           //聊天消息
           .state('chat', {
               url: '/chat',
-              templateUrl: 'templates/chat/tabs.html',
-              abstract:true
+              templateUrl: 'templates/chat/tabs.html'
+
           })
           .state('chat.message',{
               url:'/message',

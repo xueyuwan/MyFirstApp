@@ -25,7 +25,7 @@ angular.module('app.service',[])
             // }).success(function (rtn) {
             //   if (rtn.issuccess) {
             //     user = rtn.data;
-                $state.go('chat.message')
+                $state.go('app.templateyun')
               // } else {
               //   popup.show('提示', rtn.msg);
               // }
