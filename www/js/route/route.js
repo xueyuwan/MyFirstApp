@@ -27,61 +27,25 @@ angular.module('app.route',[])
             templateUrl: 'templates/app/menu.html',
             controller: 'menuCtrl'
           })
-          .state('app.message', {
-            url: '/message',
-            views: {
-              'menuContent': {
-                templateUrl: 'templates/app/states/message.html'
-              }
-            }
+          //聊天消息
+          .state('chat', {
+              url: '/chat',
+              templateUrl: 'templates/chat/tabs.html',
+              abstract:true
           })
-          .state('app.menu2', {
-            url: '/menu2',
-            views: {
-              'menuContent': {
-                templateUrl: 'templates/app/states/menu2.html'
-              }
-            }
+          .state('chat.message',{
+              url:'/message',
+              templateUrl: 'templates/chat/tab-message.html'
+              })
+          .state('chat.friends',{
+              url:'/friends',
+              templateUrl:'templates/chat/tab-friends.html'
           })
-          .state('app.menu2.message', {
-              url: '/message',
-              controller: 'tabMessageCtrl',
-              views: {
-                  'tab-message': {
-                      templateUrl: 'templates/app/states/tab-message.html'
-                  }
-              }
-          })
-          
-          .state('app.menu2.friends', {
-              url: '/friends',
-              controller: 'tabFriendsCtrl',
-              views: {
-                  'tab-friends': {
-                      templateUrl: 'templates/app/states/tab-friends.html'
-                  }
-              }
+          .state('chat.workspace',{
+              url:'/workspace',
+              templateUrl:'templates/chat/tab-workspace.html'
           })
 
-          .state('app.menu2.find', {
-              url: '/find',
-              controller: 'tabFindCtrl',
-              views: {
-                  'tab-find': {
-                      templateUrl: 'templates/app/states/tab-find.html'
-                  }
-              }
-          })
-
-          .state('app.menu2.setting', {
-              url: '/setting',
-              controller: 'tabSettingCtrl',
-              views: {
-                  'tab-setting': {
-                      templateUrl: 'templates/app/states/tab-setting.html'
-                  }
-              }
-          })
 
           //app界面的模板云
           .state('app.templateyun', {
