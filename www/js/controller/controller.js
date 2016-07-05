@@ -94,4 +94,19 @@ angular.module('app.controller',[])
         });
 
     }
+})
+    .controller('TemplateYun',function($scope,$state,$http,$rootScope,templateService){
+        templateService.initData.success(function(rtn){
+            $rootScope.demos = rtn.demos;
+        });
+
+        // $scope.viewTemplate = function(demo){
+        //     // $state.go('templateIndex');
+        // }
+    })
+    .controller('TemplateIndex',function($scope,$state,$http,$rootScope,$stateParams){
+            alert(JSON.stringify($stateParams));
+            // alert($stateParams.config);
+        $rootScope.navbar ="http://localhost:3000/"+$stateParams.index;
+
 });

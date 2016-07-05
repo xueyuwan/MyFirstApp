@@ -1,0 +1,27 @@
+<ion-view hide-nav-bar="true" hide-back-button="true">
+  <ion-header-bar class="bar-royal" align-title="left">
+    <div class="buttons">
+      <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+    </div>
+    <h1 class="title">旅烨模板云</h1>
+    <div class="buttons">
+      <button class="button button-icon button-clear ion-ios-search"></button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+
+    <div class="row" ion-row-height="" >
+
+      <div class="col-25" ng-repeat="demo in demos">
+    <div class="card">
+      <img   src="{{demo.preview}}" height="99px" ui-sref="templateIndex({index:demo.index,config:demo.config})">
+      <div class="item item-text-wrap">
+        {{demo.title}}
+
+      </div>
+    </div>
+    </div>
+
+      </div>
+  </ion-content>
+</ion-view>

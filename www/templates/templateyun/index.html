@@ -1,0 +1,19 @@
+
+<ion-view  align-title="center"   hide-nav-bar="true" hide-back-button="true">
+
+    <ion-content>
+        <ion-header-bar align-title="center" class="bar-positive">
+                <div class="buttons" class="button-clear">
+                <button class="button-clear" style="color:white"><i ng-click="$ionicGoBack()" class="button-icon ion-arrow-left-c ion-left">返回</i></button>
+                </div>
+            <h1 class="title ">旅烨模板云</h1>
+
+        </ion-header-bar>
+<div ng-include="navbar"></div>
+
+<!--pages-->
+<div ui-view=""></div>
+<!--footbar-->
+<div ng-include="footbar" ng-init="myData=customer.footbar"></div>
+    </ion-content>
+</ion-view>

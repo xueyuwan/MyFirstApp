@@ -83,14 +83,22 @@ angular.module('app.route',[])
               }
           })
 
-
-          .state('app.menu3', {
-            url: '/menu3',
+          //app界面的模板云
+          .state('app.templateyun', {
+            url: '/templateyun',
             views: {
               'menuContent': {
-                templateUrl: 'templates/app/states/menu3.html'
+                templateUrl: 'templates/app/states/templateyun.html',
+                  controller:'TemplateYun'
               }
             }
+          })
+          //进入模板云
+          .state('templateIndex',{
+              url:'/templateIndex',
+              params:{index:null,config:null},
+              templateUrl:'templates/templateyun/index.html',
+              controller:'TemplateIndex'
           })
           .state('app.menu4', {
             url: '/menu4',

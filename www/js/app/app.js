@@ -1,6 +1,15 @@
 angular.module('app',['ionic','ngCordova',
   'app.controller','app.route','app.service'
 ])
+    //资源白名单
+    .config(function($sceDelegateProvider) {
+    $sceDelegateProvider.resourceUrlWhitelist([
+        // Allow same origin resource loads.
+        'self',
+        // Allow loading from our assets domain.  Notice the difference between * and **.
+        'http://localhost:3000/**']);
+})
+
     //config 的参数是个数组
     .config(['$ionicConfigProvider',function($ionicConfigProvider){
         $ionicConfigProvider.tabs.position('bottom');
@@ -27,6 +36,4 @@ angular.module('app',['ionic','ngCordova',
             StatusBar.styleDefault();
         }
     });
-
-
 });

@@ -102,4 +102,23 @@ $state.go('intro');
 
     }
       }
+    })
+    .factory('templateService',function($http){
+      return {
+    //返回模板库
+          initData: $http({
+                  method: 'get',
+                  url: 'http://localhost:3000/demos.json'
+              }).error(function (err) {
+                  console.error(err);
+              }),
+          initTemplate: (function(config){
+              return $http({
+                  method:'get',
+                url:'http://localhost:3000/'+config
+              });
+          })(config)
+
+      }
+
     });
