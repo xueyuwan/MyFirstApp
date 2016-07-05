@@ -2,7 +2,7 @@ angular.module('app.service',[])
     //常量
     .factory('config',function(){
       return {
-        serverUrl:'http://localhost:3000',
+        serverUrl:'http://localhost:3000/',
           phoneRegex:/^(13[0-9]|14[0-9]|15[0-9]|18[0-9])\d{8}$/,
           passwordRegex:/^[a-zA-Z]\w{5,17}$/,
           userNameRegex:/^[a-zA-Z]\w{5,17}$/
@@ -112,12 +112,8 @@ $state.go('intro');
               }).error(function (err) {
                   console.error(err);
               }),
-          initTemplate: (function(config){
-              return $http({
-                  method:'get',
-                url:'http://localhost:3000/'+config
-              });
-          })(config)
+          initTemplate: function(config) {
+          }
 
       }
 

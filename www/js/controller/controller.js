@@ -104,9 +104,18 @@ angular.module('app.controller',[])
         //     // $state.go('templateIndex');
         // }
     })
-    .controller('TemplateIndex',function($scope,$state,$http,$rootScope,$stateParams){
-            alert(JSON.stringify($stateParams));
-            // alert($stateParams.config);
+    .controller('TemplateIndex',function($scope,$state,$http,$rootScope,$stateParams,config){
+
+            $http({
+                method:'get',
+                url:config.serverUrl+$stateParams.config
+            }).success(function(rtn){
+                $rootScope.navbar = rtn.navbar;
+                $rootScope.footbar = rtn.footbar;
+                $rootScope.components= rtn.components;
+            }).error(function(err){
+                alert(err);
+            });
         $rootScope.navbar ="http://localhost:3000/"+$stateParams.index;
 
 });
