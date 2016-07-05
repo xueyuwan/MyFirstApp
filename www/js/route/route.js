@@ -19,7 +19,6 @@ angular.module('app.route',[])
 
   $urlRouterProvider.otherwise('/sign-in');
 })
-
     .config(function($stateProvider,$urlRouterProvider){
       $stateProvider
           .state('app', {
@@ -44,20 +43,42 @@ angular.module('app.route',[])
               }
             }
           })
-          .state('app.menu2.tab-message', {
-              url: '/tab-message',
+          .state('app.menu2.message', {
+              url: '/message',
+              controller: 'tabMessageCtrl',
               views: {
-                  'menuContent': {
+                  'tab-message': {
                       templateUrl: 'templates/app/states/tab-message.html'
                   }
               }
           })
           
-          .state('app.menu2.tab-friends', {
-              url: '/tab-friends',
+          .state('app.menu2.friends', {
+              url: '/friends',
+              controller: 'tabFriendsCtrl',
               views: {
-                  'menuContent': {
+                  'tab-friends': {
                       templateUrl: 'templates/app/states/tab-friends.html'
+                  }
+              }
+          })
+
+          .state('app.menu2.find', {
+              url: '/find',
+              controller: 'tabFindCtrl',
+              views: {
+                  'tab-find': {
+                      templateUrl: 'templates/app/states/tab-find.html'
+                  }
+              }
+          })
+
+          .state('app.menu2.setting', {
+              url: '/setting',
+              controller: 'tabSettingCtrl',
+              views: {
+                  'tab-setting': {
+                      templateUrl: 'templates/app/states/tab-setting.html'
                   }
               }
           })

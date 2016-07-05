@@ -15,7 +15,6 @@ angular.module('app.controller',[])
             userService.signUp($scope.user.phone,$scope.user.password,$scope.user.password2);
         }
 
-
     })
 
     .controller('forgotPasswordCtrl',function($scope,userService){
@@ -27,9 +26,22 @@ angular.module('app.controller',[])
     .controller('HomeTabCtrl', function($scope) {
         console.log('HomeTabCtrl');
     })
+
+    .controller('tabFriendsCtrl', function($scope, $state) {
+        $scope.$state = function() {
+            $state.go("menu2.tab-message");
+        };
+    })
+
+    .controller('tabMessageCtrl', function($scope, $state) {
+        $scope.$state = function() {
+            $state.go("menu2.tab-friends");
+        };
+    })
+
     .controller('menuCtrl',function($scope,camera,$ionicActionSheet,$ionicSlideBoxDelegate,userService){
     $scope.changeHeader = function(){
-
+        
         // Called to navigate to the main app
         $scope.startApp = function() {
             $state.go('main');
@@ -44,10 +56,17 @@ angular.module('app.controller',[])
         // Called each time the slide changes
         $scope.slideChanged = function(index) {
             $scope.slideIndex = index;
-        };
+        }
 
 
-
+            // .controller('tabMessageCtrl', function($scope, $stateParams, Chats) {
+            //     $scope.chat = Chats.get($stateParams.chatId);
+            // })
+            //
+            // .controller('tabFriendCtrl', function($scope, Friends) {
+            //     $scope.friends = Friends.all();
+            // });
+        
 
         var hideSheet = $ionicActionSheet.show({
             buttons: [
