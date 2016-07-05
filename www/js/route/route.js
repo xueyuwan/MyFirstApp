@@ -28,15 +28,24 @@ angular.module('app.route',[])
             controller: 'menuCtrl'
           })
           //聊天消息
-          .state('chat', {
+          .state('app.chat', {
               url: '/chat',
-              templateUrl: 'templates/chat/tabs.html'
+              views:{
+                  "menuContent": {
+                      templateUrl: 'templates/chat/tabs.html'
+                  }
+              }
 
           })
-          .state('chat.message',{
+          .state('app.chat.message',{
               url:'/message',
-              templateUrl: 'templates/chat/tab-message.html'
-              })
+
+               templateUrl: 'templates/chat/tab-message.html'
+
+            
+          }
+              )
+
           .state('chat.friends',{
               url:'/friends',
               templateUrl:'templates/chat/tab-friends.html'

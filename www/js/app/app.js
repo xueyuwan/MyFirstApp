@@ -1,5 +1,8 @@
 angular.module('app',['ionic','ngCordova',
-  'app.controller','app.route','app.service'
+  'app.controller','app.route','app.service',
+    'wechat.controllers', 'wechat.routes',
+    'wechat.services', 'wechat.directives', 'monospaced.elastic'
+
 ])
     //资源白名单
     .config(function($sceDelegateProvider) {
@@ -8,7 +11,11 @@ angular.module('app',['ionic','ngCordova',
         'self',
         // Allow loading from our assets domain.  Notice the difference between * and **.
         'http://localhost:3000/**']);
-})
+
+
+
+
+    })
 
     //config 的参数是个数组
     .config(['$ionicConfigProvider',function($ionicConfigProvider){
@@ -24,6 +31,15 @@ angular.module('app',['ionic','ngCordova',
         url = "/android_asset/www/";
     }
 
+    //聊天数据
+    $http.get(url + "data/json/messages.json").then(function(response) {
+        // localStorageService.update("messages", response.data.messages);
+        messageService.init(response.data.messages);
+
+    });
+    $http.get(url + "data/json/friends.json").then(function(response){
+        console.log(response.data.results);
+    });
 
     $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
