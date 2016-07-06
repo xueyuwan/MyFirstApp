@@ -1,7 +1,5 @@
 angular.module('app.service')
 .factory('camera',function($cordovaCamera) {
-
-
     return function(action) {
         document.addEventListener("deviceready", function () {
             var options = {
@@ -22,7 +20,6 @@ angular.module('app.service')
 
         }, false);
     }
-
 }).factory('popup',function($ionicPopup,$timeout){
     return{
         show:function(title,subTitle){

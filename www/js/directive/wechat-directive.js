@@ -67,4 +67,4 @@ angular.module('wechat.directives', [])
                 }
             }
         }
-    }])
+    }]);

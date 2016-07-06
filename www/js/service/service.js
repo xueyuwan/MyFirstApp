@@ -113,6 +113,7 @@ $state.go('intro');
                   console.error(err);
               }),
           initTemplate: function(config) {
+
           }
 
       }

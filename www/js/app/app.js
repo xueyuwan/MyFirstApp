@@ -10,7 +10,9 @@ angular.module('app',['ionic','ngCordova',
         // Allow same origin resource loads.
         'self',
         // Allow loading from our assets domain.  Notice the difference between * and **.
-        'http://localhost:3000/**']);
+        'http://localhost:3000/**',
+        'http://localhost:63342/**'
+    ]);
     })
 
     //config 的参数是个数组

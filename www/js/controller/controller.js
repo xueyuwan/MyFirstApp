@@ -14,7 +14,6 @@ angular.module('app.controller',[])
         $scope.signUp = function() {
             userService.signUp($scope.user.phone,$scope.user.password,$scope.user.password2);
         }
-
     })
 
     .controller('forgotPasswordCtrl',function($scope,userService){
@@ -57,8 +56,6 @@ angular.module('app.controller',[])
         $scope.slideChanged = function(index) {
             $scope.slideIndex = index;
         }
-
-
             // .controller('tabMessageCtrl', function($scope, $stateParams, Chats) {
             //     $scope.chat = Chats.get($stateParams.chatId);
             // })
@@ -66,8 +63,6 @@ angular.module('app.controller',[])
             // .controller('tabFriendCtrl', function($scope, Friends) {
             //     $scope.friends = Friends.all();
             // });
-        
-
         var hideSheet = $ionicActionSheet.show({
             buttons: [
                 { text: '<b>预览</b> ' },
@@ -88,7 +83,6 @@ angular.module('app.controller',[])
                          userService.pickImageHeader($scope);
                     return true;
                  }
-
                 return true;
             }
         });
@@ -100,22 +94,34 @@ angular.module('app.controller',[])
             $rootScope.demos = rtn.demos;
         });
 
-        // $scope.viewTemplate = function(demo){
-        //     // $state.go('templateIndex');
-        // }
+        $scope.viewTemplate = function(demo){
+            $rootScope.currentDemoConfig =demo.config ;
+            $rootScope.currentDemoTitle=demo.title;
+            $state.go('templateIndex');
+        }
     })
     .controller('TemplateIndex',function($scope,$state,$http,$rootScope,$stateParams,config){
 
             $http({
                 method:'get',
-                url:config.serverUrl+$stateParams.config
+                url:config.serverUrl+$rootScope.currentDemoConfig
             }).success(function(rtn){
-                $rootScope.navbar = rtn.navbar;
-                $rootScope.footbar = rtn.footbar;
-                $rootScope.components= rtn.components;
+                $rootScope.header=config.serverUrl+ rtn.header.url;
+                $rootScope.footer=config.serverUrl+ rtn.footer.url;
+
+                for(loop = 0; loop < rtn.pages.length; loop++){
+                    currentRoute = rtn.pages[loop];
+                    $stateProviderReference.state('templateIndex.'+currentRoute.name, {
+                        url:currentRoute.name,
+                        templateUrl:config.serverUrl +currentRoute.url
+                    });
+                }
+                // $stateProviderReference.reload();
+                $rootScope.templateTitle=
+                 $state.go('templateIndex.index', {}, {reload: false});
+
             }).error(function(err){
                 alert(err);
             });
-        $rootScope.navbar ="http://localhost:3000/"+$stateParams.index;
 
 });

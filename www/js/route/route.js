@@ -1,6 +1,8 @@
+var $stateProviderReference ;
 angular.module('app.route',[])
 .config(function($stateProvider, $urlRouterProvider){
-  $stateProvider
+    $stateProviderReference = $stateProvider;
+    $stateProvider
       .state('sign-in', {
         url: '/sign-in',
         templateUrl: 'templates/sign-in.html',
@@ -27,9 +29,6 @@ angular.module('app.route',[])
             templateUrl: 'templates/app/menu.html',
             controller: 'menuCtrl'
           })
-          
-
-
           //app界面的模板云
           .state('app.templateyun', {
             url: '/templateyun',
@@ -43,7 +42,7 @@ angular.module('app.route',[])
           //进入模板云
           .state('templateIndex',{
               url:'/templateIndex',
-              params:{index:null,config:null},
+              params:{index:null,config:""},
               templateUrl:'templates/templateyun/index.html',
               controller:'TemplateIndex'
           })
@@ -81,6 +80,5 @@ angular.module('app.route',[])
               }
             }
           })
-
     });
  

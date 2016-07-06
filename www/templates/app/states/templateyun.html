@@ -10,17 +10,30 @@
   </ion-header-bar>
   <ion-content>
 
-    <div class="row" ion-row-height="" >
 
-      <div class="col-25" ng-repeat="demo in demos">
-    <div class="card">
-      <img   src="{{demo.preview}}" height="99px" ui-sref="templateIndex({index:demo.index,config:demo.config})">
-      <div class="item item-text-wrap">
-        {{demo.title}}
+      <div class="row">
+        <div class="col col-75">.col.col-75</div>
+        <div class="col">.col</div>
+      </div>
+      <div class="row">
+        <div class="col col-75">.col.col-75</div>
+        <div class="col">.col</div>
+      </div>
+      <div class="row">
+        <div class="col col-75">.col.col-75</div>
+        <div class="col">.col</div>
+      </div>
 
+
+
+      <div class="col col-50" ng-repeat="demo in demos">
+
+        <img   src="{{demo.preview}}" height="99px" ng-click="viewTemplate(demo)">
+        <div class="item item-text-wrap">
+          {{demo.title}}
+        </div>
       </div>
-    </div>
-    </div>
-      </div>
+
+
   </ion-content>
 </ion-view>
