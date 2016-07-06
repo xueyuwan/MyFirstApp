@@ -89,7 +89,7 @@ angular.module('app.controller',[])
 
     }
 })
-    .controller('TemplateYun',function($scope,$state,$http,$rootScope,templateService){
+    .controller('TemplateYun',function($scope,$state,$http,$rootScope,templateService,$cordovaInAppBrowser){
         templateService.initData.success(function(rtn){
             $rootScope.demos = rtn.demos;
         });
@@ -97,31 +97,50 @@ angular.module('app.controller',[])
         $scope.viewTemplate = function(demo){
             $rootScope.currentDemoConfig =demo.config ;
             $rootScope.currentDemoTitle=demo.title;
-            $state.go('templateIndex');
+            // $state.go('templateIndex');
+        };
+        var options = {
+            location: 'yes',
+            clearcache: 'yes',
+            toolbar: 'no'
+        };
+
+        $scope.open =function() {
+            $cordovaInAppBrowser.open('http://shsx.alvye.cn', '_blank', options)
+                .then(function (event) {
+                    //监听回退键
+                })
+                .catch(function (event) {
+                    //
+                });
         }
+
     })
-    .controller('TemplateIndex',function($scope,$state,$http,$rootScope,$stateParams,config){
+    .controller('TemplateIndex',function($scope,$state,$http,$rootScope,$stateParams,config,$cordovaInAppBrowser){
 
-            $http({
-                method:'get',
-                url:config.serverUrl+$rootScope.currentDemoConfig
-            }).success(function(rtn){
-                $rootScope.header=config.serverUrl+ rtn.header.url;
-                $rootScope.footer=config.serverUrl+ rtn.footer.url;
 
-                for(loop = 0; loop < rtn.pages.length; loop++){
-                    currentRoute = rtn.pages[loop];
-                    $stateProviderReference.state('templateIndex.'+currentRoute.name, {
-                        url:currentRoute.name,
-                        templateUrl:config.serverUrl +currentRoute.url
+
+        /*
+                    $http({
+                        method:'get',
+                        url:config.serverUrl+$rootScope.currentDemoConfig
+                    }).success(function(rtn){
+                        $rootScope.header=config.serverUrl+ rtn.header.url;
+                        $rootScope.footer=config.serverUrl+ rtn.footer.url;
+
+                        for(loop = 0; loop < rtn.pages.length; loop++){
+                            currentRoute = rtn.pages[loop];
+                            $stateProviderReference.state('templateIndex.'+currentRoute.name, {
+                                url:currentRoute.name,
+                                templateUrl:config.serverUrl +currentRoute.url
+                            });
+                        }
+                        // $stateProviderReference.reload();
+                        $rootScope.templateTitle=
+                         $state.go('templateIndex.index', {}, {reload: false});
+
+                    }).error(function(err){
+                        alert(err);
                     });
-                }
-                // $stateProviderReference.reload();
-                $rootScope.templateTitle=
-                 $state.go('templateIndex.index', {}, {reload: false});
-
-            }).error(function(err){
-                alert(err);
-            });
-
+        */
 });

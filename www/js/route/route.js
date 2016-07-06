@@ -39,13 +39,7 @@ angular.module('app.route',[])
               }
             }
           })
-          //进入模板云
-          .state('templateIndex',{
-              url:'/templateIndex',
-              params:{index:null,config:""},
-              templateUrl:'templates/templateyun/index.html',
-              controller:'TemplateIndex'
-          })
+         
           .state('app.menu4', {
             url: '/menu4',
             views: {

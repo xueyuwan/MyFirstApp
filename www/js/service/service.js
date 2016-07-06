@@ -93,6 +93,7 @@ $state.go('intro');
           cameraHeader:function($scope){
               camera(function(imageUrl){
                   $scope.userHeader="data:image/jpeg;base64," +imageUrl;
+                  alert($scope.userHeader);
               });
           },
           pickImageHeader:function($scope){

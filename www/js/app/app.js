@@ -11,15 +11,31 @@ angular.module('app',['ionic','ngCordova',
         'self',
         // Allow loading from our assets domain.  Notice the difference between * and **.
         'http://localhost:3000/**',
-        'http://localhost:63342/**'
+        'http://localhost:63342/**',
+        'http://shsx.alvye.cn/**'
     ]);
     })
-
     //config 的参数是个数组
-    .config(['$ionicConfigProvider',function($ionicConfigProvider){
+    .config(['$ionicConfigProvider',function($ionicConfigProvider,$rootScope,$cordovaContacts){
         $ionicConfigProvider.tabs.position('bottom');
         //本地文件文件访问白名单
         // $compileProvider.imgSrcSanitizationWhitelist(/^\s(https|file|blob|cdvfile):|data:image\//);
+        $scope.addContact = function() {
+            $cordovaContacts.save($scope.contactForm).then(function(result) {
+                alert(JSON.stringify(result));
+                // Contact saved
+            }, function(err) {
+                // Contact error
+            });
+        };
+
+        $scope.getAllContacts = function() {
+            $cordovaContacts.find().then(function(allContacts) { //omitting parameter to .find() causes all contacts to be returned
+                $scope.contacts = allContacts;
+            })
+        };
+
+
 
     }])
 .run(function($ionicPlatform,$http,messageService,$rootScope){
