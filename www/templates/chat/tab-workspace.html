@@ -1,16 +1,24 @@
 
-<ion-header-bar class="bar-balanced" align-title="left">
-    <div class="buttons">
-        <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
-    </div>
-    <h1 class="title">工作室</h1>
-    <div class="buttons">
-        <button class="button button-icon button-clear ion-ios-search"></button>
-    </div>
-</ion-header-bar>
+<ion-view title="工作室" title-algin="center"  hide-back-button="true" hide-nav-bar="true">
+    <ion-header-bar class="bar-dark" align-title="left">
+        <div class="buttons">
+            <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+        </div>
+        <h1 class="title">工作室</h1>
+        <div class="buttons">
+            <button class="button button-icon button-clear ion-ios-search"></button>
+        </div>
+    </ion-header-bar>
+    <ion-content on-swipe-left="onSwipeLeft()">
 
-
-
-    <ion-content on-swipe-right="onSwipeRight()" >
-        <h1>工作室</h1>
+        <ion-list rj-close-back-drop>
+            <ion-item class="item-avatar" ng-class="{'rj-item-top': message.isTop}" on-hold="popupMessageOpthins(message)" rj-hold-active ng-repeat="message in messages | orderBy:['isTop', 'lastMessage.timeFrome1970']:true" ng-click="messageDetils(message)">
+                <img ng-src="{{message.pic}}">
+                <span class="rj-sm-red-icon" ng-show="message.showHints"><p ng-bind="message.noReadMessages"></p></span>
+                <h2 ng-bind="message.name"></h2>
+                <p class="rj-list-p" ng-bind="message.lastMessage.content"></p>
+                <span class="rj-push-right" ng-bind="message.lastMessage.time"></span>
+            </ion-item>
+        </ion-list>
     </ion-content>
+</ion-view>

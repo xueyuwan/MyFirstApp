@@ -7,18 +7,20 @@ angular.module('wechat.routes', [])
             url: "/tab",
             views:{
                 "menuContent":{
-                    templateUrl: "templates/chat/tabs.html",
+                    templateUrl: "templates/chat/tabs.html"
                 }
             }
         })
         .state('app.tab.message', {
             url: '/message',
+        views: {
+            "tab-message":{
 
-                    templateUrl: 'templates/chat/tab-message.html',
-                    controller: "messageCtrl"
-
-
-        })
+                templateUrl: 'templates/chat/tab-message.html',
+                controller: "messageCtrl"
+            }
+        }
+    })
         .state('messageDetail', {
             url: '/messageDetail/:messageId',
             templateUrl: "templates/chat/message-detail.html",
@@ -26,20 +28,21 @@ angular.module('wechat.routes', [])
         })
         .state('app.tab.friends', {
             url: '/friends',
-
+            views: {
+                "tab-friends": {
                     templateUrl: 'templates/chat/tab-friends.html',
                     controller: "friendsCtrl"
-
-
-        })
-        .state('tab.find', {
-            url: '/find',
-            views: {
-                'tab-find': {
-                    templateUrl: 'templates/chat/tab-find.html',
-                    controller: "findCtrl"
                 }
-            },
+            }
+        })
+        .state('app.tab.workspace', {
+            url: '/workspace',
+            views: {
+                "tab-workspace": {
+                    templateUrl: 'templates/chat/tab-workspace.html',
+                    controller: "messageCtrl"
+                }
+            }
         })
         .state('tab.setting', {
             url: '/setting',

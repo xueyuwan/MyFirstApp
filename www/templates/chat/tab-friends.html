@@ -1,4 +1,13 @@
-<ion-view>
+<ion-view hide-nav-bar="true" hide-back-button="true" title-algin="center">
+    <ion-header-bar class="bar-dark" align-title="left" >
+        <div class="buttons">
+            <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+        </div>
+        <h1 class="title">通讯录</h1>
+        <div class="buttons">
+            <button class="button button-icon button-clear ion-ios-search"></button>
+        </div>
+    </ion-header-bar>
     <ion-content on-swipe-left="onSwipeLeft()" on-swipe-right="onSwipeRight()">
         <ion-list class="rj-list">
             <ion-item class="rj-item">
