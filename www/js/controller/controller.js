@@ -105,8 +105,8 @@ angular.module('app.controller',[])
             toolbar: 'no'
         };
 
-        $scope.open =function() {
-            $cordovaInAppBrowser.open('http://shsx.alvye.cn', '_blank', options)
+        $scope.open =function(url) {
+            $cordovaInAppBrowser.open(url, '_blank', options)
                 .then(function (event) {
                     //监听回退键
                 })

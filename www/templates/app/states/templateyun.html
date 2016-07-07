@@ -13,11 +13,25 @@
 
         <!--<a ui-sref="templateIndex">绿叶</a>-->
 
-      <a click="window.open(‘http://shsx.alvye.cn’, '_system')" >旅烨实习生</a>
-      <a click="window.open('http://www.baidu.com','_blank')" >旅烨实习生</a>
-      <a click="window.open('http://www.baidu.com','_blank', 'location=no'" >旅烨实习生</a>
-      <a ng-click="open()" >旅烨实习生</a>
-      <a ng-click="open()" >旅烨实习生</a>
+      <ul class="list">
+          <li class="item" ng-click="open('http://www.alvye.cn/')">
+         上海旅烨
+              <i class="icon ion-star"></i>
+          </li>
+          <li class="item" ng-click="open('http://cd.alvye.cn/')">
+              武汉旅烨
+              <i class="icon ion-star"></i>
+          </li>
+          <li class="item" ng-click="open('http://cs.alvye.cn/')">
+              成都旅烨
+              <i class="icon ion-star"></i>
+          </li>
+          <li class="item" ng-click="open('http://wh.alvye.cn/')">
+              武汉旅烨
+              <i class="icon ion-star"></i>
+          </li>
 
+
+      </ul>
   </ion-content>
 </ion-view>

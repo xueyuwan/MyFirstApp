@@ -20,23 +20,12 @@ angular.module('app',['ionic','ngCordova',
         $ionicConfigProvider.tabs.position('bottom');
         //本地文件文件访问白名单
         // $compileProvider.imgSrcSanitizationWhitelist(/^\s(https|file|blob|cdvfile):|data:image\//);
-        $scope.addContact = function() {
-            $cordovaContacts.save($scope.contactForm).then(function(result) {
-                alert(JSON.stringify(result));
-                // Contact saved
-            }, function(err) {
-                // Contact error
-            });
-        };
-
-        $scope.getAllContacts = function() {
-            $cordovaContacts.find().then(function(allContacts) { //omitting parameter to .find() causes all contacts to be returned
-                $scope.contacts = allContacts;
-            })
-        };
-
-
-
+        //    $cordovaContacts.save($rootScope.contactForm).then(function(result) {
+        //         alert(JSON.stringify(result));
+        //         // Contact saved
+        //     }, function(err) {
+        //         // Contact error
+        //     });
     }])
 .run(function($ionicPlatform,$http,messageService,$rootScope){
     var url = "";
@@ -49,7 +38,6 @@ angular.module('app',['ionic','ngCordova',
     $http.get(url + "data/json/messages.json").then(function(response) {
         // localStorageService.update("messages", response.data.messages);
         messageService.init(response.data.messages);
-
     });
     $http.get(url + "data/json/friends.json").then(function(response){
         console.log(response.data.results);

@@ -1,25 +1,18 @@
 angular.module('app.service')
 .factory('camera',function($cordovaCamera) {
     return function(action) {
-        document.addEventListener("deviceready", function () {
-            var options = {
-                quality: 100,
-                destinationType: Camera.DestinationType.DATA_URL,
-                sourceType: Camera.PictureSourceType.CAMERA,
-                allowEdit: true,
-                encodingType: Camera.EncodingType.JPEG,
-                targetWidth: 400,
-                targetHeight: 400,
-                popoverOptions: CameraPopoverOptions,
-                saveToPhotoAlbum: false,
-                correctOrientation:true
-            };
+        var options = {
+            destinationType: Camera.DestinationType.FILE_URI,
+            sourceType: Camera.PictureSourceType.CAMERA,
+        };
 
-            $cordovaCamera.getPicture(options).then(action);
-            //  $cordovaCamera.cleanup().then(...); // only for FILE_URI
+        $cordovaCamera.getPicture(options).then(action,function(err) {
+            // error
+            alert(err);
+             });
+        }
 
-        }, false);
-    }
+    
 }).factory('popup',function($ionicPopup,$timeout){
     return{
         show:function(title,subTitle){

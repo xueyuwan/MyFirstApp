@@ -9,14 +9,14 @@ angular.module('app.service',[])
       }
     })
 
-    .factory('userService',function($http,popup,config,$state,camera,imagePicker,$cordovaFile){
+    .factory('userService',function($http,popup,config,$state,camera,imagePicker,$cordovaFile,$cordovaDialogs){
       var user={};
       return {
         signIn: function (phone, password) {
           if ( !phone||  !password) {
-            popup.show('提示', '用户名或密码不能为空');
+              $cordovaDialogs.alert('请输入手机号或密码','提示','确定');
           } else if (!config.phoneRegex.test(phone)) {
-            popup.show('提示', '请输入正确的手机号');
+              $cordovaDialogs.alert( '请输入正确的手机号','提示','确定');
           } else {
             // $http({
             //   method: 'GET',
@@ -92,7 +92,7 @@ $state.go('intro');
           },
           cameraHeader:function($scope){
               camera(function(imageUrl){
-                  $scope.userHeader="data:image/jpeg;base64," +imageUrl;
+                  $scope.userHeader=imageUrl;
                   alert($scope.userHeader);
               });
           },
