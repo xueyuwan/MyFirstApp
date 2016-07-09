@@ -12,7 +12,7 @@ function createDb() {
         set: function (target, key, value, receiver) {
             if(key in target){
                 //添加了同样的数据库
-                throw new Error(`modle   ${key}  is exsiting,plearse remove it `);
+                throw new Error(`modle   ${key}  is exsiting,please remove it `);
             }else {
                 console.log(`loadding Sechma ${key}`);
                 return Reflect.set(target, key, value, receiver);

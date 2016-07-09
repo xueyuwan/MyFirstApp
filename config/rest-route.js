@@ -1,9 +1,13 @@
 // 当前项目的routes目录的路径
 var path = require('path');
 var fs = require('fs');
+var UserRoute = require('../app/route/User');
+var Logic = require('../app/proxy/logic/Logic')
+ // UserRoute.doAction('login').bind(UserRoute,[])();
+
 
 //扫描项目app/routes/下面的所有路由文件
-var routesDir = path.dirname(__dirname)+'/app/rest-route';
+var routesDir = path.dirname(__dirname)+'/app/route';
 
 
 
@@ -13,12 +17,13 @@ module.exports = function (app) {
 
     function loadFile(filePath) {
         var routeObj = require(filePath);
-        if(routeObj&&routeObj.platform&&routeObj&&routeObj.service) {
+        if(routeObj) {
             //导出对象的platform对象,service服务,action请求
-            console.log(`loading route parttern:  /${routeObj.platform}/${routeObj.service}/:action`);
-            app.get(`/${routeObj.platform}/${routeObj.service}/:action`, function (req, res, next) {
-             routeObj.doAction(req.params.action)(req,res);
+            console.log(`loading route parttern:  ${routeObj.service}/:action`);
+            app.get(`/${routeObj.service}/:action`, function (req, res, next) {
+             routeObj.doAction(req.params.action).bind(routeObj,req,res)();
             });
+
         }else{
             var errorFile =`file: ${filePath}  not export right route Object`;
             throw new Error(errorFile);
@@ -52,3 +57,4 @@ module.exports = function (app) {
     });
     return app;
 };
+

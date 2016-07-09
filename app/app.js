@@ -11,7 +11,7 @@ var app = express();
 var port= 3000;
 
 
-app.listen(port || port,function(err){
+app.listen(process.env.PORT || port,function(err){
   console.log('app server runing on port:'+port);
 });
 
