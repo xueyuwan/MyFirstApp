@@ -1,7 +1,7 @@
 // 当前项目的routes目录的路径
 var path = require('path');
 var fs = require('fs');
-var UserRoute = require('../app/route/User');
+var UserRoute = require('../app/route/Student');
 var Logic = require('../app/proxy/logic/Logic')
  // UserRoute.doAction('login').bind(UserRoute,[])();
 
