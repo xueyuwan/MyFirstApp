@@ -107,6 +107,18 @@ angular.module('wechat.controllers', [])
                 $scope.$broadcast('scroll.refreshComplete');
             }, 200);
         };
+        var id=31;
+        $scope.sendMessage = function(){
+            id++;
+            $scope.messageDetils.push({
+                $$hashKey: "object:"+id,
+                content: $scope.send_content,
+                isFromeMe: false,
+                time: "2015-11-27 06:34:55"
+            });
+            viewScroll.scrollBottom();
+        };
+
 
         $scope.$on("$ionicView.beforeEnter", function() {
             $scope.message = messageService.getMessageById($stateParams.messageId);

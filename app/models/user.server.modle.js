@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
+var co = require('co');
 
 var UserSechema = new Schema({
     firstName : String,
@@ -11,11 +12,17 @@ var UserSechema = new Schema({
 createDt:{type:Date,default :Date.now}
 });
 
-UserSechema= mongoose.model('User',UserSechema);
 
-UserSechema.methods = function(phone,password){
-    
+
+UserSechema.statics.findUserByPhone = function(phone){
+        return this.find({phone:phone}).limit(1).exec();
 };
 
 
-module.exports = {UserSechema,findUserByPhone};
+
+
+
+var User= mongoose.model('User',UserSechema);
+
+
+module.exports = {User};
