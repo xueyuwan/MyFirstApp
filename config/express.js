@@ -11,7 +11,7 @@ var config = require('../config/config'),
 module.exports = function() {
     var app = exprsss();
 
-//跨与问题
+//跨域问题
     app.all('*', function(req, res, next) {
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -21,7 +21,8 @@ module.exports = function() {
         next();
     });
 
-    
+
+    //开发环境
     if (process.env.NODE_ENV === 'developement') {
         app.use(morgan('dev'));
     } else if (process.env.NODE_ENV === 'production') {
@@ -42,7 +43,8 @@ module.exports = function() {
 
     //文件路由
     fileroute(app);
-    //
+
+    //静态文件服务器
     // app.use(exprsss.static('./public'));
 
     return app;

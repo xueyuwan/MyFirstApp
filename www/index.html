@@ -2,18 +2,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-<!--html 跨域安全问题  http://stackoverflow.com/questions/30132885/ionic-app-cannot-connect-cors-enabled-server-with-http-->
-    <meta http-equiv="Content-Security-Policy" content="default-src *;
- style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'
- 'unsafe-eval'"/>
-      <title>Sign-in, Then Tabs Example</title>
+    <title>Sign-in, Then Tabs Example</title>
       <link href="lib/ionic/css/ionic.css" rel="stylesheet">
       <link href="css/style.css" rel="stylesheet">
-      <link href="css/ionic.app.css" rel="stylesheet"/>
+      <link href="css/ionic.app.min.css" rel="stylesheet"/>
       <link href="css/flex.sass" rel="stylesheet">
       <link href="css/ionicons.min.css"  rel="stylesheet"/>
       <link href="css/wechat.css" rel="stylesheet"/>
-
       <script src="lib/ionic/js/ionic.bundle.min.js"></script>
       <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
       <script src="cordova.js"></script>
@@ -24,9 +19,8 @@
       <script src="js/service/service.js"></script>
       <script src="js/service/tool.js"></script>
     <!--微信聊天-->
-
-      <script src="js/wechat/routes.js"></script>
-      <script src="js/wechat/controllers.js"></script>
+    <script src="js/wechat/routes.js"></script>
+    <script src="js/wechat/controllers.js"></script>
       <script src="js/wechat/services.js"></script>
       <script src="js/wechat/directives.js"></script>
       <script src="js/wechat/elastic.js"></script>
@@ -34,7 +28,7 @@
   </head>
 
   <body>
-  <ion-nav-bar class=" bar-dark">
+  <ion-nav-bar class="bar-dark">
     <ion-nav-back-button class="icon ion-ios-undo">
     </ion-nav-back-button>
   </ion-nav-bar>
