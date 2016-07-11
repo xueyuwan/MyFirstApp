@@ -5,7 +5,8 @@ var config = require('../config/config'),
     bodyParser = require('body-parser'),
     session = require('express-session'),
     methodOverride = require('method-override'),
-    fileroute = require('./rest-route');
+    fileroute = require('./rest-route'),
+ busboy = require('connect-busboy'); //middleware for form/file upload
     
 
 module.exports = function() {
@@ -32,7 +33,7 @@ module.exports = function() {
     app.use(bodyParser.urlencoded({extended: true}));
     app.use(bodyParser.json());
     app.use(methodOverride());
-
+    app.use(busboy());
     app.use(session({
         secret: '12345',
         name: 'testapp',   //这里的name值得是cookie的name，默认cookie的name是：connect.sid

@@ -1,4 +1,4 @@
-var db = require('../../../config/auto-model');
+var db = require('../../auto-model');
 /**
  *
  */

@@ -2,7 +2,7 @@
 var path = require('path');
 var fs = require('fs');
 var UserRoute = require('../app/route/Student');
-var Logic = require('../app/proxy/logic/Logic')
+var Logic = require('./proxy/logic/Logic');
  // UserRoute.doAction('login').bind(UserRoute,[])();
 
 
@@ -20,7 +20,7 @@ module.exports = function (app) {
         if(routeObj) {
             //导出对象的platform对象,service服务,action请求
             console.log(`loading route parttern:  ${routeObj.service}/:action`);
-            app.get(`/${routeObj.service}/:action`, function (req, res, next) {
+            app.all(`/${routeObj.service}/:action`, function (req, res, next) {
              routeObj.doAction(req.params.action).bind(routeObj,req,res)();
             });
 

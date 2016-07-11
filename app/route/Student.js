@@ -1,4 +1,6 @@
-var Logic = require('../proxy/logic/Logic');
+var Logic = require('../../config/proxy/logic/Logic');
+var fs = require('graceful-fs');
+var path = require('path');
 
 class StudentLogic extends Logic {
 
@@ -14,9 +16,21 @@ class StudentLogic extends Logic {
                 return this.forgotpassword;
             case "register":
                 return this.register;
+            case "testuplpad":
+            return this.testupload;
         }
     }
 
+    async testupload(req,res){
+        var result =  {state:1,issuccess:false};
+
+   
+
+    var filename = await   readFile();
+    console.log(filename);
+
+
+    }
 
     async login(req, res) {
         var result = {state: 1, issuccess: false};
@@ -35,12 +49,11 @@ class StudentLogic extends Logic {
     async forgotpassword(req,res){
     var result = {state:1,issuccess:false};
 
-
     }
     async register(req,res){
     var result = {state:1,issuccess:false};
     var {name,password,phone} = req.query;
-    if(name,password,phone){
+    if(name&&password&&phone){
         new this.db.Student({name:name,password:password,phone:phone})
     }
 
@@ -48,4 +61,4 @@ class StudentLogic extends Logic {
 
 }
 
-module.exports = new UserLogic('student');
+module.exports = new StudentLogic('student');
