@@ -18,37 +18,37 @@ angular.module('app.service',[])
           } else if (!config.phoneRegex.test(phone)) {
               $cordovaDialogs.alert( '请输入正确的手机号','提示','确定');
           } else {
-            // $http({
-            //   method: 'GET',
-            //   url: config.serverUrl + "/web/user/login",
-            //   params: {phone: phone, password: password}
-            // }).success(function (rtn) {
-            //   if (rtn.issuccess) {
-            //     user = rtn.data;
+            $http({
+              method: 'GET',
+              url: config.serverUrl + "student/login",
+              params: {phone: phone, password: password}
+            }).success(function (rtn) {
+              if (rtn.issuccess) {
+                user = rtn.data;
                 $state.go('app.templateyun')
-              // } else {
-              //   popup.show('提示', rtn.msg);
-              // }
-            // });
+              } else {
+                popup.show('提示', rtn.msg);
+              }
+            });
           }
         },
-        signUp:function(phone,password,password2){
-          if(phone==" "|| password==" "||name==""){
+        signUp:function(user){
+          if(!user.phone || !user.password||!user.name){
             popup.show('提示','用户名、密码或手机号不能为空');
-          }else if(!config.phoneRegex.test(phone)) {
+          }else if(!config.phoneRegex.test(user.phone)) {
             popup.show('提示', '请输入正确的手机号');
-          }else if(!config.passwordRegex.test(password)){
+          }else if(!config.passwordRegex.test(user.password)){
             popup.show('提示','密码必须是6到12位的数字加字母组成');
-          }else if(!config.userNameRegex.test(name)){
+          }else if(!config.userNameRegex.test(user.name)){
             popup.show('提示',' 用户名必须以字母开头，长度在6~18之间');
-          }else if(password!==password2) {
+          }else if(user.password!==user.password2) {
             popup.show('提示', '请确认两次输入的密码一致');
           }else{
             popup.show('提示','发送短信中');
             $http({
               method:'GET',
-              url:config.serverUrl+"/user/register",
-              params:{name:name, password:password,phone:phone}
+              url:config.serverUrl+"student/register",
+              params:{name:user.name, password:user.password,phone:user.phone}
             }).success(function(rtn){
               if(rtn.issuccess) {
                 $state.go('tab.message');
@@ -58,26 +58,25 @@ angular.module('app.service',[])
             });
           }
         },
-          forgotPassword:function(phone,password,password2){
-              if(!phone||!password){
+          forgotPassword:function(user){
+              if(!user.phone||!user.password){
                   popup.show('提示','用户名或密码不能为空');
-              }else if(!config.phoneRegex.test(phone)){
+              }else if(!config.phoneRegex.test(user.phone)){
                   popup.show('提示','请输入正确的手机号');
-              }else if(!config.passwordRegex.test(password)){
+              }else if(!config.passwordRegex.test(user.password)){
                   popup.show('提示','密码必须是6到12位的数字加字母组成');
-              }else if(password!==password2) {
+              }else if(user.password!==user.password2) {
                   popup.show('提示', '请确认两次输入的密码一致');
               }else{
                   popup.show('提示','发送短信中');
                   $http({
                       method:'GET',
-                      url:config.serverUrl+"/web/user/forgotpassword",
-                      params:{phone:phone, password:password}
+                      url:config.serverUrl+"student/forgotpassword",
+                      params:{phone:user.phone, password:user.password}
                   }).success(function(rtn){
                       if(rtn.issuccess) {
                           $state.go('sign-up');
                       }else{
-                          debugger;
                           popup.show('错误',rtn.msg);
                       }
                   });

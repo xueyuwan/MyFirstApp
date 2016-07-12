@@ -7,15 +7,11 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'developement';
     var db = mongoose();
     var express = require('../config/express');
     var app = express();
-
     var server = require('http').Server(app);
-    var socket = require('../config/socket-io')(server);
-    // socket.emit('login', 'app login');
-console.log(socket);
-//文件路由
+    //socket.io
+// require('../config/socket-io')(server);
+
     var port = 3000;
-
-
     server.listen(process.env.PORT || port, function (err) {
         console.log('app server runing on port:' + port);
     });

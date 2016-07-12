@@ -12,14 +12,14 @@ angular.module('app.controller',[])
     .controller('SignUpCtrl',function($scope,$state,userService){
         $scope.user = {};
         $scope.signUp = function() {
-            userService.signUp($scope.user.phone,$scope.user.password,$scope.user.password2);
+            userService.signUp($scope.user);
         }
     })
 
     .controller('forgotPasswordCtrl',function($scope,userService){
         $scope.user = {};
         $scope.forgotPassword = function() {
-           userService.forgotPassword();
+           userService.forgotPassword($scope.user);
         }
     })
     .controller('HomeTabCtrl', function($scope) {

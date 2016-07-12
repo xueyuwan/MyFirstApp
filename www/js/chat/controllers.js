@@ -1,4 +1,4 @@
-angular.module('wechat.controllers', [])
+angular.module('chat.controllers', [])
 
 .controller('findCtrl', function($scope, $state) {
     $scope.onSwipeLeft = function() {
