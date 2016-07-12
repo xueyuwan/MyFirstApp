@@ -1,7 +1,11 @@
 var BaseLogic = require('../base/BaseLogic');
 var fs = require('fs');
 var uuid = require('node-uuid');
-var io = require('socket.io');
+// var io = require('../../express').get('io');
+//
+// io.on('connection',function(socket){
+//     socket.emit('login',{msg:'login successfully'});
+// })
 
 class Logic extends BaseLogic {
     constructor(service) {

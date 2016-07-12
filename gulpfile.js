@@ -9,6 +9,6 @@ var concat = require('gulp-concat');
 gulp.task('default', function() {
   return gulp.src('www/js/**/*.js')
       .pipe(concat('app.bundle.js'))
-      .pipe(gulp.dest('www/js'))
+      .pipe(gulp.dest('www/js'));
       // .pipe(notify({ message: 'js task ok' }))
 });
