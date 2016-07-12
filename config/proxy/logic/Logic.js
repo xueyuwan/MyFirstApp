@@ -1,6 +1,7 @@
 var BaseLogic = require('../base/BaseLogic');
 var fs = require('fs');
 var uuid = require('node-uuid');
+var io = require('socket.io');
 
 class Logic extends BaseLogic {
     constructor(service) {
@@ -33,7 +34,7 @@ class Logic extends BaseLogic {
     static  saveBase64Image = async function(base64Data){
     return new Promise(function (resolve,reject) {
         var dataBuffer = new Buffer(base64Data, 'base64');
-         filename =path.join(__dirname, '..', '/upload/base64/' + uuid.v1()+'.png';
+         filename =path.join(__dirname, '..', '/upload/base64/' + uuid.v1()+'.png');
         fs.writeFile(path.join(  filename), dataBuffer, function (err) {
                 resolve(filename)
         });
