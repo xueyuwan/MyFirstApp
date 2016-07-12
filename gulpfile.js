@@ -8,7 +8,7 @@ var concat = require('gulp-concat');
 // 合并、压缩js文件
 gulp.task('default', function() {
   return gulp.src('www/js/**/*.js')
-      .pipe(concat('app.bundl.js'))
+      .pipe(concat('app.bundle.js'))
       .pipe(gulp.dest('www/js'))
       // .pipe(notify({ message: 'js task ok' }))
 });
