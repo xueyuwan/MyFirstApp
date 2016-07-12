@@ -26,7 +26,9 @@ class StudentLogic extends Logic {
 
    
 
-    var filename = await   readFile();
+    var filename = await   this.saveFile(req);
+    var filename = await this.saveBase64Image(req.query.base64image);
+
     console.log(filename);
 
 
@@ -44,21 +46,35 @@ class StudentLogic extends Logic {
             result.msg = "密码错误";
         }
         res.json(result);
+
     }
 
     async forgotpassword(req,res){
     var result = {state:1,issuccess:false};
 
+
     }
+
+
     async register(req,res){
     var result = {state:1,issuccess:false};
     var {name,password,phone} = req.query;
     if(name&&password&&phone){
-        new this.db.Student({name:name,password:password,phone:phone})
+     var number = this.db.Student.isExsiting({phone:phone});
+    if(number){
+        result.issuccess=false;
+        result.msg="该手机号已经被注册";
+        res.json(result);
     }
-
+     await this.db.Student.addStudent({name:name,password:password,phone:phone});
+        result.issuccess=true;
+        result.msg="注册成功";
+    }else{
+        result.issuccess=false;
+        result.msg="信息缺失";
     }
-
+    res.json(result);
+    }
 }
 
 module.exports = new StudentLogic('student');

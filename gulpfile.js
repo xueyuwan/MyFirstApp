@@ -11,7 +11,7 @@ var paths = {
   sass: ['./scss/**/*.scss']
 };
 
-gulp.task('default', ['sass']);
+gulp.task('default', ['sass','js']);
 
 gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')
@@ -35,6 +35,16 @@ gulp.task('install', ['git-check'], function() {
     .on('log', function(data) {
       gutil.log('bower', gutil.colors.cyan(data.id), data.message);
     });
+});
+// 合并、压缩js文件
+gulp.task('js', function() {
+  return gulp.src('src/js/*.js')
+      .pipe(concat('all.js'))
+      .pipe(gulp.dest('dest/js'))
+      .pipe(rename({ suffix: '.min' }))
+      .pipe(uglify())
+      .pipe(gulp.dest('dest/js'))
+      .pipe(notify({ message: 'js task ok' }));
 });
 
 gulp.task('git-check', function(done) {

@@ -16,13 +16,13 @@ class Logic extends BaseLogic {
         req.pipe(req.busboy);
 
         req.busboy.on('file', function (fieldname, file, filename) {
-            filenames.push[filename];
+
             //Path where image will be uploaded
             fstream = fs.createWriteStream(path.join(__dirname, '..', '/upload/' + filename));
             file.pipe(fstream);
             fstream.on('close', function () {
                 console.log("Upload Finished of " + filename);
-                resolve(filenames);
+                resolve(filename);
             });
         });
     });

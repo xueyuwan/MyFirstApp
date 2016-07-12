@@ -3,13 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>\</title>
+    <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
 </head>
 <body>
+
+<!--测试上传文件-->
 <form method="post" action="http://localhost:3000/student/testuplpad"  enctype="multipart/form-data">
     <input name="test" id="test" type="file">
     <input name="test2" id="test2" type="file">
     <input type="submit" value="提交">
 </form>
+
+<!--测试base64图片上传-->
+
+    <input  id="base64" type="file" onchange="uploadBase64()">
+    <img id="testimage">
+<script>
+    function uploadBase64(){
+        var base64 = document.getElementById('base64');
+        var file = base64.files[0];
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function(e){
+         document.getElementById('testimage').src=e.target.result;
+
+            $.ajax({
+                type: "POST",
+                url: 'http://localhost:3000/student/uploadbase64',
+                data: {
+                    base64:e.target.result
+                },
+                success:  function(rtn){
+                    console.log(rtn);
+                },
+            });
+
+        }
+
+
+
+        //上传base64图片
+
+    }
+</script>
 
 </body>
 </html>
