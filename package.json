@@ -19,6 +19,7 @@
     "gulp-notify": "^2.2.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.3.2",
+    "http": "0.0.0",
     "method-override": "^2.3.6",
     "mongoose": "^4.5.1",
     "morgan": "^1.7.0",
