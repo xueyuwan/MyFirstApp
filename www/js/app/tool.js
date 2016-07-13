@@ -27,8 +27,6 @@ factory('config',function(){
             alert(err);
              });
         }
-
-    
 }).factory('popup',function($ionicPopup,$timeout){
     return{
         show:function(title,subTitle){

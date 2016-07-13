@@ -1,3 +1,5 @@
+
+var socket;
 angular.module('app.controller',[])
 .controller('SignInCtrl', function($http,$scope, $state,$ionicPopup,$timeout,popup,$ionicNavBarDelegate,userService) {
     $scope.user = {};
@@ -38,9 +40,12 @@ angular.module('app.controller',[])
         };
     })
 
-    .controller('menuCtrl',function($scope,camera,$ionicActionSheet,$ionicSlideBoxDelegate,userService){
-        var socket = io(config.serverUrl);
-
+    .controller('menuCtrl',function($scope,camera,$ionicActionSheet,config,$ionicSlideBoxDelegate,userService){
+        socket = io('http://localhost:3000');
+        socket.on('connect', function (data) {
+            console.log(data);
+            socket.emit('login', '一个用户已经登录');
+        });
 
     $scope.changeHeader = function(){
 
@@ -55,7 +60,7 @@ angular.module('app.controller',[])
         // Called each time the slide changes
         $scope.slideChanged = function(index) {
             $scope.slideIndex = index;
-        }
+        };
             // .controller('tabMessageCtrl', function($scope, $stateParams, Chats) {
             //     $scope.chat = Chats.get($stateParams.chatId);
             // })
