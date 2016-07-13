@@ -49,6 +49,4 @@ class Logic extends BaseLogic {
 }
 
 
-
-
  module.exports = Logic;

@@ -26,7 +26,7 @@ class StudentLogic extends Logic {
 
    
 
-    var filename = await   this.saveFile(req);
+    var filename = await    this.saveFile(req);
     var filename = await this.saveBase64Image(req.query.base64image);
 
     console.log(filename);
