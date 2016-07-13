@@ -1,4 +1,4 @@
-angular.module('wechat.routes', [])
+angular.module('chat.routes', [])
 
 .config(function($stateProvider, $urlRouterProvider) {
 

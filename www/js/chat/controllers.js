@@ -1,4 +1,4 @@
-angular.module('wechat.controllers', [])
+angular.module('chat.controllers', [])
 
 .controller('findCtrl', function($scope, $state) {
     $scope.onSwipeLeft = function() {
@@ -10,62 +10,19 @@ angular.module('wechat.controllers', [])
 })
 
 .controller('messageCtrl', function($scope, $state, $ionicPopup, localStorageService, messageService) {
-    
-    // $scope.messages = messageService.getAllMessages();
-    // console.log($scope.messages);
+    socket = io.connect('http://localhost:3000');
+    socket.emit('send message','杨杰');
     $scope.onSwipeLeft = function() {
         $state.go("tab.friends");
-    };
-    $scope.popupMessageOpthins = function(message) {
-        $scope.popup.index = $scope.messages.indexOf(message);
-        $scope.popup.optionsPopup = $ionicPopup.show({
-            templateUrl: "templates/popup.html",
-            scope: $scope,
-        });
-        $scope.popup.isPopup = true;
-    };
-    $scope.markMessage = function() {
-        var index = $scope.popup.index;
-        var message = $scope.messages[index];
-        if (message.showHints) {
-            message.showHints = false;
-            message.noReadMessages = 0;
-        } else {
-            message.showHints = true;
-            message.noReadMessages = 1;
-        }
-        $scope.popup.optionsPopup.close();
-        $scope.popup.isPopup = false;
-        messageService.updateMessage(message);
-    };
-    $scope.deleteMessage = function() {
-        var index = $scope.popup.index;
-        var message = $scope.messages[index];
-        $scope.messages.splice(index, 1);
-        $scope.popup.optionsPopup.close();
-        $scope.popup.isPopup = false;
-        messageService.deleteMessageId(message.id);
-        messageService.clearMessage(message);
-    };
-    $scope.topMessage = function() {
-        var index = $scope.popup.index;
-        var message = $scope.messages[index];
-        if (message.isTop) {
-            message.isTop = 0;
-        } else {
-            message.isTop = new Date().getTime();
-        }
-        $scope.popup.optionsPopup.close();
-        $scope.popup.isPopup = false;
-        messageService.updateMessage(message);
     };
     $scope.messageDetils = function(message) {
         $state.go("messageDetail", {
             "messageId": message.id
         });
     };
+
     $scope.$on("$ionicView.beforeEnter", function(){
-        // console.log($scope.messages);
+        console.log($scope.messages);
         $scope.messages = messageService.getAllMessages();
         $scope.popup = {
             isPopup: false,
@@ -99,7 +56,6 @@ angular.module('wechat.controllers', [])
         var viewScroll = $ionicScrollDelegate.$getByHandle('messageDetailsScroll');
         // console.log("enter");
         $scope.doRefresh = function() {
-            // console.log("ok");
             $scope.messageNum += 5;
             $timeout(function() {
                 $scope.messageDetils = messageService.getAmountMessageById($scope.messageNum,
@@ -109,13 +65,7 @@ angular.module('wechat.controllers', [])
         };
         var id=31;
         $scope.sendMessage = function(){
-            id++;
-            $scope.messageDetils.push({
-                $$hashKey: "object:"+id,
-                content: $scope.send_content,
-                isFromeMe: false,
-                time: "2015-11-27 06:34:55"
-            });
+            socket.emit('send message',$scope.send_content);
             viewScroll.scrollBottom();
         };
 

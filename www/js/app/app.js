@@ -1,8 +1,8 @@
 var rootScope;
 angular.module('app',['ionic','ngCordova',
   'app.controller','app.route','app.service',
-    'wechat.controllers', 'wechat.routes',
-    'wechat.services', 'wechat.directives', 'monospaced.elastic'
+    'chat.controllers', 'chat.routes',
+    'chat.services', 'chat.directives'
 ])
     //资源白名单
     .config(function($sceDelegateProvider) {
@@ -18,14 +18,6 @@ angular.module('app',['ionic','ngCordova',
     //config 的参数是个数组
     .config(['$ionicConfigProvider',function($ionicConfigProvider,$rootScope,$cordovaContacts){
         $ionicConfigProvider.tabs.position('bottom');
-        //本地文件文件访问白名单
-        // $compileProvider.imgSrcSanitizationWhitelist(/^\s(https|file|blob|cdvfile):|data:image\//);
-        //    $cordovaContacts.save($rootScope.contactForm).then(function(result) {
-        //         alert(JSON.stringify(result));
-        //         // Contact saved
-        //     }, function(err) {
-        //         // Contact error
-        //     });
     }])
 .run(function($ionicPlatform,$http,messageService,$rootScope){
     var url = "";
@@ -46,7 +38,6 @@ angular.module('app',['ionic','ngCordova',
     $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
-
         if (window.cordova && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         }

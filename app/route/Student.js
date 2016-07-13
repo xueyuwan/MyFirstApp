@@ -37,21 +37,41 @@ class StudentLogic extends Logic {
     async login(req, res) {
         var result = {state: 1, issuccess: false};
         var {phone, password} = req.query;
-        var [user] = await this.db.Student.queryStudent({phone:phone});
-        if (user.password == password) {
-            result.issuccess = true;
-            result.data = user;
-        } else {
-            result.issuccess = false;
-            result.msg = "密码错误";
+
+        var students =  await this.db.Student.find({phone:phone}).exec();
+        if(students.length) {
+            var user=students[0];
+            if (user.password == password) {
+                result.issuccess = true;
+                result.data = user;
+            } else {
+                result.issuccess = false;
+                result.msg = "密码错误";
+            }
+        }else{
+            result.issuccess=false;
+            result.msg="该用户不存在";
+
         }
+
         res.json(result);
 
     }
 
     async forgotpassword(req,res){
     var result = {state:1,issuccess:false};
+    var {phone,password} = req.query;
 
+        var students =await this.db.Student.find({phone:phone}).exec();
+        if(!students.length){
+            result.issuccess = false;
+            result.msg = "错误的请求";
+        }else{
+           var student = await this.db.Student.find({phone:phone}).update({password:password}).exec();
+            result.issuccess = true;
+            result.msg="成功修改密码";
+        }
+        res.json(result);
 
     }
 
@@ -60,18 +80,21 @@ class StudentLogic extends Logic {
     var result = {state:1,issuccess:false};
     var {name,password,phone} = req.query;
     if(name&&password&&phone){
-     var number = this.db.Student.isExsiting({phone:phone});
-    if(number){
-        result.issuccess=false;
-        result.msg="该手机号已经被注册";
-        res.json(result);
-    }
-     await this.db.Student.addStudent({name:name,password:password,phone:phone});
+        var students =await this.db.Student.find({phone:phone});
+        if(students.length){
+            result.issuccess =false;
+            result.msg="该手机号已经被注册";
+            res.json(result);
+            return ;
+        }
+      var  student =  await  new this.db.Student({name:name,phone:phone,password:password}).save();
         result.issuccess=true;
         result.msg="注册成功";
-    }else{
+        result.data = student;
+
+    } else{
         result.issuccess=false;
-        result.msg="信息缺失";
+        result.msg="信息不完整";
     }
     res.json(result);
     }

@@ -1,3 +1,5 @@
+
+var socket;
 angular.module('app.controller',[])
 .controller('SignInCtrl', function($http,$scope, $state,$ionicPopup,$timeout,popup,$ionicNavBarDelegate,userService) {
     $scope.user = {};
@@ -12,14 +14,14 @@ angular.module('app.controller',[])
     .controller('SignUpCtrl',function($scope,$state,userService){
         $scope.user = {};
         $scope.signUp = function() {
-            userService.signUp($scope.user.phone,$scope.user.password,$scope.user.password2);
+            userService.signUp($scope.user);
         }
     })
 
     .controller('forgotPasswordCtrl',function($scope,userService){
         $scope.user = {};
         $scope.forgotPassword = function() {
-           userService.forgotPassword();
+           userService.forgotPassword($scope.user);
         }
     })
     .controller('HomeTabCtrl', function($scope) {
@@ -38,13 +40,16 @@ angular.module('app.controller',[])
         };
     })
 
-    .controller('menuCtrl',function($scope,camera,$ionicActionSheet,$ionicSlideBoxDelegate,userService){
+    .controller('menuCtrl',function($scope,camera,$ionicActionSheet,config,$ionicSlideBoxDelegate,userService){
+        socket = io('http://localhost:3000');
+        socket.on('connect', function (data) {
+            console.log(data);
+            socket.emit('login', '一个用户已经登录');
+        });
+
     $scope.changeHeader = function(){
-        
-        // Called to navigate to the main app
-        $scope.startApp = function() {
-            $state.go('main');
-        };
+
+
         $scope.next = function() {
             $ionicSlideBoxDelegate.next();
         };
@@ -55,7 +60,7 @@ angular.module('app.controller',[])
         // Called each time the slide changes
         $scope.slideChanged = function(index) {
             $scope.slideIndex = index;
-        }
+        };
             // .controller('tabMessageCtrl', function($scope, $stateParams, Chats) {
             //     $scope.chat = Chats.get($stateParams.chatId);
             // })
@@ -66,7 +71,7 @@ angular.module('app.controller',[])
         var hideSheet = $ionicActionSheet.show({
             buttons: [
                 { text: '<b>预览</b> ' },
-                { text: '拍照' },
+                { text:  "拍照" },
                 {text:'从相册选取'},
             ],
             titleText: '<h3>头像</h3>',
@@ -87,7 +92,7 @@ angular.module('app.controller',[])
             }
         });
 
-    }
+    };
 })
     .controller('TemplateYun',function($scope,$state,$http,$rootScope,templateService,$cordovaInAppBrowser){
         templateService.initData.success(function(rtn){

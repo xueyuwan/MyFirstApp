@@ -1,11 +1,8 @@
 var BaseLogic = require('../base/BaseLogic');
 var fs = require('fs');
 var uuid = require('node-uuid');
-// var io = require('../../express').get('io');
-//
-// io.on('connection',function(socket){
-//     socket.emit('login',{msg:'login successfully'});
-// })
+var path = require('path');
+
 
 class Logic extends BaseLogic {
     constructor(service) {
@@ -23,7 +20,7 @@ class Logic extends BaseLogic {
         req.busboy.on('file', function (fieldname, file, filename) {
 
             //Path where image will be uploaded
-            fstream = fs.createWriteStream(path.join(__dirname, '..', '/upload/' + filename));
+            fstream = fs.createWriteStream(path.join(__dirname, '../..', 'www/upload/' + filename));
             file.pipe(fstream);
             fstream.on('close', function () {
                 console.log("Upload Finished of " + filename);
@@ -35,12 +32,15 @@ class Logic extends BaseLogic {
     };
 
     //将上传的base64图片保存成本地图片并且返回uuid图片相对于www下的相对路径,和服务器的serverhost,
-    static  saveBase64Image = async function(base64Data){
+   saveBase64Image(base64Data){
     return new Promise(function (resolve,reject) {
+
+        base64Data = base64Data.replace('data:image/jpeg;base64,','');
         var dataBuffer = new Buffer(base64Data, 'base64');
-         filename =path.join(__dirname, '..', '/upload/base64/' + uuid.v1()+'.png');
-        fs.writeFile(path.join(  filename), dataBuffer, function (err) {
-                resolve(filename)
+        var filename ='upload/'+uuid.v1()+'.png';
+        var fullpath =path.join(__dirname, '../../..','www/'+filename);
+        fs.writeFile(fullpath, dataBuffer, function (err) {
+                resolve(filename);
         });
     });
 

@@ -1,4 +1,4 @@
-angular.module('wechat.services', [])
+angular.module('chat.services', [])
 .factory('localStorageService', [function() {
         return {
             get: function localStorageServiceGet(key, defaultValue) {

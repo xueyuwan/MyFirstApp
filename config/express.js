@@ -6,7 +6,7 @@ var config = require('../config/config'),
     session = require('express-session'),
     methodOverride = require('method-override'),
     restroute = require('./rest-route'),
- busboy = require('connect-busboy'); //middleware for form/file upload
+    busboy = require('connect-busboy'); //middleware for form/file upload
 
 
 module.exports = function() {
@@ -14,11 +14,12 @@ module.exports = function() {
 
 //跨域问题
     app.all('*', function(req, res, next) {
-        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Origin", "http://localhost:3000");
         res.header("Access-Control-Allow-Headers", "X-Requested-With");
         res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+        res.header("Access-Control-Allow-Credentials",true);
         res.header("X-Powered-By",' 3.2.1');
-        res.header("Content-Type", "application/json;charset=utf-8");
+        // res.header("Content-Type", "application/json;charset=utf-8");
         next();
     });
 
@@ -39,7 +40,7 @@ module.exports = function() {
         name: 'testapp',   //这里的name值得是cookie的name，默认cookie的name是：connect.sid
         cookie: {maxAge: 80000},  //设置maxAge是80000ms，即80s后session和相应的cookie失效过期
         resave: false,
-        saveUninitialized: true,
+        saveUninitialized: true
     }));
 
     //文件路由

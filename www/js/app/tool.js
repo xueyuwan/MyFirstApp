@@ -1,9 +1,25 @@
-angular.module('app.service')
+angular.module('app.service').
+factory('config',function(){
+    return {
+        serverUrl:'http://192.168.1.62:3000/',
+        phoneRegex:/^(13[0-9]|14[0-9]|15[0-9]|18[0-9])\d{8}$/,
+        passwordRegex:/^[a-zA-Z]\w{5,17}$/,
+        userNameRegex:/^[a-zA-Z]\w{5,17}$/
+    }
+})
 .factory('camera',function($cordovaCamera) {
     return function(action) {
         var options = {
-            destinationType: Camera.DestinationType.FILE_URI,
+            quality: 50,
+            destinationType: Camera.DestinationType.DATA_URL,
             sourceType: Camera.PictureSourceType.CAMERA,
+            allowEdit: true,
+            encodingType: Camera.EncodingType.JPEG,
+            targetWidth: 100,
+            targetHeight: 100,
+            popoverOptions: CameraPopoverOptions,
+            saveToPhotoAlbum: false,
+            correctOrientation:true
         };
 
         $cordovaCamera.getPicture(options).then(action,function(err) {
@@ -11,8 +27,6 @@ angular.module('app.service')
             alert(err);
              });
         }
-
-    
 }).factory('popup',function($ionicPopup,$timeout){
     return{
         show:function(title,subTitle){
