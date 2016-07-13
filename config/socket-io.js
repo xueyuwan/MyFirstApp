@@ -13,7 +13,7 @@ module.exports=async function (server){
     };
     //聊天应用程序逻辑
     var socket = await  connect(server);
-
+    socket.emit('login','登录成功');
 
     return socket;
-}
+};

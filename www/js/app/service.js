@@ -1,14 +1,5 @@
-angular.module('app.service',[])
+angular.module('app.service',['ionic','ngCordova'])
     //常量
-    .factory('config',function(){
-      return {
-        serverUrl:'http://localhost:3000/',
-          phoneRegex:/^(13[0-9]|14[0-9]|15[0-9]|18[0-9])\d{8}$/,
-          passwordRegex:/^[a-zA-Z]\w{5,17}$/,
-          userNameRegex:/^[a-zA-Z]\w{5,17}$/
-      }
-    })
-
     .factory('userService',function($http,popup,config,$state,camera,imagePicker,$cordovaFile,$cordovaDialogs){
       var user={};
       return {
@@ -25,7 +16,9 @@ angular.module('app.service',[])
             }).success(function (rtn) {
               if (rtn.issuccess) {
                 user = rtn.data;
-                $state.go('app.templateyun')
+                $state.go('app.templateyun');
+                  //本地存储用户
+                localStorage.setItem('user',user);
               } else {
                 popup.show('提示', rtn.msg);
               }
@@ -87,13 +80,25 @@ angular.module('app.service',[])
               return user;
           },
           viewHeader :function(scope){
-$state.go('intro');
+                $state.go('intro');
           },
           cameraHeader:function($scope){
-              camera(function(imageUrl){
-                  $scope.userHeader=imageUrl;
+              camera(function(base64Data){
+                  $scope.userHeader = "data:image/jpeg;base64,"+base64Data;
                   alert($scope.userHeader);
+                  $http.save(
+                      {
+                          url:config.serverUrl+'test/testuploadbase64',
+                          params:{
+                              base64:$scope.userHeader
+                          }
+                      }
+                  ).success(function(rtn){
+                    alert(rtn);
+                  })
               });
+
+
           },
           pickImageHeader:function($scope){
               imagePicker.pickOne(function(urls){

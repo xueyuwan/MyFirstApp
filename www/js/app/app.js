@@ -2,7 +2,7 @@ var rootScope;
 angular.module('app',['ionic','ngCordova',
   'app.controller','app.route','app.service',
     'chat.controllers', 'chat.routes',
-    'chat.services', 'chat.directives', 'monospaced.elastic'
+    'chat.services', 'chat.directives'
 ])
     //资源白名单
     .config(function($sceDelegateProvider) {

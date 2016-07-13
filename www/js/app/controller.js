@@ -39,12 +39,12 @@ angular.module('app.controller',[])
     })
 
     .controller('menuCtrl',function($scope,camera,$ionicActionSheet,$ionicSlideBoxDelegate,userService){
+        var socket = io(config.serverUrl);
+
+
     $scope.changeHeader = function(){
-        
-        // Called to navigate to the main app
-        $scope.startApp = function() {
-            $state.go('main');
-        };
+
+
         $scope.next = function() {
             $ionicSlideBoxDelegate.next();
         };
@@ -66,7 +66,7 @@ angular.module('app.controller',[])
         var hideSheet = $ionicActionSheet.show({
             buttons: [
                 { text: '<b>预览</b> ' },
-                { text: '拍照' },
+                { text:  "拍照" },
                 {text:'从相册选取'},
             ],
             titleText: '<h3>头像</h3>',
@@ -87,7 +87,7 @@ angular.module('app.controller',[])
             }
         });
 
-    }
+    };
 })
     .controller('TemplateYun',function($scope,$state,$http,$rootScope,templateService,$cordovaInAppBrowser){
         templateService.initData.success(function(rtn){

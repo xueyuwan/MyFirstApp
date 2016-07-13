@@ -6,19 +6,12 @@ var StudentSechema = new Schema({
     phone:{type:String,require:true},
     password:{type:String,require:true},
     headpic:{type:String},
-    job:{type:String}
+    job:{type:String},
+    createdt:{type:Date,default:Date.now()},
+    lastModifiedDate:{type:Date}
+
 });
 
-StudentSechema.statics.queryStudent = function(query){
-        return this.find(query).exec();
-};
-
-StudentSechema.statics.addStudent = function(student){
-    return new StudentSechema(student).save().exec();
-};
-StudentSechema.statics.isExsiting = function(phone){
- return new StudentSechema.find(phone).count().exec();
-};
 
 var Student= mongoose.model('student',StudentSechema);
 
