@@ -10,6 +10,7 @@
     "bower": "^1.7.9",
     "compression": "^1.6.2",
     "connect-busboy": "0.0.2",
+    "del": "^2.2.1",
     "express": "^4.14.0",
     "express-session": "^1.13.0",
     "graceful-fs": "^4.1.4",
@@ -19,12 +20,15 @@
     "gulp-notify": "^2.2.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.3.2",
+    "gulp-sequence": "^0.4.5",
     "http": "0.0.0",
     "method-override": "^2.3.6",
     "mongoose": "^4.5.1",
     "morgan": "^1.7.0",
     "node-uuid": "^1.4.7",
-    "socket.io": "^1.4.8"
+    "reload": "^1.0.0",
+    "socket.io": "^1.4.8",
+    "uglify": "^0.1.5"
   },
   "scripts": {
     "es6-start": "babel-node app/app.js",
