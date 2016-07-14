@@ -11,6 +11,9 @@ angular.module('app.controller',[])
         userService.signIn($scope.user.phone, $scope.user.password);
     }
 
+
+
+
     })
     .controller('SignUpCtrl',function($scope,$state,userService){
         $scope.user = {};
@@ -18,12 +21,6 @@ angular.module('app.controller',[])
             userService.signUp($scope.user.phone,$scope.user.name ,$scope.user.password,$scope.job.id);
         }
 
-
-        $scope.jobs = [
-            "网页设计师",
-            "前端工程师",
-            "PHP工程师",
-        ]
 
     })
 
