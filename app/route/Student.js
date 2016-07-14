@@ -34,14 +34,14 @@ class StudentLogic extends Logic {
         var result =  {state:1,issuccess:false};
         var phone = req.query.phone;
         var filename = await super.saveBase64Image(req.query.header);
-
-        await this.db.Student.update({phone:phone},{headpic:result.data},{},function(err){
+         console.log(phone);
+        await this.db.Student.update({phone:phone},{headpic:filename},{},function(err){
           if(err){
               console.log(err);
           }
         });
 
-        result.data = super.config().serverUrl+'upload/'+filename;
+        result.data = super.config().serverUrl+filename;
         res.json(result);
     }
 
@@ -54,6 +54,9 @@ class StudentLogic extends Logic {
             var user=students[0];
             if (user.password == password) {
                 result.issuccess = true;
+                //修改user头像前缀
+                user.headpic = super.config().serverUrl+user.headpic;
+
                 result.data = user;
             } else {
                 result.issuccess = false;

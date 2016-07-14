@@ -3,12 +3,9 @@ var socket;
 angular.module('app.controller',[])
 .controller('SignInCtrl', function($http,$scope,$rootScope, $state,$ionicPopup,$timeout,popup,$ionicNavBarDelegate,userService) {
     $scope.user = {};
-     user = localStorage.getItem('user');
+     // user = localStorage.getItem('user');
 
-    if(user){
-        $rootScope.user = user;
-         // $state.go('app.templateyun');
-    }
+
 
     //如果用户已经登陆,则自动跳转到用户主页,利用localStorage来做
     $scope.$on("$ionicView.beforeEnter", function(){
@@ -17,18 +14,12 @@ angular.module('app.controller',[])
     $scope.signIn = function() {
         userService.signIn($scope.user.phone, $scope.user.password);
     }
-
-
-
-
     })
     .controller('SignUpCtrl',function($scope,$state,userService){
         $scope.user = {};
         $scope.signUp = function() {
             userService.signUp($scope.user.phone,$scope.user.name ,$scope.user.password,$scope.job.id);
         }
-
-
     })
     .controller('forgotPasswordCtrl',function($scope,userService){
         $scope.user = {};
@@ -53,8 +44,6 @@ angular.module('app.controller',[])
     })
 
     .controller('menuCtrl',function($scope,camera,$ionicActionSheet,config,$ionicSlideBoxDelegate,userService){
-
-
     $scope.changeHeader = function(){
 
 

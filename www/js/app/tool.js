@@ -16,8 +16,8 @@ factory('config',function(){
                 sourceType: Camera.PictureSourceType.CAMERA,
                 allowEdit: true,
                 encodingType: Camera.EncodingType.JPEG,
-                targetWidth: 100,
-                targetHeight: 100,
+                targetWidth: 800,
+                targetHeight: 800,
                 popoverOptions: CameraPopoverOptions,
                 saveToPhotoAlbum: false,
                 correctOrientation: true

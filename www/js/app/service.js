@@ -1,11 +1,11 @@
 
 angular.module('app.service',['ionic','ngCordova'])
     //常量
-    .factory('userService',function($http,popup,config,$state,camera,imagePicker,$cordovaFile,$cordovaDialogs){
+    .factory('userService',function($http,$rootScope,popup,config,$state,camera,imagePicker,$cordovaFile,$cordovaDialogs){
       var user={};
-       user= localStorage.setItem('user');
+       // user= localStorage.setItem('user');
         // $rootScope
-        $state.go('app.templateyun')
+        // $state.go('app.templateyun')
 
       return {
         signIn: function (phone, password) {
@@ -23,7 +23,8 @@ angular.module('app.service',['ionic','ngCordova'])
                 user = rtn.data;
                 $state.go('app.templateyun');
                   //本地存储用户
-                localStorage.setItem('user',user);
+                // localStorage.setItem('phone',user.phone);
+                $rootScope.user= user;
               } else {
                 popup.show('提示', rtn.msg);
               }
@@ -89,22 +90,33 @@ angular.module('app.service',['ionic','ngCordova'])
           },
           cameraHeader:function($scope){
               camera(function(base64Data) {
-                  $scope.userHeader = "data:image/jpeg;base64," + base64Data;
                   $http({
                       method:'POST',
                       url:config.serverUrl+'student/uploadheader',
                       params:{
-                          header:$scope.userHeader
+                          phone:$rootScope.user.phone,
+                          header:base64Data
                       }
                   }).success(function(rtn){
-                        alert(rtn.data);
+                        $rootScope.headpic= rtn.data;
                   });
-                  // alert($scope.userHeader);
+
               });
           },
           pickImageHeader:function($scope){
               imagePicker.pickOne(function(urls){
-                  $scope.userHeader =urls[0];
+                  var header = urls[0];
+                  alert(header);
+                 $http({
+                     method:'POST',
+                     url:config.serverUrl+'student/uploadheader',
+                     params:{
+                         phone:$rootScope.user.phone,
+                         header:header
+                     }
+                 }).success(function(data){
+                     $rootScope.headpic=rtn.data;
+                 })
               })
 
     }
