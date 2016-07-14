@@ -13,10 +13,6 @@
 	<ion-refresher pulling-text="..." on-refresh="doRefresh()" pulling-icon=""></ion-refresher>
 
     <div ng-repeat="item in messages">
-        {{item.content}}
-    </div>
-
-    <div ng-repeat="item in messages">
     	<p class="rj-message-time" ng-bind="item.time" ng-if="false"></p>
         <div class="rj-message-wrap" ng-if="!item.isFromeMe">
             <img ng-src="{{message.pic}}" class="rj-head-pic">
