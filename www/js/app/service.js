@@ -83,22 +83,19 @@ angular.module('app.service',['ionic','ngCordova'])
                 $state.go('intro');
           },
           cameraHeader:function($scope){
-              camera(function(base64Data){
-                  $scope.userHeader = "data:image/jpeg;base64,"+base64Data;
-                  alert($scope.userHeader);
-                  $http.save(
-                      {
-                          url:config.serverUrl+'test/testuploadbase64',
-                          params:{
-                              base64:$scope.userHeader
-                          }
+              camera(function(base64Data) {
+                  $scope.userHeader = "data:image/jpeg;base64," + base64Data;
+                  $http({
+                      method:'POST',
+                      url:config.serverUrl+'student/uploadheader',
+                      params:{
+                          header:$scope.userHeader
                       }
-                  ).success(function(rtn){
-                    alert(rtn);
-                  })
+                  }).success(function(rtn){
+                        alert(rtn.data);
+                  });
+                  // alert($scope.userHeader);
               });
-
-
           },
           pickImageHeader:function($scope){
               imagePicker.pickOne(function(urls){

@@ -15,11 +15,10 @@ angular.module('chat.routes', [])
             url: '/message',
         views: {
             "tab-message":{
-
                 templateUrl: 'templates/chat/tab-message.html',
                 controller: "messageCtrl"
             }
-        }
+         }
     })
         .state('messageDetail', {
             url: '/messageDetail/:messageId',

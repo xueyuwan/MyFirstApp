@@ -16,22 +16,33 @@ class StudentLogic extends Logic {
                 return this.forgotpassword;
             case "register":
                 return this.register;
-            case "testuplpad":
-            return this.testupload;
+            case "uploadheader":
+            return this.uploadheader;
+            case "studentlist":
+                return this.getStudentList;
         }
     }
+    async getStudentList(req,res){
+        var result ={state:1,issuccess:false};
+        var students = await  this.db.Student.find({}).exec();
+        result.issuccess= true;
+        result.data = students;
+        res.json(result);
+    }
 
-    async testupload(req,res){
+    async uploadheader(req,res){
         var result =  {state:1,issuccess:false};
+        var phone = req.query.phone;
+        var filename = await super.saveBase64Image(req.query.header);
 
-   
+        await this.db.Student.update({phone:phone},{headpic:result.data},{},function(err){
+          if(err){
+              console.log(err);
+          }
+        });
 
-    var filename = await   this.saveFile(req);
-    var filename = await this.saveBase64Image(req.query.base64image);
-
-    console.log(filename);
-
-
+        result.data = super.config().serverUrl+'upload/'+filename;
+        res.json(result);
     }
 
     async login(req, res) {
@@ -61,9 +72,11 @@ class StudentLogic extends Logic {
     async forgotpassword(req,res){
     var result = {state:1,issuccess:false};
     var {phone,password} = req.query;
-
+console.log(phone);
         var students =await this.db.Student.find({phone:phone}).exec();
-        if(!students.length){
+
+        console.log(students);
+        if(students.length==0){
             result.issuccess = false;
             result.msg = "错误的请求";
         }else{

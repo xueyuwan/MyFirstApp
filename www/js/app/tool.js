@@ -9,25 +9,27 @@ factory('config',function(){
 })
 .factory('camera',function($cordovaCamera) {
     return function(action) {
-        var options = {
-            quality: 50,
-            destinationType: Camera.DestinationType.DATA_URL,
-            sourceType: Camera.PictureSourceType.CAMERA,
-            allowEdit: true,
-            encodingType: Camera.EncodingType.JPEG,
-            targetWidth: 100,
-            targetHeight: 100,
-            popoverOptions: CameraPopoverOptions,
-            saveToPhotoAlbum: false,
-            correctOrientation:true
-        };
+        document.addEventListener("deviceready", function () {
+            var options = {
+                quality: 50,
+                destinationType: Camera.DestinationType.DATA_URL,
+                sourceType: Camera.PictureSourceType.CAMERA,
+                allowEdit: true,
+                encodingType: Camera.EncodingType.JPEG,
+                targetWidth: 100,
+                targetHeight: 100,
+                popoverOptions: CameraPopoverOptions,
+                saveToPhotoAlbum: false,
+                correctOrientation: true
+            };
+            $cordovaCamera.getPicture(options).then(action, function (err) {
+                // error
+            });
 
-        $cordovaCamera.getPicture(options).then(action,function(err) {
-            // error
-            alert(err);
-             });
-        }
-}).factory('popup',function($ionicPopup,$timeout){
+        }, false);
+    }
+    })
+    .factory('popup',function($ionicPopup,$timeout){
     return{
         show:function(title,subTitle){
             var pop =     $ionicPopup.show({

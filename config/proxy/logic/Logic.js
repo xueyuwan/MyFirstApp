@@ -46,6 +46,12 @@ class Logic extends BaseLogic {
 
 }
 
+    config(){
+        return {
+            serverUrl:'http://192.168.1.38/'
+        }
+    }
+
 }
 
 
