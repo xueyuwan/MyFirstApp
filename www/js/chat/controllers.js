@@ -10,17 +10,6 @@ angular.module('chat.controllers', [])
 })
 
 
-.controller('friendsCtrl', function($scope, $state) {
-    $scope.onSwipeLeft = function() {
-        $state.go("tab.find");
-    };
-    $scope.onSwipeRight = function() {
-        $state.go("tab.message");
-    };
-    $scope.contacts_right_bar_swipe = function(e){
-        console.log(e);
-    };
-})
 
 .controller('settingCtrl', function($scope, $state) {
     $scope.onSwipeRight = function() {

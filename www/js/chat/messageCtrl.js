@@ -4,6 +4,7 @@ angular.module('chat.controllers')
 
         socket.on('receive message',function(msg){
             console.log(msg);
+
         });
 
         $scope.sendMessage = function(){

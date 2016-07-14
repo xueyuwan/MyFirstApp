@@ -1,4 +1,4 @@
-angular.module('gulpchat.directives', [])
+angular.module('chat.directives', [])
     .directive('rjHoldActive', ['$ionicGesture', '$timeout', '$ionicBackdrop',
         function($ionicGesture, $timeout, $ionicBackdrop) {
             return {

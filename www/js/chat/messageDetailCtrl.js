@@ -1,11 +1,16 @@
+var messages;
 angular.module('chat.controllers')
 .controller('messageDetailCtrl',
     function($scope, $stateParams, messageService, $ionicScrollDelegate, $timeout) {
+            $scope.messages =[];
         var viewScroll = $ionicScrollDelegate.$getByHandle('messageDetailsScroll');
-        // console.log("enter");
+        messages =$scope.messages;
         var socket = io.connect('http://localhost:3000/');
         $scope.sendMessage = function(){
             socket.emit('send message',$scope.send_content);
+            $scope.messages.push({content:$scope.send_content});
+            console.log($scope.messages);
+            $scope.send_content="";
         };
 
         $scope.doRefresh = function() {
@@ -17,16 +22,7 @@ angular.module('chat.controllers')
             }, 200);
         };
         $scope.$on("$ionicView.beforeEnter", function() {
-            $scope.message = messageService.getMessageById($stateParams.messageId);
-            $scope.message.noReadMessages = 0;
-            $scope.message.showHints = false;
-            messageService.updateMessage($scope.message);
-            $scope.messageNum = 10;
-            $scope.messageDetils = messageService.getAmountMessageById($scope.messageNum,
-                $stateParams.messageId);
-            $timeout(function() {
-                viewScroll.scrollBottom();
-            }, 0);
+
         });
 
         window.addEventListener("native.keyboardshow", function(e){
