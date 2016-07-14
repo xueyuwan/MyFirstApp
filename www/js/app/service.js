@@ -1,7 +1,12 @@
+
 angular.module('app.service',['ionic','ngCordova'])
     //常量
     .factory('userService',function($http,popup,config,$state,camera,imagePicker,$cordovaFile,$cordovaDialogs){
       var user={};
+       user= localStorage.setItem('user');
+        // $rootScope
+        $state.go('app.templateyun')
+
       return {
         signIn: function (phone, password) {
           if ( !phone||  !password) {
@@ -34,14 +39,14 @@ angular.module('app.service',['ionic','ngCordova'])
             popup.show('提示','密码必须是6到12位的数字加字母组成');
           }else if(!config.userNameRegex.test(user.name)){
             popup.show('提示',' 用户名必须以字母开头，长度在6~18之间');
-          }else if(user.password!==user.password2) {
-            popup.show('提示', '请确认两次输入的密码一致');
+          }else if(job.id='') {
+            popup.show('提示', '请选择职业类型');
           }else{
             popup.show('提示','发送短信中');
             $http({
               method:'GET',
               url:config.serverUrl+"student/register",
-              params:{name:user.name, password:user.password,phone:user.phone}
+              params:{name:user.name, password:user.password,phone:user.phone,job:job.id}
             }).success(function(rtn){
               if(rtn.issuccess) {
                 $state.go('tab.message');
@@ -58,8 +63,8 @@ angular.module('app.service',['ionic','ngCordova'])
                   popup.show('提示','请输入正确的手机号');
               }else if(!config.passwordRegex.test(user.password)){
                   popup.show('提示','密码必须是6到12位的数字加字母组成');
-              }else if(user.password!==user.password2) {
-                  popup.show('提示', '请确认两次输入的密码一致');
+              }else if(job.id='') {
+                  popup.show('提示', '请选择职业类型');
               }else{
                   popup.show('提示','发送短信中');
                   $http({

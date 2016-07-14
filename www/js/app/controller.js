@@ -17,12 +17,18 @@ angular.module('app.controller',[])
     $scope.signIn = function() {
         userService.signIn($scope.user.phone, $scope.user.password);
     }
+
+
+
+
     })
     .controller('SignUpCtrl',function($scope,$state,userService){
         $scope.user = {};
         $scope.signUp = function() {
-            userService.signUp($scope.user);
+            userService.signUp($scope.user.phone,$scope.user.name ,$scope.user.password,$scope.job.id);
         }
+
+
     })
     .controller('forgotPasswordCtrl',function($scope,userService){
         $scope.user = {};

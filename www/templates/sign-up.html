@@ -15,15 +15,35 @@
                     <span class="icon ion-locked"></span>
                     <input type="password" ng-model="user.password" placeholder="请输入密码">
                 </label>
-                <label class="item item-input">
-                    <span class="icon ion-locked"></span>
-                    <input type="password" ng-model="user.password2" placeholder="请确认密码">
-                </label>
+
+                <div class="list">
+                    <div class="item item-input item-select">
+                        <div class="input-label">
+                           <span  class="icon ion-heart"></span>
+                            <span style="color:#111" >职业类型</span>
+                        </div>
+                        <select ng-model="job.id" convert-to-number >
+                            <option  value="0" ng-repeat="x in jobs">网页设计师</option>
+                            <option value="1">前端工程师</option>
+                            <option value="2">PHP工程师</option>
+                            <option value="3">实习生</option>
+                            <option value="4">讲师</option>
+                            <option value="5">管理人员</option>
+                            <option value="6">其他</option>
+                        </select>
+                        {{ job }}
+                    </div>
+                </div>
+
+
+
             </div>
 
+
+
             <div class="padding send-identifying">
-                    <input class="input-label" type="text" ng-model="user.check"  placeholder="验证码">
-                    <button class="button button-balanced">发送验证码</button>
+                    <input class="input-label" type="text" ng-model="user.check"  placeholder="验证码" style="display: inline-block; height: 42px;">
+                    <button class="button button-balanced" style="display: inline-block;">发送验证码</button>
             </div>
 
             <div class="loginButton padding">
