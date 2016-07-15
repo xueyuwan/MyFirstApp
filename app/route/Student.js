@@ -98,8 +98,8 @@ console.log(phone);
 
     async register(req,res){
     var result = {state:1,issuccess:false};
-    var {name,password,phone} = req.query;
-    if(name&&password&&phone){
+    var {name,password,phone,job} = req.query;
+    if(name&&password&&phone&&job){
         var students =await this.db.Student.find({phone:phone});
         if(students.length){
             result.issuccess =false;
@@ -107,7 +107,7 @@ console.log(phone);
             res.json(result);
             return ;
         }
-      var  student =  await  new this.db.Student({name:name,phone:phone,password:password}).save();
+      var  student =  await  new this.db.Student({name:name,phone:phone,password:password,job:job}).save();
         result.issuccess=true;
         result.msg="注册成功";
         result.data = student;

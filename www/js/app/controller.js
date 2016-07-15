@@ -18,8 +18,21 @@ angular.module('app.controller',[])
     .controller('SignUpCtrl',function($scope,$state,userService){
         $scope.user = {};
         $scope.signUp = function() {
-            userService.signUp($scope.user.phone,$scope.user.name ,$scope.user.password);
+            userService.signUp($scope.user);
         }
+        $scope.jobs = [
+            "网页设计师",
+            "前端工程师",
+            "PHP工程师",
+            "实习生",
+            "讲师",
+            "管理人员",
+            "行政人员",
+            "其他"
+        ]
+
+
+
     })
     .controller('forgotPasswordCtrl',function($scope,userService){
         $scope.user = {};
