@@ -98,7 +98,7 @@ angular.module('app.service',['ionic','ngCordova'])
                           header:base64Data
                       }
                   }).success(function(rtn){
-                        $rootScope.headpic= rtn.data;
+                        $rootScope.user.headpic= rtn.data;
                   });
 
               });

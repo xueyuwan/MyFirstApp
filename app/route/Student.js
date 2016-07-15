@@ -25,6 +25,10 @@ class StudentLogic extends Logic {
     async getStudentList(req,res){
         var result ={state:1,issuccess:false};
         var students = await  this.db.Student.find({}).exec();
+        for (var i in students) {
+                students[i].headpic = super.config().serverUrl + students[i].headpic;
+        };
+
         result.issuccess= true;
         result.data = students;
         res.json(result);

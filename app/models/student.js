@@ -8,9 +8,9 @@ var StudentSechema = new Schema({
     prefix:{type:String},
     headpic:{type:String,default:''},
     job:{type:String},
-    createdt:{type:Date,default:Date.now()},
+    signature:{type:String},
+    createdt:{type:Date,default:Date.now},
     lastModifiedDate:{type:Date}
-
 });
 
 

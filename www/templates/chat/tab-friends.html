@@ -39,25 +39,14 @@
             <ion-item class="rj-contacts-item">
                 <div class="rj-contacts-index-bar">A</div>
                 <ion-list class="rj-list">
-                    <ion-item class="rj-item">
+                    <ion-item ng-repeat="student in students" class="rj-item" ng-click="showMessageDetail(student)">
                         <div class="rj-contacts-pic">
-                            <img src="img/adam.jpg">
+                            <img src="{{student.headpic}}">
                         </div>
-                        <h2>李明</h2>
-                    </ion-item>
-                    <ion-item class="rj-item">
-                        <div class="rj-contacts-pic">
-                            <img src="img/adam.jpg">
-                        </div>
-                        <h2>李明</h2>
-                    </ion-item>
-                    <ion-item class="rj-item">
-                        <div class="rj-contacts-pic">
-                            <img src="img/adam.jpg">
-                        </div>
-                        <h2>李明</h2>
+                        <h2>{{student.name}}</h2>
                     </ion-item>
                 </ion-list>
+
             </ion-item>
             <ion-item class="rj-contacts-item">
                 <div class="rj-contacts-index-bar">B</div>
