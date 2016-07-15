@@ -31,23 +31,21 @@ angular.module('app.service',['ionic','ngCordova'])
             });
           }
         },
-        signUp:function(user){
-          if(!user.phone || !user.password||!user.name){
+        signUp:function(phone, name,password){
+          if(!phone || !password||!name){
             popup.show('提示','用户名、密码或手机号不能为空');
-          }else if(!config.phoneRegex.test(user.phone)) {
+          }else if(!config.phoneRegex.test(phone)) {
             popup.show('提示', '请输入正确的手机号');
-          }else if(!config.passwordRegex.test(user.password)){
+          }else if(!config.passwordRegex.test(password)){
             popup.show('提示','密码必须是6到12位的数字加字母组成');
-          }else if(!config.userNameRegex.test(user.name)){
+          }else if(!config.userNameRegex.test(name)){
             popup.show('提示',' 用户名必须以字母开头，长度在6~18之间');
-          }else if(job.id='') {
-            popup.show('提示', '请选择职业类型');
           }else{
             popup.show('提示','发送短信中');
             $http({
               method:'GET',
               url:config.serverUrl+"student/register",
-              params:{name:user.name, password:user.password,phone:user.phone,job:job.id}
+              params:{name:name, password:password,phone:phone}
             }).success(function(rtn){
               if(rtn.issuccess) {
                 $state.go('tab.message');

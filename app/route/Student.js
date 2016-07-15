@@ -85,7 +85,7 @@ console.log(phone);
         console.log(students);
         if(students.length==0){
             result.issuccess = false;
-            result.msg = "错误的请求";
+            result.msg = "错误的请求,请确认手机号";
         }else{
            var student = await this.db.Student.find({phone:phone}).update({password:password}).exec();
             result.issuccess = true;
