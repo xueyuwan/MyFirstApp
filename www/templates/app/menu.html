@@ -14,17 +14,16 @@
             <img ng-click="changeHeader()" style="border-radius: 200px;width:200px;height:200px;"
                  src=" {{ user.headpic ||'templates/app/img/200_taylor_swift_spl811605_.jpg'}}"  alt="" class="img-responsive" />
           </div>
-          <h4 class="no-margin">Taylor Swift</h4>
-
-          <p class="no-margin">PMB 412 Hendersonville, TN 37075 USA</p>
+          <h4 class="no-margin"> {{user.name}}</h4>
+          <p class="no-margin">网页设计师</p>
         </div>
-      </div>
+      </div> 
       <div flex class="list no-margin" style="overflow-y: scroll">
 
 
 
         <a class="item item-icon-left" ui-sref="app.tab.message" ui-sref-active="active" menu-close>
-          <i class="icon mdi mdi-account-circle font-icon-md"></i>
+          <i class="icon mdi mdi-account-circleee font-icon-md"></i>
             消息
             <span class="badge badge-royal">7</span>
         </a>
