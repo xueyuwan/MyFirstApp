@@ -21,7 +21,7 @@ angular.module('chat.routes', [])
          }
     })
         .state('messageDetail', {
-            url: '/messageDetail/:messageId',
+            url: '/messageDetail/:phone',
             templateUrl: "templates/chat/message-detail.html",
             controller: "messageDetailCtrl"
         })

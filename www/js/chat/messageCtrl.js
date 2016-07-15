@@ -18,9 +18,9 @@ angular.module('chat.controllers')
         $scope.onSwipeLeft = function() {
             $state.go("tab.friends");
         };
-        $scope.messageDetils = function(message) {
+        $scope.messageDetils = function(student) {
             $state.go("messageDetail", {
-                "messageId": message.id
+                "phone": student.phone
             });
         };
 

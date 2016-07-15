@@ -11,15 +11,14 @@ angular.module('chat.controllers')
             });
                 $rootScope.students=rtn.data;
                 console.log($scope.students);
-
         });
 
 
         $scope.showMessageDetail=function(student){
             $state.go("messageDetail", {
-                "messageId": student.phone
+                "phone": student.phone
             });
-        }
+        };
         $scope.onSwipeLeft = function() {
             $state.go("tab.find");
         };
