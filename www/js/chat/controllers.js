@@ -15,5 +15,5 @@ angular.module('chat.controllers', [])
     $scope.onSwipeRight = function() {
         $state.go("tab.find");
     };
-})
+});
 
