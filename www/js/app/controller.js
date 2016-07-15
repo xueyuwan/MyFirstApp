@@ -18,7 +18,7 @@ angular.module('app.controller',[])
     .controller('SignUpCtrl',function($scope,$state,userService){
         $scope.user = {};
         $scope.signUp = function() {
-            userService.signUp($scope.user.phone,$scope.user.name ,$scope.user.password,$scope.job.id);
+            userService.signUp($scope.user.phone,$scope.user.name ,$scope.user.password);
         }
     })
     .controller('forgotPasswordCtrl',function($scope,userService){
