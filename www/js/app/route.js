@@ -54,7 +54,7 @@ angular.module('app.route',[])
             views: {
               'menuContent': {
                 templateUrl: 'templates/app/states/menu6.html',
-                // controller: 'NotificationCtrl'
+                controller: 'NotificationCtrl'
               }
             }
           })

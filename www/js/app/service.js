@@ -87,6 +87,7 @@ angular.module('app.service',['ionic','ngCordova'])
           },
           viewHeader :function(scope){
                 $state.go('intro');
+             
           },
           cameraHeader:function($scope){
               camera(function(base64Data) {

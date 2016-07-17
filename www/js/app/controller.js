@@ -55,6 +55,25 @@ angular.module('app.controller',[])
             $state.go("menu2.tab-friends");
         };
     })
+    .controller('NotificationCtrl', function($scope, $ionicBackdrop, $timeout) {
+        $scope.shouBigImage = function (imageName) {  //传递一个参数（图片的URl）
+            $scope.Url = imageName;                   //$scope定义一个变量Url，这里会在大图出现后再次点击隐藏大图使用
+            $scope.bigImage = true;
+
+            // $ionicBackdrop.retain();
+            // $timeout(function() {
+            //         $ionicBackdrop.release();
+            // }, 1000);
+            //显示大图
+        };
+
+        $scope.bigImage = false;    //初始默认大图是隐藏的
+        $scope.hideBigImage = function () {
+            $scope.bigImage = false;
+        };
+
+        
+    })
 
     .controller('menuCtrl',function($scope,camera,$ionicActionSheet,config,$ionicSlideBoxDelegate,userService){
     $scope.changeHeader = function(){

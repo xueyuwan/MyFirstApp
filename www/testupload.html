@@ -39,7 +39,16 @@
             });
 
         }
-
+        function insertTitle(path){
+            var test1 = path.lastIndexOf("/"); //对路径进行截取
+            var test2 = path.lastIndexOf("\\"); //对路径进行截取
+            var test= Math.max(test1, test2)
+            if(test<0){
+                document.getElementById("test").value = path;
+            }else{
+                document.getElementById("test").value = path.substring(test + 1); //赋值文件名
+            }
+        }
 
 
         //上传base64图片
