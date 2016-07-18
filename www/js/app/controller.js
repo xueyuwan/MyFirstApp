@@ -55,11 +55,46 @@ angular.module('app.controller',[])
             $state.go("menu2.tab-friends");
         };
     })
+
+    .controller('SettingCtrl', function($scope,$ionicPopover,$timeout) {
+        $scope.popover = $ionicPopover.fromTemplateUrl('setting2.html', {
+            scope: $scope
+        });
+
+        // .fromTemplateUrl() 方法
+        $ionicPopover.fromTemplateUrl('setting2.html', {
+            scope: $scope
+        }).then(function(popover) {
+            $scope.popover = popover;
+        });
+
+
+        $scope.openPopover = function($event) {
+            $scope.popover.show($event);
+        };
+        $scope.closePopover = function() {
+            $scope.popover.hide();
+        };
+        // 清除浮动框
+        $scope.$on('$destroy', function() {
+            $scope.popover.remove();
+        });
+        // 在隐藏浮动框后执行
+        $scope.$on('popover.hidden', function() {
+            // 执行代码
+        });
+        // 移除浮动框后执行
+        $scope.$on('popover.removed', function() {
+            // 执行代码
+        });
+    })
+
+
+
     .controller('NotificationCtrl', function($scope, $ionicBackdrop, $timeout) {
         $scope.shouBigImage = function (imageName) {  //传递一个参数（图片的URl）
             $scope.Url = imageName;                   //$scope定义一个变量Url，这里会在大图出现后再次点击隐藏大图使用
             $scope.bigImage = true;
-
             // $ionicBackdrop.retain();
             // $timeout(function() {
             //         $ionicBackdrop.release();
@@ -76,9 +111,7 @@ angular.module('app.controller',[])
     })
 
     .controller('menuCtrl',function($scope,camera,$ionicActionSheet,config,$ionicSlideBoxDelegate,userService){
-    $scope.changeHeader = function(){
-
-
+        $scope.changeHeader = function(){
         $scope.next = function() {
             $ionicSlideBoxDelegate.next();
         };
@@ -123,6 +156,8 @@ angular.module('app.controller',[])
 
     };
 })
+
+
     .controller('TemplateYun',function($scope,$state,$http,$rootScope,templateService,$cordovaInAppBrowser){
         templateService.initData.success(function(rtn){
             $rootScope.demos = rtn.demos;

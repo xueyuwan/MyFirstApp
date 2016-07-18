@@ -9,20 +9,29 @@
     </div>
   </ion-header-bar>
   <ion-content class="setting">
-      <div class="list card">
 
+      <div class="list card" style="height: 50px;">
           <div class="item item-button-right">
-              <span>头像</span>
+            <span>头像</span>
             <button  class="button button-clear">
-             <img width="40" height="40" src="img/mike.png">
+              <img ng-click="changeHeader()" style="width:40px;"
+                   src=" {{ user.headpic ||'templates/app/img/200_taylor_swift_spl811605_.jpg'}}"   class="img-responsive"  />
             </button>
           </div>
-</div>
+     </div>
+
+    <div class="list card" >
+      <div class="item item-button-right">
+        <span> 编辑个性签名</span>
+        <button  class="button button-clear" ng-click="openPopover($event)">
+          <i class="icon ion-edit  "></i>
+        </button>
+      </div>
+    </div>
 
     <ul class="list card">
-
       <li class="item item-toggle">
-        HTML5
+       声音
         <label class="toggle toggle-positive">
           <input type="checkbox" checked="">
           <div class="track">
@@ -31,33 +40,38 @@
         </label>
       </li>
       <li class="item item-toggle">
-        CSS3
-        <label class="toggle toggle-calm">
+        震动
+        <label class="toggle toggle-positive">
           <input type="checkbox" checked="">
           <div class="track">
             <div class="handle"></div>
           </div>
         </label>
       </li>
-      <li class="item item-checkbox">
-        <label class="checkbox">
-          <input type="checkbox">
-        </label>
-        Flux Capacitor
-      </li>
+      <!--<li class="item item-checkbox">-->
+        <!--<label class="checkbox">-->
+          <!--<input type="checkbox">-->
+        <!--</label>-->
+        <!--Flux Capacitor-->
+      <!--</li>-->
 
       <li class="item range">
+        <span>音量大小</span>
         <i class="icon ion-volume-low"></i>
         <input type="range" name="volume">
         <i class="icon ion-volume-high"></i>
       </li>
 
       <li class="item range range-positive">
+        <span>屏幕亮度</span>
         <i class="icon ion-ios-sunny-outline"></i>
         <input type="range" name="volume" min="0" max="100" value="33">
         <i class="icon ion-ios-sunny"></i>
       </li>
     </ul>
+
+
+
     <div class="list">
       <label class="item item-input item-select">
         <div class="input-label">
@@ -70,5 +84,38 @@
         </select>
       </label>
     </div>
+
+    <div class="list padding">
+
+      <a class="item  item-icon-right" href="#">
+        关于我们
+        <i class="icon ion-chevron-right"></i>
+      </a>
+
+    </div>
+
+
+    <div class="list">
+      <button class="button button-full button-positive">
+           退出登录
+      </button>
+    </div>
+
+    <script id="setting2.html" type="text/ng-template">
+      <ion-popover-view style="width: 90%;">
+        <ion-header-bar>
+          <h1 class="title">我的个性签名</h1>
+        </ion-header-bar>
+        <ion-content>
+           <textarea  class="padding"  style="width:94%; height: 100px; border: 1px solid #ccc;resize: none; margin:10px;"
+                      placeholder="记录此刻心情"></textarea>
+          <button class="button button-positive" style="float: right;margin-top: 10px; margin-right: 10px;">
+            保存签名
+          </button>
+
+        </ion-content>
+      </ion-popover-view>
+    </script>
+
   </ion-content>
 </ion-view>
