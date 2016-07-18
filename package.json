@@ -42,7 +42,12 @@
     "babel-polyfill": "6.6.1",
     "babel-runtime": "6.6.1"
   },
-  "cordovaPlugins": [],
+  "cordovaPlugins": [
+    {
+      "locator": "https://github.com/apache/cordova-plugin-whitelist.git",
+      "id": "cordova-plugin-whitelist"
+    }
+  ],
   "cordovaPlatforms": [
     "android",
     "ios"

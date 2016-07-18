@@ -25,9 +25,7 @@ class StudentLogic extends Logic {
     async getStudentList(req,res){
         var result ={state:1,issuccess:false};
         var students = await  this.db.Student.find({}).exec();
-        for (var i in students) {
-                students[i].headpic = super.config().serverUrl + students[i].headpic;
-        };
+
 
         result.issuccess= true;
         result.data = students;
@@ -45,7 +43,7 @@ class StudentLogic extends Logic {
           }
         });
 
-        result.data = super.config().serverUrl+filename;
+        result.data = filename;
         res.json(result);
     }
 
@@ -58,8 +56,6 @@ class StudentLogic extends Logic {
             var user=students[0];
             if (user.password == password) {
                 result.issuccess = true;
-                //修改user头像前缀
-                user.headpic = super.config().serverUrl+user.headpic;
 
                 result.data = user;
             } else {
