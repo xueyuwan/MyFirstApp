@@ -86,9 +86,12 @@ angular.module('app.service',['ionic','ngCordova'])
               return user;
           },
           viewHeader :function(scope){
-                $state.go('intro');
-             
+                $state.go('sintro.html');
+
+
+
           },
+
           cameraHeader:function($scope){
               camera(function(base64Data) {
                   $http({
@@ -104,6 +107,7 @@ angular.module('app.service',['ionic','ngCordova'])
 
               });
           },
+
           pickImageHeader:function($scope){
               imagePicker.pickOne(function(urls){
                   var header = urls[0];

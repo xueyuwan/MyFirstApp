@@ -70,7 +70,8 @@ angular.module('app.route',[])
             url: '/setting',
             views: {
               'menuContent': {
-                templateUrl: 'templates/app/states/setting.html'
+                templateUrl: 'templates/app/states/setting.html',
+                  controller: 'SettingCtrl'
               }
             }
           })
