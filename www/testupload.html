@@ -22,37 +22,34 @@
     function uploadBase64(){
         var base64 = document.getElementById('base64');
         var file = base64.files[0];
-        var reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = function(e){
-         document.getElementById('testimage').src=e.target.result;
 
-            $.ajax({
-                type: "POST",
-                url: 'http://localhost:3000/test/testuplpadbase64',
-                data: {
-                    base64:e.target.result
-                },
-                success:  function(rtn){
-                    console.log(rtn);
-                },
-            });
-
-        }
         function insertTitle(path){
             var test1 = path.lastIndexOf("/"); //对路径进行截取
             var test2 = path.lastIndexOf("\\"); //对路径进行截取
-            var test= Math.max(test1, test2)
+            var test= Math.max(test1, test2);
             if(test<0){
                 document.getElementById("test").value = path;
             }else{
                 document.getElementById("test").value = path.substring(test + 1); //赋值文件名
             }
         }
-
-
         //上传base64图片
+    }
 
+    function convertImgToBase64URL(url, callback, outputFormat){
+        var img = new Image();
+        img.crossOrigin = 'Anonymous';
+        img.onload = function(){
+            var canvas = document.createElement('CANVAS'),
+                    ctx = canvas.getContext('2d'), dataURL;
+            canvas.height = this.height;
+            canvas.width = this.width;
+            ctx.drawImage(this, 0, 0);
+            dataURL = canvas.toDataURL(outputFormat);
+            callback(dataURL);
+            canvas = null;
+        };
+        img.src = url;
     }
 </script>
 

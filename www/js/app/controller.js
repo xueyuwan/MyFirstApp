@@ -17,7 +17,7 @@ angular.module('app.controller',[])
         $scope.user = {};
         $scope.signUp = function() {
             userService.signUp($scope.user);
-        }
+        };
         $scope.jobs = [
             "网页设计师",
             "前端工程师",
@@ -46,16 +46,11 @@ angular.module('app.controller',[])
     })
 
     .controller('tabMessageCtrl', function($scope, $state) {
-        $scope.$state = function() {
-            $state.go("menu2.tab-friends");
-        };
+        // $scope.$state = function() {
+        //     $state.go("menu2.tab-friends");
+        // };
     })
 
-    .controller('SettingPicCtrl', function($scope, $state) {
-        $scope.$state = function() {
-            $state.go("tab.setting.settingPic");
-        };
-    })
 
 
 

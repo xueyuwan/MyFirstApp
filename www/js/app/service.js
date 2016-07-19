@@ -82,7 +82,7 @@ angular.module('app.service',['ionic','ngCordova'])
               }
           },
           getLocalUser:function(){
-              user = localStorage.getItem('user');
+            var  user = localStorage.getItem('user');
               return user;
           },
           viewHeader :function(scope){
@@ -108,20 +108,20 @@ angular.module('app.service',['ionic','ngCordova'])
               });
           },
 
-          pickImageHeader:function($scope){
-              imagePicker.pickOne(function(urls){
-                  var header = urls[0];
-                  alert(header);
-                 $http({
-                     method:'POST',
-                     url:config.serverUrl+'student/uploadheader',
-                     params:{
-                         phone:$rootScope.user.phone,
-                         header:header
-                     }
-                 }).success(function(data){
-                     $rootScope.headpic=rtn.data;
-                 })
+          pickImageHeader:function(){
+              imagePicker.pickOne(function(base64Data){
+
+                  $http({
+                      method:'POST',
+                      url:config.serverUrl+'student/uploadheader',
+                      params:{
+                          phone:$rootScope.user.phone,
+                          header:base64Data
+                      }
+                  }).success(function(rtn){
+
+                      $rootScope.user.headpic= rtn.data;
+                  });
               })
 
     }
