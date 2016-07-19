@@ -88,7 +88,8 @@ angular.module('app.route',[])
                       controller: "SettingPicCtrl"
                   }
               }
-          });
+
+              });
 
 
     });

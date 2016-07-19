@@ -53,12 +53,14 @@ angular.module('app.controller',[])
 
     .controller('SettingPicCtrl', function($scope, $state) {
         $scope.$state = function() {
-            $state.go("settingPic");
+            $state.go("tab.setting.settingPic");
         };
     })
 
 
-    .controller('SettingCtrl', function($scope,$ionicPopover,$timeout,$ionicModal) {
+
+
+    .controller('SettingCtrl', function($scope,$ionicPopover,$timeout) {
         $scope.popover = $ionicPopover.fromTemplateUrl('setting2.html', {
             scope: $scope
         });
@@ -86,6 +88,7 @@ angular.module('app.controller',[])
         $scope.$on('popover.removed', function() {
             // 执行代码
         });
+    })
 
 
 

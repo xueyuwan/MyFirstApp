@@ -1,7 +1,7 @@
 angular.module('app.service').
 factory('config',function(){
     return {
-        serverUrl:'http://192.168.1.28:3000/',
+        serverUrl:'http://192.168.1.91:3000/',
         phoneRegex:/^(13[0-9]|14[0-9]|15[0-9]|18[0-9])\d{8}$/,
         passwordRegex:/^[a-zA-Z]\w{5,17}$/,
         userNameRegex:/^[a-zA-Z]\w{5,17}$/
@@ -27,8 +27,7 @@ factory('config',function(){
             });
 
         }, false);
-    }
-    })
+    }})
     .factory('popup',function($ionicPopup,$timeout){
     return{
         show:function(title,subTitle){
@@ -44,18 +43,18 @@ factory('config',function(){
 })
     .factory('imagePicker',function($cordovaImagePicker){
         var options = {
-            width: 800,
-            height: 800,
-            quality: 80
+            width: 200,
+            height: 200,
+            quality: 20,
+            mediaType:Camera.MediaType.PICTURE,
+            destinationType: Camera.DestinationType.DATA_URL,
+            encodingType:Camera.EncodingType.PNG,
+            sourceType:Camera.PictureSourceType.PHOTOLIBRARY
         };
 
        return {
            pickOne:function(cellback){
-                options.maximumImagesCount= 1;
-                   $cordovaImagePicker.getPictures(options)
-                  .then(cellback,function(error){
-                       alert(error);
-                   });
+               navigator.camera.getPicture(cellback, function(err){alert(err)}, options);
             }
        }
     });
