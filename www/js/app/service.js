@@ -110,7 +110,6 @@ angular.module('app.service',['ionic','ngCordova'])
 
           pickImageHeader:function(){
               imagePicker.pickOne(function(base64Data){
-
                   $http({
                       method:'POST',
                       url:config.serverUrl+'student/uploadheader',
@@ -119,7 +118,6 @@ angular.module('app.service',['ionic','ngCordova'])
                           header:base64Data
                       }
                   }).success(function(rtn){
-
                       $rootScope.user.headpic= rtn.data;
                   });
               })

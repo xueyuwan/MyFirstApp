@@ -9,7 +9,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'developement';
     var app = express();
     var server = require('http').Server(app);
     //socket.io
-require('../config/socket-io')(server);
+require('./socket-io')(server);
 
     var port = 3000;
     server.listen(process.env.PORT || port, function (err) {

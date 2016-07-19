@@ -46,10 +46,10 @@ factory('config',function(){
             width: 200,
             height: 200,
             quality: 20,
-            mediaType:Camera.MediaType.PICTURE,
-            destinationType: Camera.DestinationType.DATA_URL,
-            encodingType:Camera.EncodingType.PNG,
-            sourceType:Camera.PictureSourceType.PHOTOLIBRARY
+            mediaType:0,//Camera.MediaType.PICTURE,
+            destinationType:0, //Camera.DestinationType.DATA_URL,
+            encodingType: 1, //Camera.EncodingType.PNG,
+            sourceType:0//Camera.PictureSourceType.PHOTOLIBRARY
         };
 
        return {

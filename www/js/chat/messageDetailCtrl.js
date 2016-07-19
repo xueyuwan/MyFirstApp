@@ -8,10 +8,12 @@ angular.module('chat.controllers')
 
         var to = $state.params.phone;
 
-        var socket = io.connect(config.serverUrl);
+       var socket = io.connect(config.serverUrl);
+        socket.emit('join room',{from:$rootScope.user.phone,to:to});
 
         $scope.sendMessage = function(){
-            socket.emit('send message',{content:$scope.send_content,pic:$rootScope.user.headpic,frome:$rootScope.user.phone,to:to});
+            socket.emit('send message',{content:$scope.send_content,pic:$rootScope.user.headpic,from:$rootScope.user.phone,to:to});
+            // socket.emit('send message',{content:$scope.send_content,pic:$rootScope.user.headpic,from:$rootScope.user.phone,to:to});
             $scope.send_content=" ";
         };
         socket.on('receive message',function(msg){
@@ -21,8 +23,6 @@ angular.module('chat.controllers')
             viewScroll.scrollBottom();
             $scope.$broadcast('scroll.refreshComplete');
         });
-
-
         $scope.$on("$ionicView.beforeEnter", function() {
         });
 
