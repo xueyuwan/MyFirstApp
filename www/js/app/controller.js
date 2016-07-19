@@ -53,14 +53,12 @@ angular.module('app.controller',[])
 
     .controller('SettingPicCtrl', function($scope, $state) {
         $scope.$state = function() {
-            $state.go("tab.setting.settingPic");
+            $state.go("settingPic");
         };
     })
 
 
-
-
-    .controller('SettingCtrl', function($scope,$ionicPopover,$timeout) {
+    .controller('SettingCtrl', function($scope,$ionicPopover,$timeout,$ionicModal) {
         $scope.popover = $ionicPopover.fromTemplateUrl('setting2.html', {
             scope: $scope
         });
@@ -70,8 +68,6 @@ angular.module('app.controller',[])
         }).then(function(popover) {
             $scope.popover = popover;
         });
-
-
         $scope.openPopover = function($event) {
             $scope.popover.show($event);
         };
@@ -90,10 +86,79 @@ angular.module('app.controller',[])
         $scope.$on('popover.removed', function() {
             // 执行代码
         });
+
+
+
+        // $scope.contacts = [
+        //     { name: 'Gordon Freeman' },
+        //     { name: 'Barney Calhoun' },
+        //     { name: 'Lamarr the Headcrab' },
+        // ];
+
+        $ionicModal.fromTemplateUrl('templates/modal.html', {
+            scope: $scope
+        }).then(function(modal) {
+            $scope.modal = modal;
+        });
+
+        $scope.createContact = function(u) {
+            $scope.contacts.push({ name: u.firstName + ' ' + u.lastName });
+            $scope.modal.hide();
+        };
+
+
+
+        $ionicModal.fromTemplateUrl('templates/headpic.html', {
+            scope: $scope
+        }).then(function(headpic) {
+            $scope.headpic = headpic;
+        });
+
+        $scope.createContact = function(u) {
+            $scope.contacts.push({ name: u.firstName + ' ' + u.lastName });
+            $scope.headpic.hide();
+        };
+
+
+
+        $ionicModal.fromTemplateUrl('templates/aboutus.html', {
+            scope: $scope
+        }).then(function(aboutus) {
+            $scope.aboutus = aboutus;
+        });
+
+        $scope.createContact = function(u) {
+            $scope.contacts.push({ name: u.firstName + ' ' + u.lastName });
+            $scope.aboutus.hide();
+        };
+
+
+        //
+        // $ionicModal.fromTemplateUrl('templates/modal.html', {
+        //     scope: $scope
+        // }).then(function(modal) {
+        //     $scope.modal = modal;
+        // });
+        //
+        // $scope.createContact = function(u) {
+        //     $scope.contacts.push({ name: u.firstName + ' ' + u.lastName });
+        //     $scope.modal.hide();
+        // };
+
+
+        $scope.jobs = [
+            "网页设计师",
+            "前端工程师",
+            "PHP工程师",
+            "实习生",
+            "讲师",
+            "管理人员",
+            "行政人员",
+            "其他"
+        ]
+
+
     })
-
-
-
 
     .controller('NotificationCtrl', function($scope, $ionicBackdrop, $timeout) {
         $scope.shouBigImage = function (imageName) {  //传递一个参数（图片的URl）

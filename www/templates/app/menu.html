@@ -79,3 +79,134 @@
   </ion-slide-box>
   </ion-view>
 </script>
+<script id="setting2.html" type="text/ng-template">
+  <ion-popover-view style="width: 90%;">
+    <ion-header-bar>
+      <h1 class="title">我的个性签名</h1>
+    </ion-header-bar>
+    <ion-content>
+           <textarea  class="padding"  style="width:94%; height: 100px; border: 1px solid #ccc;resize: none; margin:10px;"
+                      placeholder="记录此刻心情"></textarea>
+      <button class="button button-positive" style="float: right;margin-top: 10px; margin-right: 10px;">
+        保存签名
+      </button>
+
+    </ion-content>
+  </ion-popover-view>
+</script>
+
+<script id="templates/headpic.html" type="text/ng-template">
+ <ion-modal-view>
+
+
+
+  <ion-header-bar class="bar bar-header bar-positive">
+    <h1 class="title">头像设置</h1>
+    <button class="button button-clear button-primary" ng-click="headpic.hide()">取消</button>
+  </ion-header-bar>
+
+
+
+
+
+  <ion-content class="padding">
+    <div class="list card" >
+      <a class="item item-avatar" href="#">
+        <img src="img/ben.png">
+        <h2 style="line-height: 40px;" > 头像预览  <i class=" icon ion-chevron-right"></i></h2>
+      </a>
+    </div>
+    <div class="list">
+
+
+      <ul class="list text-center">
+        <li class="item">
+         拍照
+        </li>
+        <li class="item">
+          从相册中选取
+        </li>
+        <li class="item">
+         保存头像
+        </li>
+      </ul>
+
+    </div>
+  </ion-content>
+</ion-modal-view>
+</script>
+
+
+
+<script id="templates/aboutus.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-positive">
+      <h1 class="title">关于我们</h1>
+      <button class="button button-clear button-primary" ng-click="aboutus.hide()">取消</button>
+    </ion-header-bar>
+    <ion-content class="padding">
+      <div class="list">
+        这是一个很牛的团队！
+      </div>
+    </ion-content>
+  </ion-modal-view>
+</script>
+
+
+<script id="templates/modal.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-positive">
+      <h1 class="title">个人信息</h1>
+      <button class="button button-clear button-primary" ng-click="modal.hide()">取消</button>
+    </ion-header-bar>
+    <ion-content class="padding">
+
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">用户名</span>
+          <input type="text" placeholder="{{user.name}}修改用户名">
+        </label>
+      </div>
+
+      <div class="list card" >
+        <div class="item item-button-right">
+          <span> 编辑个性签名</span>
+          <button  class="button button-clear" ng-click="openPopover($event)">
+            <i class="icon ion-edit  "></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="list">
+        <label class="item positive-bg "><div class="input-label light">性别</div></label>
+        <ion-list>
+          <ion-radio ng-model="choice" ng-value="'男'">男</ion-radio>
+          <ion-radio ng-model="choice" ng-value="'女'">女</ion-radio>
+        </ion-list>
+      </div>
+
+      <div class="list">
+        <label class="item item-input item-select">
+          <div class="input-label">
+            职业类型
+          </div>
+          <select ng-model="user.job" convert-to-number>
+            <option  ng-repeat="x in jobs">{{x}}</option>
+          </select>
+        </label>
+      </div>
+
+      <button class="button button-full button-positive">
+       保存修改
+      </button>
+    </ion-content>
+  </ion-modal-view>
+</script>
+
+
+<!--<script id="personalInformation.html" type="text/ng-template">-->
+  <!--<ion-popover-view style="width: 90%;">-->
+      <!--HGGJGJGJGJ-->
+    <!--</ion-content>-->
+  <!--</ion-popover-view>-->
+<!--</script>-->

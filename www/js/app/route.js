@@ -29,6 +29,8 @@ angular.module('app.route',[])
             templateUrl: 'templates/app/menu.html',
             controller: 'menuCtrl'
           })
+
+
           //app界面的模板云
           .state('app.templateyun', {
             url: '/templateyun',
@@ -75,10 +77,13 @@ angular.module('app.route',[])
               }
             }
           })
-          .state('app.setting.settingPic', {
+
+
+
+          .state('settingPic', {
               url: '/settingPic',
               views: {
-                  'setting-settingPic': {
+                  'menuContent': {
                       templateUrl: 'templates/app/states/settingPic.html',
                       controller: "SettingPicCtrl"
                   }

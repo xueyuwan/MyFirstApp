@@ -13,41 +13,54 @@
       <div class="list card" >
           <div class="item item-button-right">
              <span style="display: inline-block"><img  style="width:46px;" src=" {{ user.headpic ||'templates/app/img/200_taylor_swift_spl811605_.jpg'}}"   class="img-responsive"  /></span>
-             <span style="display: inline-block; padding-top: -20px; ">123</span>
-             <button  class="button button-clear" style="margin-top: 16px;" ui-sref="app.setting.settingPic">
+             <h3 style="display: inline-block; line-height: 36px; ">头像设置</h3>
+             <button  class="button button-clear" style="margin-top: 16px;"  ng-click="headpic.show()" >
                  <i class="icon ion-chevron-right"></i>
              </button>
           </div>
       </div>
 
     <div class="list card" >
+    <div class="item item-button-right">
+      <span> 个人信息</span>
+      <button  class="button button-clear" ng-click="modal.show()"  >
+        <!--<div ng-include="'persinalInformation.html'"></div>-->
+        <i class="icon ion-information-circled  "></i>
+      </button>
+    </div>
+  </div>
+
+    <div class="list card" >
       <div class="item item-button-right">
-        <span> 编辑个性签名</span>
-        <button  class="button button-clear" ng-click="openPopover($event)">
-          <i class="icon ion-edit  "></i>
+        <span> 关于我们</span>
+        <button  class="button button-clear" ng-click="aboutus.show()">
+          <i class="icon ion-chevron-right "></i>
         </button>
       </div>
     </div>
 
-    <ul class="list card">
-      <li class="item item-toggle">
-       声音
-        <label class="toggle toggle-positive">
-          <input type="checkbox" checked="">
-          <div class="track">
-            <div class="handle"></div>
-          </div>
-        </label>
-      </li>
-      <li class="item item-toggle">
-        震动
-        <label class="toggle toggle-positive">
-          <input type="checkbox" checked="">
-          <div class="track">
-            <div class="handle"></div>
-          </div>
-        </label>
-      </li>
+
+
+
+    <!--<ul class="list card">-->
+      <!--<li class="item item-toggle">-->
+       <!--声音-->
+        <!--<label class="toggle toggle-positive">-->
+          <!--<input type="checkbox" checked="">-->
+          <!--<div class="track">-->
+            <!--<div class="handle"></div>-->
+          <!--</div>-->
+        <!--</label>-->
+      <!--</li>-->
+      <!--<li class="item item-toggle">-->
+        <!--震动-->
+        <!--<label class="toggle toggle-positive">-->
+          <!--<input type="checkbox" checked="">-->
+          <!--<div class="track">-->
+            <!--<div class="handle"></div>-->
+          <!--</div>-->
+        <!--</label>-->
+      <!--</li>-->
       <!--<li class="item item-checkbox">-->
         <!--<label class="checkbox">-->
           <!--<input type="checkbox">-->
@@ -55,44 +68,35 @@
         <!--Flux Capacitor-->
       <!--</li>-->
 
-      <li class="item range">
-        <span>音量大小</span>
-        <i class="icon ion-volume-low"></i>
-        <input type="range" name="volume">
-        <i class="icon ion-volume-high"></i>
-      </li>
+      <!--<li class="item range">-->
+        <!--<span>音量大小</span>-->
+        <!--<i class="icon ion-volume-low"></i>-->
+        <!--<input type="range" name="volume">-->
+        <!--<i class="icon ion-volume-high"></i>-->
+      <!--</li>-->
 
-      <li class="item range range-positive">
-        <span>屏幕亮度</span>
-        <i class="icon ion-ios-sunny-outline"></i>
-        <input type="range" name="volume" min="0" max="100" value="33">
-        <i class="icon ion-ios-sunny"></i>
-      </li>
-    </ul>
+      <!--<li class="item range range-positive">-->
+        <!--<span>屏幕亮度</span>-->
+        <!--<i class="icon ion-ios-sunny-outline"></i>-->
+        <!--<input type="range" name="volume" min="0" max="100" value="33">-->
+        <!--<i class="icon ion-ios-sunny"></i>-->
+      <!--</li>-->
+    <!--</ul>-->
 
 
 
-    <div class="list">
-      <label class="item item-input item-select">
-        <div class="input-label">
-          Lightsaber
-        </div>
-        <select>
-          <option>Blue</option>
-          <option selected>Green</option>
-          <option>Red</option>
-        </select>
-      </label>
-    </div>
-
-    <div class="list padding">
-
-      <a class="item  item-icon-right" href="#">
-        关于我们
-        <i class="icon ion-chevron-right"></i>
-      </a>
-
-    </div>
+    <!--<div class="list">-->
+      <!--<label class="item item-input item-select">-->
+        <!--<div class="input-label">-->
+          <!--Lightsaber-->
+        <!--</div>-->
+        <!--<select>-->
+          <!--<option>Blue</option>-->
+          <!--<option selected>Green</option>-->
+          <!--<option>Red</option>-->
+        <!--</select>-->
+      <!--</label>-->
+    <!--</div>-->
 
 
     <div class="list">
@@ -101,21 +105,7 @@
       </button>
     </div>
 
-    <script id="setting2.html" type="text/ng-template">
-      <ion-popover-view style="width: 90%;">
-        <ion-header-bar>
-          <h1 class="title">我的个性签名</h1>
-        </ion-header-bar>
-        <ion-content>
-           <textarea  class="padding"  style="width:94%; height: 100px; border: 1px solid #ccc;resize: none; margin:10px;"
-                      placeholder="记录此刻心情"></textarea>
-          <button class="button button-positive" style="float: right;margin-top: 10px; margin-right: 10px;">
-            保存签名
-          </button>
 
-        </ion-content>
-      </ion-popover-view>
-    </script>
 
   </ion-content>
 </ion-view>
