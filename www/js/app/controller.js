@@ -5,8 +5,6 @@ angular.module('app.controller',[])
     $scope.user = {};
      // user = localStorage.getItem('user');
 
-
-
     //如果用户已经登陆,则自动跳转到用户主页,利用localStorage来做
     $scope.$on("$ionicView.beforeEnter", function(){
         userService.getLocalUser()?$state.go('app.message'):"";
@@ -30,9 +28,6 @@ angular.module('app.controller',[])
             "行政人员",
             "其他"
         ]
-
-
-
     })
     .controller('forgotPasswordCtrl',function($scope,userService){
         $scope.user = {};
@@ -56,11 +51,19 @@ angular.module('app.controller',[])
         };
     })
 
+    .controller('SettingPicCtrl', function($scope, $state) {
+        $scope.$state = function() {
+            $state.go("tab.setting.settingPic");
+        };
+    })
+
+
+
+
     .controller('SettingCtrl', function($scope,$ionicPopover,$timeout) {
         $scope.popover = $ionicPopover.fromTemplateUrl('setting2.html', {
             scope: $scope
         });
-
         // .fromTemplateUrl() 方法
         $ionicPopover.fromTemplateUrl('setting2.html', {
             scope: $scope
@@ -88,6 +91,7 @@ angular.module('app.controller',[])
             // 执行代码
         });
     })
+
 
 
 

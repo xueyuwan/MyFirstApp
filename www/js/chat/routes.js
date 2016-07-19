@@ -51,7 +51,8 @@ angular.module('chat.routes', [])
                     controller: "settingCtrl"
                 }
             }
-        });
+        })
+
 
     
 });
