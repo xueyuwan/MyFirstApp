@@ -13,7 +13,7 @@ angular.module('chat.routes', [])
         })
         .state('app.tab.message', {
             url: '/message',
-        views: {
+           views: {
             "tab-message":{
                 templateUrl: 'templates/chat/tab-message.html',
                 controller: "messageCtrl"

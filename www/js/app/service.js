@@ -88,8 +88,6 @@ angular.module('app.service',['ionic','ngCordova'])
           viewHeader :function(scope){
                 $state.go('sintro.html');
 
-
-
           },
 
           cameraHeader:function($scope){
