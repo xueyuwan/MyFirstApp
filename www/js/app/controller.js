@@ -38,11 +38,13 @@ angular.module('app.controller',[])
     .controller('HomeTabCtrl', function($scope) {
         console.log('HomeTabCtrl');
     })
+
     .controller('tabFriendsCtrl', function($scope, $state) {
         $scope.$state = function() {
             $state.go("menu2.tab-message");
         };
     })
+
     .controller('tabMessageCtrl', function($scope, $state) {
         $scope.$state = function() {
             $state.go("menu2.tab-friends");

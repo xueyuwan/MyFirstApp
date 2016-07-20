@@ -4,11 +4,13 @@ var uuid = require('node-uuid');
 var path = require('path');
 var ftpserver = require('../../ftpserver');
 var del = require('del');
+
 class Logic extends BaseLogic {
     constructor(service) {
         super();
         this.service = service;
         this.db = require('../../auto-model');
+        this.moment =require('moment');
     }
 
     //表单提交文件,任何文件都可以,但是不能用于接收base64 的图片文件,返回uuid的文件名

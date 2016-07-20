@@ -12,8 +12,7 @@ angular.module('chat.controllers')
         socket.emit('join room',{from:$rootScope.user.phone,to:to});
 
         $scope.sendMessage = function(){
-            socket.emit('send message',{content:$scope.send_content,pic:$rootScope.user.headpic,from:$rootScope.user.phone,to:to});
-            // socket.emit('send message',{content:$scope.send_content,pic:$rootScope.user.headpic,from:$rootScope.user.phone,to:to});
+            socket.emit('send message',{content:$scope.send_content,pic:$rootScope.user.headpic,from:$rootScope.user.phone,to:to,contentType:'text'});
             $scope.send_content=" ";
         };
         socket.on('receive message',function(msg){

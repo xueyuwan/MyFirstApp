@@ -1,11 +1,16 @@
 angular.module('chat.controllers')
-    .controller('messageCtrl', function(config,$http,$scope, $state, $ionicPopup, localStorageService, messageService) {
+    .controller('messageCtrl', function(config,$rootScope,  $http,$scope, $state, $ionicPopup, localStorageService, messageService) {
        var  socket = io.connect(config.serverUrl);
+
+        //长轮询做
         $http({
-            method:'POST',
-            url:config.serverUrl+'student/studentlist'
+            method:'GET',
+            url:config.serverUrl+'chat/listChatRoom',
+            params:{phone:$rootScope.user.phone}
         }).success(function(rtn){
-            $scope.students = rtn.data;
+
+                $rootScope.chatRooms = rtn.data;
+
         });
 
 
@@ -32,5 +37,4 @@ angular.module('chat.controllers')
                 index: 0
             };
         });
-
-    })
+    });
