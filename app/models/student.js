@@ -6,6 +6,7 @@ var StudentSechema = new Schema({
     phone:{type:String,require:true},
     password:{type:String,require:true},
     job:{type:String,require:true},
+    gender:{type:String,require:true},
     prefix:{type:String},
     headpic:{type:String,default:''},
     signature:{type:String},

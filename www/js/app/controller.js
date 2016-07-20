@@ -6,9 +6,9 @@ angular.module('app.controller',[])
      // user = localStorage.getItem('user');
 
     //如果用户已经登陆,则自动跳转到用户主页,利用localStorage来做
-    $scope.$on("$ionicView.beforeEnter", function(){
-        userService.getLocalUser()?$state.go('app.message'):"";
-    });
+    // $scope.$on("$ionicView.beforeEnter", function(){
+    //     userService.getLocalUser()?$state.go('app.message'):"";
+    // });
     $scope.signIn = function() {
         userService.signIn($scope.user.phone, $scope.user.password);
     }
@@ -38,29 +38,25 @@ angular.module('app.controller',[])
     .controller('HomeTabCtrl', function($scope) {
         console.log('HomeTabCtrl');
     })
-
     .controller('tabFriendsCtrl', function($scope, $state) {
         $scope.$state = function() {
             $state.go("menu2.tab-message");
         };
     })
-
     .controller('tabMessageCtrl', function($scope, $state) {
         $scope.$state = function() {
             $state.go("menu2.tab-friends");
         };
     })
+    .controller('SettingCtrl', function($scope,$ionicPopover,$timeout,$ionicModal,userService,$rootScope) {
+        // userService.signIn={"15671624774","www123"};
+        // $rootScope.user={};
+        $scope.user = {};
+        $scope.changePersonalInformation = function() {
+            userService.changePersonalInformation($scope.user);
+        }
 
-    .controller('SettingPicCtrl', function($scope, $state) {
-        $scope.$state = function() {
-            $state.go("tab.setting.settingPic");
-        };
-    })
-
-
-
-
-    .controller('SettingCtrl', function($scope,$ionicPopover,$timeout) {
+        //头像预览弹窗
         $scope.popover = $ionicPopover.fromTemplateUrl('setting2.html', {
             scope: $scope
         });
@@ -80,16 +76,18 @@ angular.module('app.controller',[])
         $scope.$on('$destroy', function() {
             $scope.popover.remove();
         });
-        // 在隐藏浮动框后执行
-        $scope.$on('popover.hidden', function() {
-            // 执行代码
-        });
-        // 移除浮动框后执行
-        $scope.$on('popover.removed', function() {
-            // 执行代码
-        });
-    })
 
+
+
+
+        // // 在隐藏浮动框后执行
+        // $scope.$on('popover.hidden', function() {
+        //     // 执行代码
+        // });
+        // // 移除浮动框后执行
+        // $scope.$on('popover.removed', function() {
+        //     // 执行代码
+        // });
 
 
         // $scope.contacts = [
@@ -98,6 +96,8 @@ angular.module('app.controller',[])
         //     { name: 'Lamarr the Headcrab' },
         // ];
 
+
+        //个人信息设置
         $ionicModal.fromTemplateUrl('templates/modal.html', {
             scope: $scope
         }).then(function(modal) {
@@ -110,7 +110,7 @@ angular.module('app.controller',[])
         };
 
 
-
+      //头像设置
         $ionicModal.fromTemplateUrl('templates/headpic.html', {
             scope: $scope
         }).then(function(headpic) {
@@ -123,7 +123,7 @@ angular.module('app.controller',[])
         };
 
 
-
+      //关于我们设置
         $ionicModal.fromTemplateUrl('templates/aboutus.html', {
             scope: $scope
         }).then(function(aboutus) {
@@ -134,6 +134,21 @@ angular.module('app.controller',[])
             $scope.contacts.push({ name: u.firstName + ' ' + u.lastName });
             $scope.aboutus.hide();
         };
+
+
+
+
+        $scope.shouBigHeadoic = function (imageName) {  //传递一个参数（图片的URl）
+            $scope.Url = imageName;                   //$scope定义一个变量Url，这里会在大图出现后再次点击隐藏大图使用
+            $scope.bigImage = true;                   //显示大图
+        };
+
+        $scope.bigImage = false;    //初始默认大图是隐藏的
+        $scope.hideBigImage = function () {
+            $scope.bigImage = false;
+        };
+
+
 
 
         //

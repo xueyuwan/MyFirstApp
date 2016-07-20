@@ -80,17 +80,5 @@ angular.module('app.route',[])
 
 
 
-          .state('settingPic', {
-              url: '/settingPic',
-              views: {
-                  'menuContent': {
-                      templateUrl: 'templates/app/states/settingPic.html',
-                      controller: "SettingPicCtrl"
-                  }
-              }
-
-              });
-
-
     });
  

@@ -16,6 +16,8 @@ class StudentLogic extends Logic {
                 return this.forgotpassword;
             case "register":
                 return this.register;
+            case "changePersonalInformation":
+                return this.changePersonalInformation;
             case "uploadheader":
             return this.uploadheader;
             case "studentlist":
@@ -25,7 +27,6 @@ class StudentLogic extends Logic {
     async getStudentList(req,res){
         var result ={state:1,issuccess:false};
         var students = await  this.db.Student.find({}).exec();
-
 
         result.issuccess= true;
         result.data = students;
@@ -47,10 +48,47 @@ class StudentLogic extends Logic {
         res.json(result);
     }
 
+
+    async changePersonalInformation(req,res){
+
+        var result =  {state:1,issuccess:false};
+        var {name,phone,signature,gender}= req.query;
+            var student = await this.db.Student.update({phone:phone},{name:name,signature:signature,gender:gender},{},function(){}).exec();
+            result.issuccess = true;
+            result.msg="成功修改用户名！";
+
+           res.json(result);
+
+    }
+
+
+    async forgotpassword(req,res){
+            var result = {state:1,issuccess:false};
+            var {phone,password} = req.query;
+            console.log(phone);
+            var students =await this.db.Student.find({phone:phone}).exec();
+
+            console.log(students);
+            if(students.length==0){
+                result.issuccess = false;
+                result.msg = "错误的请求,请确认手机号";
+            }else{
+                var student = await this.db.Student.find({phone:phone}).update({password:password}).exec();
+                result.issuccess = true;
+                result.msg="成功修改密码";
+            }
+            res.json(result);
+
+        }
+
+
+
+
+
+
     async login(req, res) {
         var result = {state: 1, issuccess: false};
         var {phone, password} = req.query;
-
         var students =  await this.db.Student.find({phone:phone}).exec();
         if(students.length) {
             var user=students[0];
@@ -72,24 +110,6 @@ class StudentLogic extends Logic {
 
     }
 
-    async forgotpassword(req,res){
-    var result = {state:1,issuccess:false};
-    var {phone,password} = req.query;
-console.log(phone);
-        var students =await this.db.Student.find({phone:phone}).exec();
-
-        console.log(students);
-        if(students.length==0){
-            result.issuccess = false;
-            result.msg = "错误的请求,请确认手机号";
-        }else{
-           var student = await this.db.Student.find({phone:phone}).update({password:password}).exec();
-            result.issuccess = true;
-            result.msg="成功修改密码";
-        }
-        res.json(result);
-
-    }
 
 
     async register(req,res){

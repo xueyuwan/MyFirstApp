@@ -23,7 +23,7 @@ angular.module('app.service',['ionic','ngCordova'])
             }).success(function (rtn) {
               if (rtn.issuccess) {
                 user = rtn.data;
-                $state.go('app.templateyun');
+                $state.go('app.setting');
                   //本地存储用户
                 // localStorage.setItem('phone',user.phone);
                 $rootScope.user= user;
@@ -34,7 +34,6 @@ angular.module('app.service',['ionic','ngCordova'])
           }
         },
         signUp:function(user){
-            console.log(user.job);
           if(!user.phone || !user.password||!user.name){
             popup.show('提示','用户名、密码或手机号不能为空');
           }else if(!config.phoneRegex.test(user.phone)) {
@@ -81,6 +80,27 @@ angular.module('app.service',['ionic','ngCordova'])
                   });
               }
           },
+
+          changePersonalInformation:function(user){
+                  popup.show('提示','正在保存提交');
+                  $http({
+                      method:'GET',
+                      url:config.serverUrl+"student/changePersonalInformation",
+                      params:{phone:$rootScope.user.phone,name:user.name}
+                  }).success(function(rtn){
+                      if(rtn.issuccess) {
+                          $state.go('app.setting');
+                      }else{
+                          popup.show('错误',rtn.msg);
+                      }
+                  });
+
+
+
+
+          },
+
+
           getLocalUser:function(){
             var  user = localStorage.getItem('user');
               return user;
