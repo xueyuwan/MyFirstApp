@@ -2,7 +2,7 @@
 angular.module('app.service',['ionic','ngCordova'])
     //常量
     .factory('userService',function($http,$rootScope,popup,config,$state,camera,imagePicker,$cordovaFile,$cordovaDialogs){
-      // var user={};
+      var user={};
       //  user= localStorage.setItem('user');
       //   alert( user);
        //  $rootScope.phone=user.phone;

@@ -17,7 +17,7 @@ class StudentLogic extends Logic {
             case "register":
                 return this.register;
             case "uploadheader":
-            return this.uploadheader;
+            return this.uploadHeader;
             case "studentlist":
                 return this.getStudentList;
         }
@@ -32,12 +32,12 @@ class StudentLogic extends Logic {
         res.json(result);
     }
 
-    async uploadheader(req,res){
-        var result =  {state:1,issuccess:false};
+    async uploadHeader(req,res){
+        var result =  {state:1,isSuccess:false};
         var phone = req.query.phone;
         var filename = await super.saveBase64Image(req.query.header);
          console.log(phone);
-        await this.db.Student.update({phone:phone},{headpic:filename},{},function(err){
+        await this.db.Student.update({phone:phone},{headPic:filename},{},function(err){
           if(err){
               console.log(err);
           }
@@ -48,7 +48,7 @@ class StudentLogic extends Logic {
     }
 
     async login(req, res) {
-        var result = {state: 1, issuccess: false};
+        var result = {state: 1, isSuccess: false};
         var {phone, password} = req.query;
 
         var students =  await this.db.Student.find({phone:phone}).exec();
@@ -65,7 +65,6 @@ class StudentLogic extends Logic {
         }else{
             result.issuccess=false;
             result.msg="该用户不存在";
-
         }
 
         res.json(result);
@@ -73,9 +72,9 @@ class StudentLogic extends Logic {
     }
 
     async forgotpassword(req,res){
-    var result = {state:1,issuccess:false};
+    var result = {state:1,isSuccess:false};
     var {phone,password} = req.query;
-console.log(phone);
+    console.log(phone);
         var students =await this.db.Student.find({phone:phone}).exec();
 
         console.log(students);
@@ -88,12 +87,11 @@ console.log(phone);
             result.msg="成功修改密码";
         }
         res.json(result);
-
     }
 
 
     async register(req,res){
-    var result = {state:1,issuccess:false};
+    var result = {state:1,isSuccess:false};
     var {name,password,phone,job} = req.query;
     if(name&&password&&phone&&job){
         var students =await this.db.Student.find({phone:phone});
@@ -107,7 +105,6 @@ console.log(phone);
         result.issuccess=true;
         result.msg="注册成功";
         result.data = student;
-
     } else{
         result.issuccess=false;
         result.msg="信息不完整";

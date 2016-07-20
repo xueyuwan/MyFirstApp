@@ -17,7 +17,7 @@ angular.module('app.controller',[])
         $scope.user = {};
         $scope.signUp = function() {
             userService.signUp($scope.user);
-        }
+        };
         $scope.jobs = [
             "网页设计师",
             "前端工程师",
@@ -51,7 +51,8 @@ angular.module('app.controller',[])
         };
     })
 
-    .controller('SettingPicCtrl', function($scope, $state) {
+    .controller('SettingPicCtrl', function(userService,$scope, $state) {
+        userService.signIn('13212780816','yangjie');
         $scope.$state = function() {
             $state.go("tab.setting.settingPic");
         };
@@ -88,8 +89,6 @@ angular.module('app.controller',[])
         $scope.$on('popover.removed', function() {
             // 执行代码
         });
-    })
-
 
 
         // $scope.contacts = [
@@ -134,34 +133,11 @@ angular.module('app.controller',[])
             $scope.contacts.push({ name: u.firstName + ' ' + u.lastName });
             $scope.aboutus.hide();
         };
-
-
-        //
-        // $ionicModal.fromTemplateUrl('templates/modal.html', {
-        //     scope: $scope
-        // }).then(function(modal) {
-        //     $scope.modal = modal;
-        // });
-        //
-        // $scope.createContact = function(u) {
-        //     $scope.contacts.push({ name: u.firstName + ' ' + u.lastName });
-        //     $scope.modal.hide();
-        // };
-
-
-        $scope.jobs = [
-            "网页设计师",
-            "前端工程师",
-            "PHP工程师",
-            "实习生",
-            "讲师",
-            "管理人员",
-            "行政人员",
-            "其他"
-        ]
-
-
     })
+
+
+
+
 
     .controller('NotificationCtrl', function($scope, $ionicBackdrop, $timeout) {
         $scope.shouBigImage = function (imageName) {  //传递一个参数（图片的URl）

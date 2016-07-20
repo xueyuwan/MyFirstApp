@@ -28,7 +28,6 @@
         socket.emit('chat message', $('#m').val());
         $('#m').val('');
         return false;
-
     });
 
     socket.on('login',function(msg){

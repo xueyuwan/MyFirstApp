@@ -53,6 +53,6 @@ function createDb() {
     return db;
 
 }
-
+var allDb =createDb();
 /**文件路由层**/
-module.exports = createDb();
+module.exports = allDb;
