@@ -7,7 +7,8 @@ angular.module('chat.routes', [])
             url: "/tab",
             views:{
                 "menuContent":{
-                    templateUrl: "templates/chat/tabs.html"
+                    templateUrl: "templates/chat/tabs.html",
+                    controller:"chatCtrl"
                 }
             }
         })

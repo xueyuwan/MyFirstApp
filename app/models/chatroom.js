@@ -3,23 +3,30 @@ var mongoose = require('mongoose'),
 
 var chatRoomSchema = new Schema({
     //手机号
-    people:{type:[String]},
-
+    people:[String],
     createDt:{type:Date,default:Date.now},
-    messages:[{from:String,
+    messages:[{
+        from:String,
+        fromName:String,
+        fromPic:String,
         to:String,
+        toName:String,
+        toPic:String,
         createDt:{type:Date,default:Date.now},
-        content:String ,
-        contentType:{type:String,default:'text'}
+        content:String,
+        contentType:{type:String,default:'text'},
+
     }],
     lastMessage:{
         content:String,
         createDt:{type:Date,default:Date.now},
-        createDtStr:String
+        createDtStr:String,
+        from:String,
     },
     //聊天室的显示的消息
     headPic:String,
-    name:String
+    name:String,
+    otherPhone:String
 });
 
 

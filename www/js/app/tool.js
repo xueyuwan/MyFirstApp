@@ -1,10 +1,11 @@
 angular.module('app.service').
 factory('config',function(){
     return {
-        serverUrl:'http://192.168.1.46:3000/',
+        serverUrl:'http://192.168.1.41:3000/',
         phoneRegex:/^(13[0-9]|14[0-9]|15[0-9]|18[0-9])\d{8}$/,
         passwordRegex:/^[a-zA-Z]\w{5,17}$/,
-        userNameRegex:/^[a-zA-Z]\w{5,17}$/
+        userNameRegex:/^[a-zA-Z]\w{5,17}$/,
+
     }
 })
 .factory('camera',function($cordovaCamera) {
@@ -42,6 +43,7 @@ factory('config',function(){
     }
 })
     .factory('imagePicker',function($cordovaImagePicker){
+
         var options = {
             width: 200,
             height: 200,
