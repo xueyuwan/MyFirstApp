@@ -3,11 +3,6 @@ angular.module('app.service',['ionic','ngCordova'])
     //常量
     .factory('userService',function($http,$rootScope,popup,config,$state,camera,imagePicker,$cordovaFile,$cordovaDialogs){
       var user={};
-      //  user= localStorage.setItem('user');
-      //   alert( user);
-       //  $rootScope.phone=user.phone;
-       //  $rootScope.password=user.password;
-       //  $state.go('app.templateyun')
 
       return {
         signIn: function (phone, password) {
@@ -26,6 +21,7 @@ angular.module('app.service',['ionic','ngCordova'])
                 $state.go('app.setting');
                   //本地存储用户
                 // localStorage.setItem('phone',user.phone);
+
                 $rootScope.user= user;
               } else {
                 popup.show('提示', rtn.msg);

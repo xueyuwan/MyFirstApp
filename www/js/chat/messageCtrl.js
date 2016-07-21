@@ -1,37 +1,19 @@
 angular.module('chat.controllers')
-    .controller('messageCtrl', function(config,$rootScope,  $http,$scope, $state, $ionicPopup, localStorageService, messageService) {
-       var  socket = io.connect(config.serverUrl);
-
-        //长轮询做
-        $http({
-            method:'GET',
-            url:config.serverUrl+'chat/listChatRoom',
-            params:{phone:$rootScope.user.phone}
-        }).success(function(rtn){
-
-                $rootScope.chatRooms = rtn.data;
-
-        });
-
-
-        socket.on('receive message',function(msg){
-            console.log(msg);
-        });
-
-
+    .controller('messageCtrl', function(config,$rootScope,  $http,$scope, $state, $ionicPopup, socketService) {
+            var socket = socketService.getSocket();
 
         $scope.onSwipeLeft = function() {
             $state.go("tab.friends");
         };
-        $scope.messageDetils = function(student) {
+
+        $scope.showMessageDetail=function(student){
             $state.go("messageDetail", {
-                "phone": student.phone
+                "phone": student.otherPhone
             });
         };
 
         $scope.$on("$ionicView.beforeEnter", function(){
-            console.log($scope.messages);
-            $scope.messages = messageService.getAllMessages();
+            socket.emit('refresh room',{phone:$rootScope.user.phone});
             $scope.popup = {
                 isPopup: false,
                 index: 0

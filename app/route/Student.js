@@ -13,7 +13,7 @@ class StudentLogic extends Logic {
             case "login":
                 return this.login;
             case "forgotpassword":
-                return this.forgotpassword;
+                return this.forgotPassword;
             case "register":
                 return this.register;
             case "changePersonalInformation":
@@ -24,20 +24,21 @@ class StudentLogic extends Logic {
                 return this.getStudentList;
         }
     }
-    async getStudentList(req,res){
-        var result ={state:1,issuccess:false};
+    async getStudentList(req ,res){
+        var result ={state:1,isSuccess:false};
         var students = await  this.db.Student.find({}).exec();
+
         result.issuccess= true;
         result.data = students;
         res.json(result);
     }
 
     async uploadheader(req,res){
-        var result =  {state:1,issuccess:false};
+        var result =  {state:1,isSuccess:false};
         var phone = req.query.phone;
         var filename = await super.saveBase64Image(req.query.header);
          console.log(phone);
-        await this.db.Student.update({phone:phone},{headpic:filename},{},function(err){
+        await this.db.Student.update({phone:phone},{headPic:filename},{},function(err){
           if(err){
               console.log(err);
           }
@@ -61,8 +62,8 @@ class StudentLogic extends Logic {
     }
 
 
-    async forgotpassword(req,res){
-            var result = {state:1,issuccess:false};
+    async forgotPassword(req,res){
+            var result = {state:1,isSuccess:false};
             var {phone,password} = req.query;
             console.log(phone);
             var students =await this.db.Student.find({phone:phone}).exec();
@@ -102,7 +103,6 @@ class StudentLogic extends Logic {
         }else{
             result.issuccess=false;
             result.msg="该用户不存在";
-
         }
 
         res.json(result);

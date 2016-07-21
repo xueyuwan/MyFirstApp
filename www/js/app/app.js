@@ -2,7 +2,7 @@ var rootScope;
 angular.module('app',['ionic','ngCordova',
   'app.controller','app.route','app.service',
     'chat.controllers', 'chat.routes',
-    'chat.services', 'chat.directives'
+    'chat.services'
 ])
     //资源白名单
     .config(function($sceDelegateProvider) {
@@ -19,7 +19,7 @@ angular.module('app',['ionic','ngCordova',
     .config(['$ionicConfigProvider',function($ionicConfigProvider,$rootScope,$cordovaContacts){
         $ionicConfigProvider.tabs.position('bottom');
     }])
-.run(function($ionicPlatform,$http,messageService,$rootScope){
+.run(function($ionicPlatform,$http,$rootScope){
     var url = "";
     rootScope = $rootScope;
     if (ionic.Platform.isAndroid()) {
