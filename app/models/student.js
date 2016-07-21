@@ -7,14 +7,13 @@ var studentSchema = new Schema({
     password:{type:String,require:true},
     job:{type:String,require:true},
     gender:{type:String,require:true},
+    signature:{type:String,require:true},
     prefix:{type:String},
     headPic:{type:String,default:''},
-    signature:{type:String},
     createDt:{type:Date,default:Date.now},
     lastModifiedDate:{type:Date}
 });
 
 
 var Student= mongoose.model('student',studentSchema);
-
 module.exports = {Student};

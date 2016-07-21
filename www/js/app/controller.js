@@ -50,7 +50,7 @@ angular.module('app.controller',[])
             $state.go("menu2.tab-friends");
         };
     })
-    .controller('SettingCtrl', function($scope,$ionicPopover,$timeout,$ionicModal,userService,$rootScope) {
+    .controller('SettingCtrl', function($scope,$ionicPopover,$timeout,$ionicModal,userService,$rootScope,$state) {
         // userService.signIn={"15671624774","www123"};
         // $rootScope.user={};
         $scope.user = {};
@@ -58,45 +58,33 @@ angular.module('app.controller',[])
             userService.changePersonalInformation($scope.user);
         }
 
+        $scope.exit=function(){
+            $state.go("sign-in");
+
+        }
+
         //头像预览弹窗
-        $scope.popover = $ionicPopover.fromTemplateUrl('setting2.html', {
-            scope: $scope
-        });
-        // .fromTemplateUrl() 方法
-        $ionicPopover.fromTemplateUrl('setting2.html', {
-            scope: $scope
-        }).then(function(popover) {
-            $scope.popover = popover;
-        });
-        $scope.openPopover = function($event) {
-            $scope.popover.show($event);
-        };
-        $scope.closePopover = function() {
-            $scope.popover.hide();
-        };
-        // 清除浮动框
-        $scope.$on('$destroy', function() {
-            $scope.popover.remove();
-        });
-
-
-
-
-        // // 在隐藏浮动框后执行
-        // $scope.$on('popover.hidden', function() {
-        //     // 执行代码
+        // $scope.popover = $ionicPopover.fromTemplateUrl('setting2.html', {
+        //     scope: $scope
         // });
-        // // 移除浮动框后执行
-        // $scope.$on('popover.removed', function() {
-        //     // 执行代码
+        // // .fromTemplateUrl() 方法
+        // $ionicPopover.fromTemplateUrl('setting2.html', {
+        //     scope: $scope
+        // }).then(function(popover) {
+        //     $scope.popover = popover;
+        // });
+        // $scope.openPopover = function($event) {
+        //     $scope.popover.show($event);
+        // };
+        // $scope.closePopover = function() {
+        //     $scope.popover.hide();
+        // };
+        // // 清除浮动框
+        // $scope.$on('$destroy', function() {
+        //     $scope.popover.remove();
         // });
 
 
-        // $scope.contacts = [
-        //     { name: 'Gordon Freeman' },
-        //     { name: 'Barney Calhoun' },
-        //     { name: 'Lamarr the Headcrab' },
-        // ];
 
 
         //个人信息设置
@@ -165,7 +153,7 @@ angular.module('app.controller',[])
         //     $scope.modal.hide();
         // };
 
-
+        //
         $scope.jobs = [
             "网页设计师",
             "前端工程师",
@@ -176,6 +164,15 @@ angular.module('app.controller',[])
             "行政人员",
             "其他"
         ]
+
+        $scope.clientSideList = [
+            { text: "男", value: "男" },
+            { text: "女", value: "女" }
+
+        ];
+        $scope.user = {
+            gender: '女'
+        };
 
 
     })

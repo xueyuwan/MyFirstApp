@@ -12,7 +12,7 @@
         <div class="padding text-center">
           <div class="avatar">
             <img ng-click="changeHeader()" style="border-radius: 200px;width:200px;height:200px;"
-                 src=" {{ user.headpic ||'img/wh.jpg'}}"  alt="" class="img-responsive" />
+                 src=" {{ user.headpic ||'img/me.png'}}"  alt="" class="img-responsive" />
           </div>
            <strong class="no-margin">{{user.name}}</strong>
            <strong  class="no-margin">{{user.job}}</strong>
@@ -24,19 +24,19 @@
         <a class="item item-icon-left" ui-sref="app.tab.message" ui-sref-active="active" menu-close>
           <i class="icon mdi mdi-account-circle font-icon-md"></i>
             消息
-            <span class="badge badge-royal">7</span>
+            <span class="badge badge-positive">7</span>
         </a>
 
         <a class="item item-icon-left" ui-sref="app.templateyun" ui-sref-active="active" menu-close>
           <i class="icon mdi mdi-bell-ring font-icon-md"></i>
           云模板
-            <span class="badge badge-assertive">新增10</span>
+            <span class="badge badge-positive">新增10</span>
         </a>
 
         <a class="item item-icon-left" ui-sref="app.menu4" ui-sref-active="active" menu-close>
           <i class="icon mdi mdi-message-processing font-icon-md"></i>
           旅烨视闻
-          <span class="badge badge-assertive">67</span>
+          <span class="badge badge-positive">67</span>
         </a>
 
         <a class="item item-icon-left" ui-sref="app.menu6" ui-sref-active="active" menu-close>
@@ -48,7 +48,7 @@
         <a class="item item-icon-left" ui-sref="app.music" ui-sref-active="active" menu-close>
           <i class="icon mdi mdi-library-music font-icon-md"></i>
           Music
-          <span class="badge badge-balanced">36</span>
+          <span class="badge badge-positive">36</span>
         </a>
       </div>
       <div class="list border-top">
@@ -80,17 +80,6 @@
   </ion-slide-box>
   </ion-view>
 </script>
-<script id="setting2.html" type="text/ng-template">
-  <ion-popover-view style="width: 100%; height: 430px;" >
-    <ion-header-bar>
-      <h1 class="title">我的头像</h1>
-    </ion-header-bar>
-    <ion-content>
-        <img  src="{{'img/ben.png'}}" class="img-responsive" style="width: 100%; height: auto; margin: 0 auto"/>
-    </ion-content>
-  </ion-popover-view>
-</script>
-
 
 <script id="templates/headpic.html" type="text/ng-template">
  <ion-modal-view>
@@ -102,7 +91,6 @@
     <div class="list card" >
         <img src=" {{ user.headpic ||'templates/app/img/200_taylor_swift_spl811605_.jpg'}}" class="img-responsive" style="width: 100%; height: auto; margin: 0 auto" >
     <div class="list">
-
 
       <ul class="list text-center">
         <li class="item">
@@ -149,29 +137,27 @@
       <div class="list">
         <label class="item item-input">
           <strong class="input-label">用户名</strong>
-          <input type="text" placeholder="{{user.name}}" ng-model="user.name" >
+          <input type="text" placeholder="{{user.name||'修改用户名'}}" ng-model="user.name" >
         </label>
-
-          <label class="item item-input">
-              <strong class="input-label">手机号</strong>
-              <input type="text"  placeholder="{{user.phone}}" ng-model="user.phone" >
-          </label>
       </div>
-
-
 
       <div class="list card" >
         <div class="item item-button-right">
           <strong> 编辑个性签名</strong>
         </div>
-          <textarea  class="padding"  style="width:94%; height: 80px; border: 1px solid #ccc;resize: none; margin:10px;" placeholder="{{user.signature}}"></textarea>
+        <textarea  class="padding"  ng-model="user.signature"  placeholder="{{user.signature||'说说现在的心情呗......'}}" style="width:94%; height: auto; border: 1px solid #ccc; margin:10px;resize:none;"></textarea>
       </div>
 
       <div class="list">
-        <label class="item "><strong class="input-label">性别</strong></label>
-        <ion-list>
-          <ion-radio ng-model="choice" ng-value="'男'">男</ion-radio>
-          <ion-radio ng-model="choice" ng-value="'女'">女</ion-radio>
+        <label class="item " ><strong class="input-label" >性别</strong></label>
+        <ion-list >
+          <!--<ion-radio ng-model="user.gender" ng-value="'男'" >男</ion-radio>-->
+          <!--<ion-radio ng-model="user.gender" ng-value="'女'">女</ion-radio>-->
+          <ion-radio ng-repeat="item in clientSideList"
+                     ng-value="item.value"
+                     ng-model="user.gender">
+            {{ item.text }}
+          </ion-radio>
         </ion-list>
       </div>
 
@@ -180,8 +166,8 @@
           <strong class="input-label">
             职业类型
           </strong>
-          <select ng-model="user.job" convert-to-number>
-            <option  ng-repeat="x in jobs">{{x}}</option>
+          <select  convert-to-number ng-model="user.job" >
+            <option  ng-repeat="x in jobs" selected="">{{x}}</option>
           </select>
         </label>
       </div>

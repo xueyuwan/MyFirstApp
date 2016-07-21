@@ -21,8 +21,8 @@
                         <span  class="icon ion-heart"></span>
                         <span style="color:#111" >职业类型</span>
                     </div>
-                    <select ng-model="user.job" convert-to-number >
-                        <option  ng-repeat="x in jobs">{{x}}</option>
+                    <select  convert-to-number >
+                        <option  ng-repeat="x in jobs" ng-model="user.job">{{x}}</option>
                     </select>
 
                 </div>

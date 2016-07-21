@@ -27,7 +27,6 @@ class StudentLogic extends Logic {
     async getStudentList(req,res){
         var result ={state:1,issuccess:false};
         var students = await  this.db.Student.find({}).exec();
-
         result.issuccess= true;
         result.data = students;
         res.json(result);
@@ -52,10 +51,10 @@ class StudentLogic extends Logic {
     async changePersonalInformation(req,res){
 
         var result =  {state:1,issuccess:false};
-        var {name,phone,signature,gender}= req.query;
-            var student = await this.db.Student.update({phone:phone},{name:name,signature:signature,gender:gender},{},function(){}).exec();
+        var {name,phone,signature,gender,job}= req.query;
+            var student = await this.db.Student.update({phone:phone},{name:name,signature:signature,gender:gender,job:job},{},function(){}).exec();
             result.issuccess = true;
-            result.msg="成功修改用户名！";
+            result.msg="成功修改用户信息！";
 
            res.json(result);
 

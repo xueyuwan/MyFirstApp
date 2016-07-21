@@ -86,7 +86,7 @@ angular.module('app.service',['ionic','ngCordova'])
                   $http({
                       method:'GET',
                       url:config.serverUrl+"student/changePersonalInformation",
-                      params:{phone:$rootScope.user.phone,name:user.name}
+                      params:{phone:$rootScope.user.phone,name:user.name,signature:user.signature,job:user.job,gender:user.gender}
                   }).success(function(rtn){
                       if(rtn.issuccess) {
                           $state.go('app.setting');
