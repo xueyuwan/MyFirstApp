@@ -3,7 +3,7 @@ var moment = require('moment');
 module.exports = async function (server){
     var db = require('../config/auto-model');
     var io = require('socket.io')(server);
-    io.on('connection', function (socket){
+        io.on('connection', function (socket){
         console.log('一位用户已经登录');
 
         //加入房间,房间号为 from+to 的手机号
@@ -71,7 +71,7 @@ var sendMessage =  function(socket,db){
             //若有聊天室,则将消息打入聊天室
             chatRoom.messages.push(message._id);
             chatRoom.lastMessage= message._id;
-            console.log(chatRoom);
+            // console.log(chatRoom);
             db.ChatRoom.update({_id:chatRoom._id},chatRoom,{},()=>{});
         }
     }
@@ -82,26 +82,18 @@ var sendMessage =  function(socket,db){
 var refreshRoom = function (socket,db){
     return async  function(msg) {
         console.log('refresh room:',msg.phone);
-        var [studentId]= await db.find({phone:msg.phone},{_id:1}).exec();
+        var [student]= await db.Student.find({phone:msg.phone},{_id:1}).exec();
         var chatRooms = await db.ChatRoom.find({
-            people: msg.phone
-        }).exec();
-        for (var i = 0; i < chatRooms.length; i++) {
-            //显示聊天室时间,头像,名称
-            chatRooms[i].lastMessage.createDtStr = moment(chatRooms[i].lastMessage.createDt).format("HH:mm");
-            var otherPhone = chatRooms[i].people.find(function (peoplePhone) {
-                return peoplePhone != msg.phone;
+            people: student._id
+        }).populate('messages').populate('people').populate('lastMessage').populate('lastMessage.from').exec();
+
+
+        for(var i=0;i<chatRooms.length;i++){
+            var [talkToStudent] = chatRooms[i].people.filter(function(currentStudent){
+                return currentStudent._id != student._id;
             });
-            console.log(otherPhone);
-            let [student] =await db.Student.find({phone: otherPhone}).exec();
-            console.log(student);
-            chatRooms[i].name = student.name;
-            chatRooms[i].headPic = student.headPic;
-            console.log(chatRooms[i].headPic);
-            chatRooms[i].otherPhone = otherPhone;
-            chatRooms[i].lastMessage.createDt =  moment(chatRooms[i].lastMessage.createDt).format('HH:mm');
+                chatRooms[i].talkTo = talkToStudent._id;
         }
-        console.log(chatRooms);
         socket.emit('refresh room', chatRooms);
     }
 };

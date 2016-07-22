@@ -54,6 +54,7 @@ class StudentLogic extends Logic {
         var result =  {state:1,issuccess:false};
         var {name,phone,signature,gender,job}= req.query;
             var student = await this.db.Student.update({phone:phone},{name:name,signature:signature,gender:gender,job:job},{},function(){}).exec();
+            result.data = student;
             result.issuccess = true;
             result.msg="成功修改用户信息！";
 
@@ -74,6 +75,7 @@ class StudentLogic extends Logic {
                 result.msg = "错误的请求,请确认手机号";
             }else{
                 var student = await this.db.Student.find({phone:phone}).update({password:password}).exec();
+                result.data = student;
                 result.issuccess = true;
                 result.msg="成功修改密码";
             }
@@ -87,7 +89,7 @@ class StudentLogic extends Logic {
 
 
     async login(req, res) {
-        var result = {state: 1, issuccess: false};
+        var result = {state: 1, isSuccess: false};
         var {phone, password} = req.query;
         var students =  await this.db.Student.find({phone:phone}).exec();
         if(students.length) {

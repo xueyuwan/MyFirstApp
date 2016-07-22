@@ -23,7 +23,7 @@ angular.module('chat.controllers', [])
 
         socket.on('refresh room',function(data){
             $rootScope.$apply(function(){
-                console.log('chat Rooms '+data);
+                console.log('chat Rooms ',data);
                 $rootScope.chatRooms = data;
             });
         });

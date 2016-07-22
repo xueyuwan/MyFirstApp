@@ -29,7 +29,7 @@ angular.module('app',['ionic','ngCordova',
     //聊天数据
     $http.get(url + "data/json/messages.json").then(function(response) {
         // localStorageService.update("messages", response.data.messages);
-        messageService.init(response.data.messages);
+        // messageService.init(response.data.messages);
     });
     $http.get(url + "data/json/friends.json").then(function(response){
         console.log(response.data.results);
