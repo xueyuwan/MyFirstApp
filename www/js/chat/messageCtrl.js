@@ -7,16 +7,16 @@ angular.module('chat.controllers')
             $state.go("tab.friends");
         };
 
-        $scope.showMessageDetail = function(student){
+        $scope.showMessageDetail = function(chatRoom){
             $state.go("messageDetail", {
-                "phone": student.otherPhone
+                "phone": chatRoom.talkTo.phone
             });
         };
 
 
 
         $scope.$on("$ionicView.beforeEnter", function(){
-            socket.emit('refresh room',{phone:$rootScope.user.phone});
+            socket.emit('refresh room',{phone:$rootScope.user._id});
             $scope.popup = {
                 isPopup: false,
                 index: 0

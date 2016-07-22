@@ -43,16 +43,12 @@ var sendMessage =  function(socket,db){
         console.log('send message to room',msg.from,msg.to);
         //socket放在最上面，便于用户快速响应聊天结果
         socket.emit('receive message', msg);
-        var  [fromStudent] = await db.Student.find({phone:msg.from},{_id:1}).exec();
-        var [toStudent] = await db.Student.find({phone:msg.to},{_id:1}).exec();
-
-        console.log(fromStudent,toStudent);
 
         //查询是否有两人的聊天室,若有,则将该消息存入聊天室,若没有,则创建两人的聊天室,
-        var [chatRoom] = await  db.ChatRoom.find({people:{$all:[fromStudent._id,toStudent._id] } }).exec();
+        var [chatRoom] = await  db.ChatRoom.find({people:{$all:[msg.from,msg.to]} }).exec();
         var message = await new db.Message({
-            from: fromStudent._id,
-            to: toStudent._id,
+            from: msg.from,
+            to: msg.to,
             content: msg.content,
             contentType: msg.contentType
         }).save();
@@ -60,7 +56,7 @@ var sendMessage =  function(socket,db){
         if (!chatRoom) {
             //新建消息
                 await new db.ChatRoom({
-                    people: [fromStudent._id, toStudent._id],
+                    people: [msg.from, msg.to],
                     messages: [message._id],
                     lastMessage: message._id,
                 }).save();
@@ -89,10 +85,18 @@ var refreshRoom = function (socket,db){
 
 
         for(var i=0;i<chatRooms.length;i++){
-            var [talkToStudent] = chatRooms[i].people.filter(function(currentStudent){
-                return currentStudent._id != student._id;
-            });
-                chatRooms[i].talkTo = talkToStudent._id;
+            var talkToStudent = chatRooms[i].people.filter(function(currentStudent){
+               return currentStudent._id.toString() != student._id.toString();
+            })[0];
+            console.log(talkToStudent);
+            var  [talkTo] = await  db.Student.find({_id:talkToStudent._id}).exec();
+            console.log(talkTo);
+          chatRooms[i].talkTo = {
+              headPic:talkTo.headPic,
+              name:talkTo.name,
+              phone:talkTo.phone,
+              _id:talkTo._id
+          };
         }
         socket.emit('refresh room', chatRooms);
     }

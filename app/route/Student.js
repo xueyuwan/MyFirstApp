@@ -51,7 +51,7 @@ class StudentLogic extends Logic {
 
     async changePersonalInformation(req,res){
 
-        var result =  {state:1,issuccess:false};
+        var result =  {state:1,isSuccess:false};
         var {name,phone,signature,gender,job}= req.query;
             var student = await this.db.Student.update({phone:phone},{name:name,signature:signature,gender:gender,job:job},{},function(){}).exec();
             result.data = student;

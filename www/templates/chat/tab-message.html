@@ -13,11 +13,11 @@
 
         <ion-list rj-close-back-drop>
             <ion-item class="item-avatar" ng-class="{'rj-item-top': message.isTop}" on-hold="popupMessageOpthins(message)"  ng-repeat="chatRoom in chatRooms" ng-click="showMessageDetail(chatRoom)">
-                <img ng-src="{{chatRoom.headpic}}">
+                <img ng-src="{{chatRoom.talkTo.headPic}}">
                 <!--<span class="rj-sm-red-icon" ng-show="message.showHints"><p ng-bind="message.noReadMessages"></p></span>-->
-                <h2 ng-bind="chatRoom.name"></h2>
+                <h2 ng-bind="chatRoom.talkTo.name"></h2>
                 <p class="rj-list-p" ng-bind="chatRoom.lastMessage.content"></p>
-                <span class="rj-push-right" ng-bind="chatRoom.lastMessage.createDtStr"></span>
+                <span class="rj-push-right" ng-bind="chatRoom.lastMessage.createDt"></span>
             </ion-item>
         </ion-list>
     </ion-content>

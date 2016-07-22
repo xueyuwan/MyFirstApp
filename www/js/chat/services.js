@@ -6,5 +6,4 @@ var socket = io.connect(config.serverUrl);
             return socket
         }
     }
-
 });

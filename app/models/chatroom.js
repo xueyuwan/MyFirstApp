@@ -8,7 +8,11 @@ var chatRoomSchema = new Schema({
     messages:[{type:Schema.ObjectId,ref:'message'}],
     lastMessage:{type:Schema.ObjectId,ref:'message'},
     //聊天室的显示的消息
-    talkTo: {type:Schema.ObjectId, ref:'student'}
+    talkTo: {
+        headPic:String,
+        name:String,
+        phone:String
+    }
 });
 
 

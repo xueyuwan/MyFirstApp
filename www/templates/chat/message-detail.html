@@ -11,17 +11,17 @@
 </ion-header-bar>
 <ion-content class="rj-stable-content"  id="message-detail-content">
 
-    <div ng-repeat="item in messages">
-    	<p class="rj-message-time" ng-bind="item.time" ng-if="item.from!=user.phone"></p>
-        <div class="rj-message-wrap" ng-if="item.from!=user.phone">
-            <img src="{{talkToStudent.headPic}}" class="rj-head-pic">
+    <div ng-repeat="message in chatRoom.messages">
+    	<!--<p class="rj-message-time" ng-bind="message.createDt" ng-if="message.from!=user._id"></p>-->
+        <div class="rj-message-wrap" ng-if="message.from!=user._id">
+            <img src="{{chatRoom.talkTo.headPic}}" class="rj-head-pic">
             <span class="rj-triangle-left"></span>
-            <p class="rj-message" ng-bind="item.content"></p>
+            <p class="rj-message" ng-bind="message.content"></p>
         </div>
-        <div class="rj-message-wrap" ng-if="item.from==user.phone">
-            <img src="{{user.headpic}}" class="rj-head-pic-right">
+        <div class="rj-message-wrap" ng-if="message.from==user._id">
+            <img src="{{user.headPic}}" class="rj-head-pic-right">
             <span class="rj-triangle-right"></span>
-            <p class="rj-message-right" ng-bind="item.content"></p>
+            <p class="rj-message-right" ng-bind="message.content"></p>
         </div>
     </div>
 </ion-content>

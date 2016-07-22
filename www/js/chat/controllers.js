@@ -20,7 +20,6 @@ angular.module('chat.controllers', [])
         var socket =socketService.getSocket();
         socket.emit('refresh room',{phone:$rootScope.user.phone});
         socket.emit('refresh students',{phone:$rootScope.user.phone});
-
         socket.on('refresh room',function(data){
             $rootScope.$apply(function(){
                 console.log('chat Rooms ',data);
