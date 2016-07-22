@@ -11,10 +11,18 @@ module.exports = async function (server){
         socket.on('send message',sendMessage(socket,db));
         socket.on('refresh room',refreshRoom(socket,db));
         socket.on('refresh students',refreshFriends(socket,db));
-
+        socket.on('student information',studentInformation(socket,db));
 
 
     });
+};
+
+var studentInformation = function(socket,db){
+    return async function(msg){
+        console.log('student information:',msg.phone);
+        var student =  await db.Student.find({phone:msg.phone}).exec();
+        socket.emit('student information',student);
+    }
 };
 
 
@@ -23,7 +31,6 @@ var joinRoom = function(socket,db){
             //创建聊天房间
             console.log('join room:',msg.from,msg.to);
             socket.join(msg.from+msg.to);
-
         }
 };
 
@@ -36,33 +43,36 @@ var sendMessage =  function(socket,db){
         console.log('send message to room',msg.from,msg.to);
         //socket放在最上面，便于用户快速响应聊天结果
         socket.emit('receive message', msg);
+        var  [fromStudent] = await db.Student.find({phone:msg.from},{_id:1}).exec();
+        var [toStudent] = await db.Student.find({phone:msg.to},{_id:1}).exec();
+
+        console.log(fromStudent,toStudent);
+
         //查询是否有两人的聊天室,若有,则将该消息存入聊天室,若没有,则创建两人的聊天室,
-        var people = [msg.from,msg.to].sort();
-        var [chatRoom] = await  db.chatRoom.find({people:people}).exec();
+        var [chatRoom] = await  db.ChatRoom.find({people:{$all:[fromStudent._id,toStudent._id] } }).exec();
+        var message = await new db.Message({
+            from: fromStudent._id,
+            to: toStudent._id,
+            content: msg.content,
+            contentType: msg.contentType
+        }).save();
         //若没有该聊天室,则创建新的聊天室,并将消息打入聊天室
         if (!chatRoom) {
-            console.log('创建房间');
-            await new db.chatRoom({
-                people: people,
-                messages: [{from: msg.from, to: msg.to, content: msg.content, contentType: msg.contentType}],
-                lastMessage:{content:msg.content,from:msg.from,contentType:msg.contentType,createDt:Date.now}
-            }).save();
-            //刷新聊天室
-            refreshRoom(socket,db)(from);
-            refreshRoom(socket,db)(to);
+            //新建消息
+                await new db.ChatRoom({
+                    people: [fromStudent._id, toStudent._id],
+                    messages: [message._id],
+                    lastMessage: message._id,
+                }).save();
+                //刷新聊天室
+                // refreshRoom(socket,db)(from);
+                // refreshRoom(socket,db)(to);
         }else{
             //若有聊天室,则将消息打入聊天室
-            console.log('消息存入房间');
-            chatRoom.messages.push({
-                from: msg.from,
-                to: msg.to,
-                content: msg.content,
-                contentType: msg.contentType
-            });
-            chatRoom.lastMessage= {from:msg.from,content:msg.content,contentType:msg.contentType,createDt:Date.now};
-            await  db.chatRoom.update({_id: chatRoom._id}, chatRoom, {}, function (err) {
-                if(err)console.error(err);
-            });
+            chatRoom.messages.push(message._id);
+            chatRoom.lastMessage= message._id;
+            console.log(chatRoom);
+            db.ChatRoom.update({_id:chatRoom._id},chatRoom,{},()=>{});
         }
     }
 };
@@ -72,7 +82,8 @@ var sendMessage =  function(socket,db){
 var refreshRoom = function (socket,db){
     return async  function(msg) {
         console.log('refresh room:',msg.phone);
-        var chatRooms = await db.chatRoom.find({
+        var [studentId]= await db.find({phone:msg.phone},{_id:1}).exec();
+        var chatRooms = await db.ChatRoom.find({
             people: msg.phone
         }).exec();
         for (var i = 0; i < chatRooms.length; i++) {
@@ -100,6 +111,6 @@ var refreshFriends =  function(socket,db){
     return  async function(msg){
         console.log('refresh students:',msg.phone);
         var students =  await db.Student.find({phone:{$nin:[msg.phone]}}).exec();
-        socket.emit('refresh students',students);
+        socket.emit('refresh students',students,{},function(){});
     }
 };

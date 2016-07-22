@@ -6,16 +6,21 @@ angular.module('chat.controllers')
             $scope.messages =[];
         var viewScroll = $ionicScrollDelegate.$getByHandle('messageDetailsScroll');
 
-        var to = $state.params.phone;
+        var talkTo = $state.params.phone;
         var socket = socketService.getSocket();
-
-        socket.emit('join room',{from:$rootScope.user.phone,to:to});
-
+        socket.emit('join room',{from:$rootScope.user.phone,to:talkTo});
         socket.emit('history message',{phone:$rootScope.user.phone,});
+        socket.emit('student information',{phone:talkTo});
 
+        socket.on('student information',function(student){
+            $scope.$apply(function() {
+                $scope.talkToStudent = student;
+                console.log($scope.talkToStudent);
+            });
+        });
 
         $scope.sendMessage = function(){
-            socket.emit('send message',{content:$scope.send_content,pic:$rootScope.user.headpic,from:$rootScope.user.phone,to:to,contentType:'text'});
+            socket.emit('send message',{content:$scope.send_content,pic:$rootScope.user.headpic,from:$rootScope.user.phone,to:talkTo,contentType:'text'});
             $scope.send_content=" ";
         };
 
@@ -32,7 +37,7 @@ angular.module('chat.controllers')
             //获取消息历史
             //找到对应的房间
             var  detailRoom =  $rootScope.chatRooms.filter(function(chatRoom){
-                return chatRoom.otherPhone == to;
+                return chatRoom.otherPhone == talkTo;
             });
             $scope.messages = detailRoom[0].messages;
 
