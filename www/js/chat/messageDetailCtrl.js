@@ -37,9 +37,9 @@ angular.module('chat.controllers')
             //获取消息历史
             //找到对应的房间
 
-                $scope.chatRoom = $rootScope.chatRooms.find(function(chatRoom){
-                    return  chatRoom.talkTo.phone == talkTo;
-                });
+                // $scope.chatRoom = $rootScope.chatRooms.find(function(chatRoom){
+                //     return  chatRoom.talkTo.phone == talkTo;
+                // });
 
 
         });

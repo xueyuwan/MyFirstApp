@@ -28,9 +28,23 @@ var studentInformation = function(socket,db){
 
 var joinRoom = function(socket,db){
     return async function(msg){
+
             //创建聊天房间
             console.log('join room:',msg.from,msg.to);
             socket.join(msg.from+msg.to);
+            socket.emit('receive message', msg);
+
+        var [chatRoom] = await  db.ChatRoom.find({people:{$all:[msg.from,msg.to]} }).exec();
+        var message = await new db.Message({
+            from: msg.from,
+            to: msg.to,
+            content: msg.content,
+            contentType: msg.contentType
+        }).save();
+        chatRoom.talkTo =await db.Student.find({phone:to}).exec();
+        //若没有该聊天室,则创建新的聊天室,并将消息打入聊天室
+
+
         }
 };
 
